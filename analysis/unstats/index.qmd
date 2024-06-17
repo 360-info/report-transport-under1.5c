@@ -1,0 +1,220 @@
+---
+title: Untitled
+subtitle: A slightly longer title
+format:
+  360-analysis-html: default
+author: James Goldie
+date: last-modified
+code-fold: true
+---
+
+```{r}
+#| label: setup
+library(tidyverse)
+library(countrycode)
+library(fuzzyjoin)
+library(httr2)
+library(here)
+```
+
+Indicator 11.2.1 from https://unstats.un.org/sdgs/dataportal/database
+
+API root: https://unstats.un.org/sdgs/UNSDGAPIV5
+Swagger: https://unstats.un.org/sdgs/UNSDGAPIV5/swagger/index.html
+
+/v1/sdg/Indicator/{indicatorCode}/Series/List
+```{r}
+#| label: load-data
+api_root <- "https://unstats.un.org/sdgs/UNSDGAPIV5"
+
+api_root |>
+  paste0("/v1/sdg/Indicator/11.2.1/Series/List") |>
+  request() |>
+  req_perform() |>
+  httr2::resp_body_json() ->
+req_series_list
+
+stopifnot("SDG indicator lookup should only return 1 result" =
+  length(req_series_list) == 1)
+
+req_series_list |>
+  pluck(1, "series", 1, "code") ->
+pt_series_name
+
+stopifnot("SDG indicator lookup did not return a valid series code" =
+  !is.null(pt_series_name))
+```
+
+Now we can get the data for the located series. Normally we'd use the endpoint `/v1/sdg/Series/Data`, supplying the `seriesCode` as a query string parameter. But I'm finding that that's dropping the city column (or, rather, leaving all the cities blank).
+
+I'm not really sure why that is, but a workaround is to get each country's data individually using `/v1/sdg/Series/{seriesCode}/GeoArea/{geoAreaCode}/DataSlice`, where `geoAreaCode` is a numeric code corresponding to the country.
+
+So first we need a list of countries with available data for this series. We can get that from `/v1/sdg/Series/{seriesCode}/GeoAreas`.
+
+```{r}
+#| label: get-areas
+api_root |>
+  paste0("/v1/sdg/Series/", pt_series_name, "/GeoAreas") |>
+  request() |>
+  req_perform() |>
+  httr2::resp_body_json(simplifyVector = TRUE) ->
+pt_countries
+```
+
+This is a data frame of `geoAreaName` (country names) and `geoAreaCode` (numeric codes for each one). We can use the codes to request PT data, one country at a time, and get the cities along for the ride.
+
+```{r}
+#| label: get-each-country
+api_root |>
+  paste0(
+    "/v1/sdg/Series/SP_TRN_PUBL/GeoArea/",
+    pt_countries[["geoAreaCode"]],
+    "/DataSlice") |>
+  map(request) |>
+  map(req_throttle, rate = 1 / 2) |>
+  req_perform_sequential() |>
+  map(resp_body_json, simplifyVector = TRUE) |>
+  bind_rows() |>
+  unpack(dimensions) ->
+pt_data
+```
+
+Virtually all of the data is from 2019, but a few are from earlier or later years:
+
+```{r}
+#| label: reporting-year
+pt_data |> count(timePeriodStart) |> arrange(timePeriodStart)
+```
+
+Let's write it out to disk and map it in OJS. First, let's tidy up the city names, which appear to have ISO2 country codes prefixed to them.
+
+```{r}
+pt_data |>
+  mutate(Cities = na_if(Cities, "NOCITI")) |>
+  separate_wider_delim(Cities, "_", names = c("country_iso2", "city") ,too_many = "merge") |>
+  mutate(city = str_to_title(city)) |>
+  select(country_code = geoAreaCode, country_name = geoAreaName,
+    country_iso2, city, year = timePeriodStart, pct_pt_access = value) ->
+pt_tidy
+```
+
+I might just double-check my assumption that the apparent iso2 code in the data matches the actual ISO2 code that the UN numeric codes matches.
+
+```{r}
+#| label: check-iso
+pt_data |>
+  filter(Cities != "NOCITI") |>
+  separate_wider_delim(Cities, "_", names = c("country_iso2", "city"),too_many = "merge") |>
+  mutate(iso2_check = countrycode(geoAreaCode, "un", "iso2c")) |>
+  filter(iso2_check != country_iso2) ->
+iso2_mismatch
+
+stopifnot(
+  "There are countries with bad ISO2 codes provided by the UN SDG API" =
+    nrow(iso2_mismatch) == 0)
+```
+
+All good!
+
+## Geolocate cities
+
+Finally, we need to geolocate these cities, so we can put them on a map. We'll use [OpenDataSoft's dataset of cities over 1000 people](https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000), which is CC BY 4.0.
+
+Although OpenDataSoft has an API, to keep things snappy (they have 147k cities and I don't want to query them 20 at a time), I've downloaded the whole thing as a Parquet file.
+
+
+```{r}
+#| label: get-city-locations
+here("data", "raw", "cities.csv") |>
+  read_delim(delim = ";", na = "") |>
+  janitor::clean_names() ->
+cities
+```
+
+Let's merge them in. The main problem is that the city database is _huge_: there are five entries alone for "Melbourne", including two in the US and two more in the UK.
+
+Since we have the countries for each city, let's use that to assist - we'll do the matching only within country groups. Then, for cases where there are still multiple entries within a city, we'll select the most populous.
+
+Finally, because each city has multiple names, we'll lengthen those out to see if any can be matched.
+
+```{r}
+#| label: merge-city-data
+cities |>
+  # take the most populous record for a city of a given name within a country
+  group_by(country_code, ascii_name) |>
+  slice_max(population, with_ties = FALSE) |>
+  ungroup() |>
+  # unspool all the alternate names for each city
+  mutate(all_names = paste(name, ascii_name, alternate_names, sep = ",")) |>
+  separate_longer_delim(all_names, ",") |>
+  select(-ascii_name, -alternate_names) |>
+  # finally, eliminate duplicates within a country, as fuzzyjoin has no
+  # multiple match handling afaict
+  group_by(country_code) |>
+  distinct(all_names, .keep_all = TRUE) |>
+  ungroup() ->
+most_populous_cities
+
+# join the nested city lists and pt access data grouped by country
+pt_tidy |>
+  mutate(city = str_replace_all(city, "_", " ")) |>
+  nest(pt = -country_iso2) |>
+  left_join(
+    nest(most_populous_cities, cities = -country_code),
+    by = join_by(country_iso2 == country_code)) ->
+nested_cities_by_country
+
+# the match function gets a pair of vectors with every possible combo of
+# potential matches. it needs to return a logical vector of true matches
+city_name_in <- function(x, y) {
+  map2_lgl(tolower(x), tolower(y), ~ str_detect(.x, fixed(.y)))
+}
+
+# now join the pt and the cities in lockstep
+# (this takes a few minutes)
+nested_cities_by_country |>
+  filter(!is.na(country_iso2)) |>
+  mutate(
+    matches = map2(pt, cities, fuzzy_left_join,
+      by = c(city = "all_names"),
+      match_fun = city_name_in,
+      .progress = TRUE)) ->
+nested_matched_cities
+
+# how many missing matches? about 90 (pretty good!)
+nested_matched_cities |>
+  select(country_iso2, matches) |>
+  unnest(matches) |>
+  filter(is.na(coordinates)) |> select(country_iso2, city, all_names) |>
+  View()
+
+# now expand back out. we might also get rid of ones with identical coordinates
+# too, since those are still a string (in case we still have multiple matches)
+nested_matched_cities |>
+  select(-pt, -cities) |>
+  unnest(matches) |>
+  # group_by(country_iso2, city) |>
+  # arrange(desc(population)) |>
+  # ungroup() |>
+  distinct(geoname_id, .keep_all = TRUE) |>
+  # now split up coords and make numeric
+  separate_wider_delim(coordinates, ", ", names = c("lat", "lon")) |>
+  mutate(across(c(lat, lon, pct_pt_access), as.numeric)) |>
+  select(geoname_id, country_iso2, country_name, city, lat, lon, year, population,
+    pct_pt_access) |>
+  filter(!is.na(lat), !is.na(lon)) |>
+  write_csv(here("data", "pt-access.csv")) ->
+located_cities
+```
+
+Let's map them:
+
+```{r}
+#| label: map-cities
+located_cities |>
+  ggplot() +
+    aes(x = lon, y = lat) +
+    geom_point(aes(colour = pct_pt_access)) +
+    scale_colour_fermenter(type = "div", n.breaks = 10, direction = 1) +
+    theme_minimal()
+```
