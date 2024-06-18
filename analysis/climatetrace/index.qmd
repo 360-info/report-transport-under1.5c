@@ -1,0 +1,136 @@
+---
+title: Untitled
+subtitle: A slightly longer title
+format:
+  360-analysis-html: default
+author: James Goldie
+date: last-modified
+code-fold: true
+---
+
+```{r}
+#| label: setup
+library(tidyverse)
+library(httr2)
+library(here)
+```
+
+[Climate Trace](https://climatetrace.org/) has sector and sub-sector greenhouse gas emissions for countries, so we can use it to show:
+
+- How much of each country's total emissions is transport, and
+- How transport is broken down further in each country
+
+Rather than [downloading each country's data individually](https://climatetrace.org/data), let's use the [API](https://api.climatetrace.org/v4) to get them. 
+
+Climate Trace's API is pretty neat! All of the endpoints return JSON that is neat enough to convert straight to a data frame, so I'll write one function to handle all of them with `{httr2}`.
+
+We'll use the [`/country/emissions`](https://api.climatetrace.org/v4/swagger/index.html#tag/countries/get/v4/country/emissions) endpoint, which takes query parameters for its options:
+
+- `since`
+- `to`
+- `sector`
+- `subsectors`
+- `countries`: comma-separated list of 3-letter country codes
+- `continents`: comma-separated list of continents
+- `groups`: comma-separated list of country groups
+
+We'll get the codes we need to filter our output from the definitions endpoints below.
+
+
+```{r}
+#| label: get-data-function
+#' get_climatetrace_data: get data from a climate trace api endpoint.
+#' 
+#' @param endpoint An API endpoint string, like "/country/emissions". Excludes
+#'   the API version number, `/v4`.
+#' @param ... Query string parameters keys and values, like
+#'   sector = "transportation".
+get_climatetrace_data <- function(endpoint, ...) {
+  request("https://api.climatetrace.org") |>
+    req_url_path("/v4") |>
+    req_url_path_append(endpoint) |>
+    req_url_query(...) |>
+    req_throttle(1 / 2) |>
+    req_perform() |>
+    resp_body_json(simplifyVector = TRUE) |>
+    as_tibble()
+}
+```
+
+```{r}
+#| label: get-def-data
+tr_sectors    <- get_climatetrace_data("/definitions/sectors") 
+tr_subsectors <- get_climatetrace_data("/definitions/subsectors")
+tr_countries  <- get_climatetrace_data("/definitions/countries")
+
+# let's see the sector and subsector lists
+tr_sectors |> print(n = Inf)
+tr_subsectors |> print(n = Inf)
+```
+
+```{r}
+#| label: get-emissions-data
+# squash the country code list into a comma-separated string
+tr_countries |>
+  pull(alpha3) |>
+  paste(collapse = ",") ->
+country_string
+
+# get total emissions
+"/country/emissions" |>
+  get_climatetrace_data(countries = country_string) |>
+  unpack(
+    cols = c(emissions, worldEmissions, emissionsChange),
+    names_sep = "_") ->
+tr_all
+
+# now transport emissions
+"/country/emissions" |>
+  get_climatetrace_data(countries = country_string, sector = "transportation") |>
+  unpack(
+    cols = c(emissions, worldEmissions, emissionsChange),
+    names_sep = "_") ->
+tr_transport
+```
+
+One gotcha for the emissions endpoint is that, unlike the country parameters, the subsectors endpoint (and probably the sector one, but we're only doing one sector) doesn't return data for _each_ of them—rather it seems to return aggregated figures for all the requested subsectors.
+
+That means we need to request each subsector individually.
+
+```{r}
+#| label: get-subsector-emissions
+
+# now transport subsector emissions
+requested_subsectors <- c(
+  "domestic-aviation", 
+  "domestic-shipping", 
+  "domestic-shipping-ship", 
+  "international-aviation", 
+  "international-shipping", 
+  "international-shipping-ship", 
+  "railways", 
+  "road-transportation", 
+  "road-transportation-road-segment")
+
+tr_subsectors |>
+  rename(subsector = value) |>
+  filter(subsector %in% requested_subsectors) |>
+  mutate(data = map(subsector,
+    ~ get_climatetrace_data("/country/emissions",
+      subsectors = .x,
+      countries = country_string))) ->
+tr_subsector_nested
+```
+
+I think we might have a problem: the transport sector data seems to be identical to the all sectors data. It also seems to be much larger than the sum of the subsectors, so it's probably the transport sector data that's problematic. Take a look at `MDG`:
+
+```{r}
+#| label: api-problem
+# now unnest and unpack the data
+# this one is wrong! it's the same as `tr_all`
+tr_transport |>
+  filter(country == "MDG")
+
+tr_all |>
+  filter(country == "MDG")
+```
