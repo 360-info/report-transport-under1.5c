@@ -1,10 +1,10 @@
 ---
 # omit title and subtitle if you're doing a custom title block
-title: Untitled
-subtitle: A thing here
+title: Access to public transport
+subtitle: How many people in your city have a 
 # for social previews
-pagetitle: Untitled
-description: A description for social previews
+pagetitle: "Interactive: Access to public transport"
+description: Which 
 twitter-card:
   site: "@360info_global"
   image: "/folder/example.png"
@@ -23,11 +23,11 @@ format:
   min-height: 500px
   max-height: 893px
   bg-colour: white
-  title: "Interactive: title"
+  title: "Interactive: access to public transport"
   repo: report-example
-  domain: https://example.360visuals.org
+  domain: https://transport.360visuals.org
   path: /map/  
-  fragments: state, month
+  fragments: 
   about: |
     Here's a place to **tell people** and [link to things](https://example.com)!
 ---
@@ -38,27 +38,59 @@ cities = FileAttachment("/data/pt-access.csv").csv({ typed: true })
 ```
 
 ```{ojs}
-//| label: table
+//| label: debug-table
 html`
 <details>
   <summary>Table view</summary>
   ${Inputs.table(cities)}
-</details>
-`
+</details>`
+```
+
+```{ojs}
+//| label: city-search
+viewof selectedCities = Inputs.search(cities, {
+  required: false,
+  columns: ["city", "country_name"],
+})
+
+// zoom checkbox allows reader to narrow in on selected cities or countries
+// (only works with a valid selection)
+viewof zoomOptions = Inputs.checkbox(["Zoom to selection"], {
+  disabled: selectedCities.length == 0
+})
+zoomToSelection = selectedCities.length > 0 &&
+  zoomOptions.includes("Zoom to selection")
+
+```
+
+```{ojs}
+//| label: filter-to-zoom
+activeData = zoomToSelection ?
+  cities.filter(
+    d => selectedCities
+      .map(d => d.city.toLowerCase())
+      .includes(d.city.toLowerCase())) :
+  cities
 ```
 
 ```{ojs}
 //| label: beeswarm
 Plot.plot({
   marks: [
-    Plot.dot(cities, Plot.dodgeY("middle", {
+    Plot.dot(activeData, Plot.dodgeY("middle", {
       fy: "region",
       x: "pct_pt_access",
       fill: "pct_pt_access",
       r: "population",
-      // tip: true
+      opacity: d =>
+        selectedCities.length > 0 &&
+          (!selectedCities
+            .map(d => d.city.toLowerCase())
+            .includes(d.city.toLowerCase())) ?
+        0.1 :
+        1,
     })),
-    Plot.tip(cities, Plot.pointer(Plot.dodgeY("middle", {
+    Plot.tip(activeData, Plot.pointer(Plot.dodgeY("middle", {
       fy: "region",
       x: "pct_pt_access",
       r: "population",
@@ -74,7 +106,8 @@ Plot.plot({
   ],
   x: {
     label: "Access to public transport",
-    grid: true
+    grid: true,
+    domain: [0, 100]
   },
   fy: {
     label: null,
@@ -84,9 +117,9 @@ Plot.plot({
   },
   r: {
     label: "Population",
-    range: [0.15, 14]
+    range: zoomToSelection ? [0.25, 25] : [0.15, 14]
   },
-  height: 800,
+  height: zoomToSelection ? 600 : 750,
   width: 800,
   marginLeft: 80,
   marginBottom: 60,
@@ -96,8 +129,6 @@ Plot.plot({
   }
 })
 ```
-
-
 
 {{< include _popups/_buttons.qmd >}}
 
