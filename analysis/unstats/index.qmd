@@ -14,6 +14,7 @@ library(tidyverse)
 library(countrycode)
 library(fuzzyjoin)
 library(httr2)
+library(rvest)
 library(here)
 ```
 
@@ -220,3 +221,93 @@ located_cities |>
 ```
 
 I would also like to do this as a packed circles by continent, but we'll need to merge in country/continent data from [the uN](https://unstats.un.org/unsd/methodology/m49), but I might swing back 'round to this after the other graphics are done.
+
+# Add continent info
+
+Let's scrape the country listings. Although we could use `rvest::html_table()` for this, the hierarchy of countries, subregions and regions is expressed mostly through html attributes:
+
+- `data-tt-id`: the ID of the row
+- `data-tt-parent-id`: the ID of the parent group
+
+Let's first extract these attributes, then get the actual table content as usual with `html_table()` and bolt the two together.
+
+```{r}
+#| label: scrape-region-data
+"https://unstats.un.org/unsd/methodology/m49" |>
+  read_html() ->
+doc
+
+doc |>
+  html_elements("#GeoGroupsENG tr") |>
+  html_attrs() |>
+  tail(-1) |>
+  map(as_tibble_row) |>
+  bind_rows() |>
+  set_names(c("id", "parent")) ->
+relationships
+
+# now the table itself
+doc |>
+  html_elements("#GeoGroupsENG") |>
+  html_table() |>
+  pluck(1) |>
+  # bolt the relationships on
+  bind_cols(relationships) |>
+  janitor::clean_names() |>
+  mutate(
+    # convert numeric strings to integers
+    across(c(parent, id), as.integer),
+    # replace blank entries with NA
+    across(where(is.character), ~ na_if(.x, ""))) ->
+un_groups
+```
+
+We have a big list of regions, subregions and countries (and other areas that have an ISO3 code), plus IDs of their parents. What I'd really like is the name of the region and subregion attached to each country.
+
+```{r}
+#| label: arrange-region-hierarchy
+regions <- un_groups |> filter(parent == 1)
+
+# join subregions to regions
+un_groups |>
+  filter(parent %in% regions$id) |>
+  left_join(regions,
+    join_by(parent == id),
+    relationship = "many-to-one",
+    suffix = c("", "_region")) |>
+    glimpse() ->
+subregions
+
+# now for the countries, join to subregions (bringing regions along too)
+# i'll also use {countrycode} to convert the iso3 codes to iso2 codes
+un_groups |>
+  filter(!is.na(iso_alpha3_code)) |>
+  left_join(subregions,
+    join_by(parent == id),
+    relationship = "many-to-one",
+    suffix = c("", "_subregion")) |>
+  mutate(iso2 = countrycode(iso_alpha3_code, "iso3c", "iso2c")) |>
+  select(id,
+    region = country_or_area_region,
+    subregion = country_or_area_subregion,
+    iso2,
+    iso3 = iso_alpha3_code,
+    name = country_or_area) ->
+country_region_maps
+```
+
+Now we're ready to join this back to our city database and write back out to disk:
+
+```{r}
+#| label: join-pt-and-regions
+here("data", "pt-access.csv") |>
+  read_csv() ->
+located_cities
+
+located_cities |>
+  left_join(country_region_maps, join_by(country_iso2 == iso2)) |>
+  select(-iso3, -name, -id) |>
+  select(where(is.character), where(is.numeric)) |>
+  write_csv(here("pt-access.csv")) ->
+located_cities_regions
+``` 
