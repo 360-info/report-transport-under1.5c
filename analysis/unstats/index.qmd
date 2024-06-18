@@ -308,6 +308,6 @@ located_cities |>
   left_join(country_region_maps, join_by(country_iso2 == iso2)) |>
   select(-iso3, -name, -id) |>
   select(where(is.character), where(is.numeric)) |>
-  write_csv(here("pt-access.csv")) ->
+  write_csv(here("data", "pt-access.csv")) ->
 located_cities_regions
 ``` 

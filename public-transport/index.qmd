@@ -1,0 +1,104 @@
+---
+# omit title and subtitle if you're doing a custom title block
+title: Untitled
+subtitle: A thing here
+# for social previews
+pagetitle: Untitled
+description: A description for social previews
+twitter-card:
+  site: "@360info_global"
+  image: "/folder/example.png"
+open-graph:
+  image: "/folder/example.png"
+resources:
+  - /data/pt-access.csv
+format:
+  360-embed-html: default
+# metadata for modals and embed sharing functionality
+360embed:
+  byline: James Goldie, 360info
+  data-source: XXX
+  type: map
+  aspect-ratio: 20 / 19
+  min-height: 500px
+  max-height: 893px
+  bg-colour: white
+  title: "Interactive: title"
+  repo: report-example
+  domain: https://example.360visuals.org
+  path: /map/  
+  fragments: state, month
+  about: |
+    Here's a place to **tell people** and [link to things](https://example.com)!
+---
+
+```{ojs}
+//| label: download-data
+cities = FileAttachment("/data/pt-access.csv").csv({ typed: true })
+```
+
+```{ojs}
+//| label: table
+html`
+<details>
+  <summary>Table view</summary>
+  ${Inputs.table(cities)}
+</details>
+`
+```
+
+```{ojs}
+//| label: beeswarm
+Plot.plot({
+  marks: [
+    Plot.dot(cities, Plot.dodgeY("middle", {
+      fy: "region",
+      x: "pct_pt_access",
+      fill: "pct_pt_access",
+      r: "population",
+      // tip: true
+    })),
+    Plot.tip(cities, Plot.pointer(Plot.dodgeY("middle", {
+      fy: "region",
+      x: "pct_pt_access",
+      r: "population",
+      channels: {
+        "City": "city",
+        "Country": "country_name"
+      },
+      format: {
+        "x": d => d.toFixed(1) + "%",
+        "fy": null
+      }
+    })))
+  ],
+  x: {
+    label: "Access to public transport",
+    grid: true
+  },
+  fy: {
+    label: null,
+  },
+  color: {
+    reverse: true
+  },
+  r: {
+    label: "Population",
+    range: [0.15, 14]
+  },
+  height: 800,
+  width: 800,
+  marginLeft: 80,
+  marginBottom: 60,
+  style: {
+    fontFamily: "Roboto Condensed",
+    fontSize: 16
+  }
+})
+```
+
+
+
+{{< include _popups/_buttons.qmd >}}
+
+{{< include _popups/_dialogs.qmd >}}
