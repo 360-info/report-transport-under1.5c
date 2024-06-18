@@ -196,7 +196,7 @@ nested_matched_cities |>
   # group_by(country_iso2, city) |>
   # arrange(desc(population)) |>
   # ungroup() |>
-  distinct(geoname_id, .keep_all = TRUE) |>
+  distinct(country_iso2, city, .keep_all = TRUE) |>
   # now split up coords and make numeric
   separate_wider_delim(coordinates, ", ", names = c("lat", "lon")) |>
   mutate(across(c(lat, lon, pct_pt_access), as.numeric)) |>
@@ -218,3 +218,5 @@ located_cities |>
     scale_colour_fermenter(type = "div", n.breaks = 10, direction = 1) +
     theme_minimal()
 ```
+
+I would also like to do this as a packed circles by continent, but we'll need to merge in country/continent data from [the uN](https://unstats.un.org/unsd/methodology/m49), but I might swing back 'round to this after the other graphics are done.
