@@ -89,13 +89,45 @@ pt_data |> count(timePeriodStart) |> arrange(timePeriodStart)
 
 Let's write it out to disk and map it in OJS. First, let's tidy up the city names, which appear to have ISO2 country codes prefixed to them.
 
+A few countries also have additional data that needs to come out of the city names:
+
+- Canada, China and (for some cities) the US have a state name or abbreviation at the end after a final underscore
+- Mexico has a state abbreviation at the _start_ before an underscore
+- Pakistan has three state or province names that come before some cities: `Khyber_pakhtunkhwa`, `Balochistan`, `Sindh` and `Punjab`. They also have totals for these areas, using the city name `total` (eg. `Punjab_total`).
+
+Let's clean those out along the way. We'll also drop older years for the (few) cities that have data for multiple years.
+
 ```{r}
+#| label: process-pt-cities
 pt_data |>
   mutate(Cities = na_if(Cities, "NOCITI")) |>
   separate_wider_delim(Cities, "_", names = c("country_iso2", "city") ,too_many = "merge") |>
   mutate(city = str_to_title(city)) |>
   select(country_code = geoAreaCode, country_name = geoAreaName,
-    country_iso2, city, year = timePeriodStart, pct_pt_access = value) ->
+    country_iso2, city, year = timePeriodStart, pct_pt_access = value) |>
+  # now manually handle a few countries as described above...
+  filter(!str_ends(city, "_total")) |>
+  mutate(
+    city = case_when(
+      city == "Washington_d_c" ~ "Washington DC",
+      country_name %in% c("Canada", "China", "United States of America") ~
+        str_remove(city, "_[^_]*$"),
+      country_name == "Mexico" ~
+        str_remove(city, "^[^_]*_"),
+      country_name == "Pakistan" ~
+        str_replace_all(city, c(
+          "Khyber_pakhtunkhwa_" = "",
+          "Balochistan_" = "",
+          "Sindh_" = "",
+          "Punjab_" = "")),
+      .default = city),
+    # ... and switch to title case with spaces
+    city = str_replace_all(city, "_", " "),
+    city = str_to_title(city)) |>
+  # finally, drop non-latest data for a city
+  group_by(city) |>
+  slice_max(year) |>
+  ungroup() ->
 pt_tidy
 ```
 
@@ -122,7 +154,6 @@ All good!
 Finally, we need to geolocate these cities, so we can put them on a map. We'll use [OpenDataSoft's dataset of cities over 1000 people](https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000), which is CC BY 4.0.
 
 Although OpenDataSoft has an API, to keep things snappy (they have 147k cities and I don't want to query them 20 at a time), I've downloaded the whole thing as a Parquet file.
-
 
 ```{r}
 #| label: get-city-locations
@@ -158,7 +189,6 @@ most_populous_cities
 
 # join the nested city lists and pt access data grouped by country
 pt_tidy |>
-  mutate(city = str_replace_all(city, "_", " ")) |>
   nest(pt = -country_iso2) |>
   left_join(
     nest(most_populous_cities, cities = -country_code),
@@ -167,42 +197,45 @@ nested_cities_by_country
 
 # the match function gets a pair of vectors with every possible combo of
 # potential matches. it needs to return a logical vector of true matches
-city_name_in <- function(x, y) {
-  map2_lgl(tolower(x), tolower(y), ~ str_detect(.x, fixed(.y)))
-}
+# city_name_in <- function(x, y) {
+#   message("Matching... ", length(x), " combos")
+#   m <- map2_lgl(tolower(x), tolower(y), ~ str_detect(.y, fixed(.x)))
+#   View(tibble(x, y, m))
+#   return(m)
+# }
 
 # now join the pt and the cities in lockstep
 # (this takes a few minutes)
 nested_cities_by_country |>
   filter(!is.na(country_iso2)) |>
   mutate(
-    matches = map2(pt, cities, fuzzy_left_join,
+    matches = map2(pt, cities, stringdist_left_join,
       by = c(city = "all_names"),
-      match_fun = city_name_in,
+      distance_col = "distance",
       .progress = TRUE)) ->
 nested_matched_cities
 
 # how many missing matches? about 90 (pretty good!)
 nested_matched_cities |>
+# nested_jp |>
   select(country_iso2, matches) |>
   unnest(matches) |>
   filter(is.na(coordinates)) |> select(country_iso2, city, all_names) |>
   View()
 
-# now expand back out. we might also get rid of ones with identical coordinates
-# too, since those are still a string (in case we still have multiple matches)
+# now expand back out. since we're keeping all possible matches, this'll
+# be huge - we'll keep the closest match in spelling for each city.
 nested_matched_cities |>
   select(-pt, -cities) |>
   unnest(matches) |>
-  # group_by(country_iso2, city) |>
-  # arrange(desc(population)) |>
-  # ungroup() |>
-  distinct(country_iso2, city, .keep_all = TRUE) |>
+  group_by(country_iso2, city) |>
+  slice_min(distance) |>
+  ungroup() |>
   # now split up coords and make numeric
   separate_wider_delim(coordinates, ", ", names = c("lat", "lon")) |>
   mutate(across(c(lat, lon, pct_pt_access), as.numeric)) |>
-  select(geoname_id, country_iso2, country_name, city, lat, lon, year, population,
-    pct_pt_access) |>
+  select(geoname_id, country_iso2, country_name, city, city_std = name,
+    lat, lon, year, population, pct_pt_access) |>
   filter(!is.na(lat), !is.na(lon)) |>
   write_csv(here("data", "pt-access.csv")) ->
 located_cities
@@ -233,9 +266,7 @@ Let's first extract these attributes, then get the actual table content as usual
 
 ```{r}
 #| label: scrape-region-data
-"https://unstats.un.org/unsd/methodology/m49" |>
-  read_html() ->
-doc
+doc <- read_html("https://unstats.un.org/unsd/methodology/m49")
 
 doc |>
   html_elements("#GeoGroupsENG tr") |>
@@ -262,7 +293,8 @@ doc |>
 un_groups
 ```
 
-We have a big list of regions, subregions and countries (and other areas that have an ISO3 code), plus IDs of their parents. What I'd really like is the name of the region and subregion attached to each country.
+We have a big list of regions, subregions, and countries (and other areas that have an ISO3 code), plus IDs of their parents. We also have some regions, like Sub-Saharan Africa, that are broken down further into _sub-_ subregions. I'm going to combine those with the subregions so that we just categorise all countries into the broadest regions.
+
 
 ```{r}
 #| label: arrange-region-hierarchy
@@ -278,11 +310,29 @@ un_groups |>
     glimpse() ->
 subregions
 
+# any places that are sub-subregions?
+un_groups |>
+  filter(parent %in% subregions$id, is.na(iso_alpha3_code)) |>
+  left_join(subregions,
+    join_by(parent == id),
+    relationship = "many-to-one",
+    suffix = c("", "_subregion")) |>
+    glimpse() ->
+subsubregions
+
+# bolt subregions and subsubregions together so we can still group
+subsubregions |>
+  select(country_or_area, m49_code, iso_alpha3_code, other_groupings,
+    id, parent = parent_subregion, country_or_area_region, m49_code_region, iso_alpha3_code_region, other_groupings_region,
+    parent_region) |>
+  bind_rows(subregions) ->
+all_subregions
+
 # now for the countries, join to subregions (bringing regions along too)
 # i'll also use {countrycode} to convert the iso3 codes to iso2 codes
 un_groups |>
   filter(!is.na(iso_alpha3_code)) |>
-  left_join(subregions,
+  left_join(all_subregions,
     join_by(parent == id),
     relationship = "many-to-one",
     suffix = c("", "_subregion")) |>
@@ -300,10 +350,6 @@ Now we're ready to join this back to our city database and write back out to dis
 
 ```{r}
 #| label: join-pt-and-regions
-here("data", "pt-access.csv") |>
-  read_csv() ->
-located_cities
-
 located_cities |>
   left_join(country_region_maps, join_by(country_iso2 == iso2)) |>
   select(-iso3, -name, -id) |>

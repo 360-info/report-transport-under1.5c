@@ -74,6 +74,21 @@ activeData = zoomToSelection ?
 ```
 
 ```{ojs}
+//| label: width-calculations
+
+// 800px is the "natural" width - below that the entire svg scales down 
+maxWidth = 800
+excessWidth = Math.max(0, width - 800)
+
+// until we hit 800px, keep the max bubble radius at 12 (unless zooming)
+baseMaxRadius = 12
+zoomMaxRadius = 25
+
+// after that, add radius scale according to excess with
+extraMaxRadius = d3.scaleLinear([0, 900], [0, 7]).clamp(true)
+```
+
+```{ojs}
 //| label: beeswarm
 Plot.plot({
   marks: [
@@ -115,14 +130,17 @@ Plot.plot({
     label: null,
   },
   color: {
-    reverse: true
+    reverse: true,
+    domain: [0, 100]
   },
   r: {
     label: "Population",
-    range: zoomToSelection ? [0.25, 25] : [0.15, 14]
+    range: zoomToSelection ?
+      [0.25, zoomMaxRadius] :
+      [0.15, baseMaxRadius + extraMaxRadius(excessWidth)]
   },
   height: zoomToSelection ? 600 : 700,
-  width: Math.max(width, 800),
+  width: 800 + excessWidth,
   marginLeft: 100,
   marginTop: 80,
   style: {
