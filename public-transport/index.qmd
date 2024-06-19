@@ -1,15 +1,15 @@
 ---
 # omit title and subtitle if you're doing a custom title block
 title: Access to public transport
-subtitle: "**How many people in your city have a stop nearby?**<br><span style='font-size: 85%; color: #555555;'>This measures the percentage of people in a city with a **minor stop (bus) within 500 m** or a **major stop (train, metro or ferry) within 1 km** of their home.</span>"
+subtitle: "**How many people in your city have a stop nearby?**<br><span style='font-size: 85%; color: #555555;'>This measures the percentage of people in a city with a **minor stop (bus) within 500 m** or a **major stop (train, metro or ferry) within 1 km** of their home. It doesn't take into account the quality or frequency of that transport.</span>"
 # for social previews
 pagetitle: "Interactive: Access to public transport"
-description: Which 
+description: "How many people in your city have a stop nearby?" 
 twitter-card:
   site: "@360info_global"
-  image: "/folder/example.png"
+  image: "/public-transport/pt-access-banner.png"
 open-graph:
-  image: "/folder/example.png"
+  image: "/public-transport/pt-access-banner.png"
 resources:
   - /data/pt-access.csv
 format:
@@ -17,19 +17,23 @@ format:
 # metadata for modals and embed sharing functionality
 360embed:
   byline: James Goldie, 360info
-  data-source: XXX
+  data-source: UNStats, OpenDataSoft, United Nations
   type: map
-  aspect-ratio: 20 / 19
-  min-height: 500px
-  max-height: 893px
+  aspect-ratio: 4 / 5
+  min-height: 550px
+  max-height: 950px
   bg-colour: white
   title: "Interactive: access to public transport"
-  repo: report-example
+  repo: report-transport-under1.5c
   domain: https://transport.360visuals.org
-  path: /map/  
+  path: /public-transport/  
   fragments: 
   about: |
-    Here's a place to **tell people** and [link to things](https://example.com)!
+    Data underpinning this graphic comes from three sources:<br><br>
+    1. The [UN's SDG Data Portal](https://unstats.un.org/sdgs/dataportal/database)<br>
+    2. [OpenDataSoft's dataset of cities over 1000 people](https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000)<br>  
+    3. the [the UN's hierarchy of country regions](https://unstats.un.org/unsd/methodology/m49)<br><br>
+    These data sources are available under a [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0).
 ---
 
 ```{ojs}
@@ -38,29 +42,22 @@ cities = FileAttachment("/data/pt-access.csv").csv({ typed: true })
 ```
 
 ```{ojs}
-//| label: debug-table
-html`
-<details>
-  <summary>Table view</summary>
-  ${Inputs.table(cities)}
-</details>`
+//| label: controls
+//| panel: input
+viewof zoomOptions = Inputs.checkbox(["Zoom"], {
+  disabled: selectedCities.length == 0
+})
+
+viewof selectedCities = Inputs.search(cities, {
+  required: false,
+  columns: ["city", "country_name"]
+})
 ```
 
 ```{ojs}
-//| label: city-search
-viewof selectedCities = Inputs.search(cities, {
-  required: false,
-  columns: ["city", "country_name"],
-})
-
-// zoom checkbox allows reader to narrow in on selected cities or countries
-// (only works with a valid selection)
-viewof zoomOptions = Inputs.checkbox(["Zoom to selection"], {
-  disabled: selectedCities.length == 0
-})
+//| label: zoom-boolean
 zoomToSelection = selectedCities.length > 0 &&
-  zoomOptions.includes("Zoom to selection")
-
+  zoomOptions.includes("Zoom")
 ```
 
 ```{ojs}
@@ -77,6 +74,7 @@ activeData = zoomToSelection ?
 //| label: width-calculations
 
 // 800px is the "natural" width - below that the entire svg scales down 
+textSize = 18
 maxWidth = 800
 excessWidth = Math.max(0, width - 800)
 
@@ -111,11 +109,17 @@ Plot.plot({
       r: "population",
       channels: {
         "City": "city",
-        "Country": "country_name"
+        "Country": "country_name",
+        "Access": "pct_pt_access"
       },
       format: {
-        "x": d => d.toFixed(1) + "%",
-        "fy": null
+        // "x": d => d.toFixed(1) + "%",
+        "x": false,
+        "fy": false,
+        "City": true,
+        "Country": true,
+        "r": true,
+        "Access": d => d.toFixed(1) + "% of people"
       }
     })))
   ],
@@ -124,7 +128,8 @@ Plot.plot({
     grid: true,
     tickFormat: d => d.toFixed(0) + "%",
     axis: "top",
-    domain: [0, 100]
+    domain: [0, 100],
+    fill: "grey"
   },
   fy: {
     label: null,
@@ -145,7 +150,9 @@ Plot.plot({
   marginTop: 80,
   style: {
     fontFamily: "Roboto Condensed",
-    fontSize: 24
+    fontSize: width < maxWidth * 0.6 ?
+      textSize * 1.5 :
+      textSize
   }
 })
 ```

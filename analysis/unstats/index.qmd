@@ -18,14 +18,18 @@ library(rvest)
 library(here)
 ```
 
-Indicator 11.2.1 from https://unstats.un.org/sdgs/dataportal/database
+# Acquiring the data from UNStats
 
-API root: https://unstats.un.org/sdgs/UNSDGAPIV5
-Swagger: https://unstats.un.org/sdgs/UNSDGAPIV5/swagger/index.html
+The UN's [SDG Data Portal](https://unstats.un.org/sdgs/dataportal/database) has data for the series that make up the indicators that track the goals. We'll be pulling data for indicator 11.2.1: percentage of the population with convenient access to public transport.
 
-/v1/sdg/Indicator/{indicatorCode}/Series/List
+Although you can download this data from their site manually, here we'll see using their API.
+
+If you need to test or look up endpoints, the API's [Swagger](https://unstats.un.org/sdgs/UNSDGAPIV5/swagger) is useful.
+
+First we'll look up the name of the series tied to the indicator:
+
 ```{r}
-#| label: load-data
+#| label: lookup-series
 api_root <- "https://unstats.un.org/sdgs/UNSDGAPIV5"
 
 api_root |>
@@ -253,7 +257,7 @@ located_cities |>
     theme_minimal()
 ```
 
-I would also like to do this as a packed circles by continent, but we'll need to merge in country/continent data from [the uN](https://unstats.un.org/unsd/methodology/m49), but I might swing back 'round to this after the other graphics are done.
+I would also like to do this as a packed circles by continent, but we'll need to merge in country/continent data from [the UN](https://unstats.un.org/unsd/methodology/m49), but I might swing back 'round to this after the other graphics are done.
 
 # Add continent info
 

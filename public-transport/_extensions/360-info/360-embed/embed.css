@@ -42,6 +42,7 @@ header#title-block-header h1 {
 
 header#title-block-header p {
   margin-block-end: 0;
+  font-size: 1.2em;
 }
 
 
@@ -58,9 +59,8 @@ header#title-block-header p {
     font-size: 100%;
   }
 
-  .inputForm {
-    transform: scale(0.9);
-    transform-origin: bottom left;
+  #controls {
+    font-size: 90%;
   }
 }
 
@@ -73,6 +73,10 @@ header#title-block-header p {
 
   header#title-block-header p 
   {
+    font-size: 80%;
+  }
+
+  #controls {
     font-size: 80%;
   }
 }
@@ -99,7 +103,59 @@ header#title-block-header p {
   white-space: pre-wrap;
 }
 
-.embedcode pre .code-copy-button {
+/* control panel styling */
 
+#controls {
+  background-color: #edf6f9;
+  border-radius: 1rem;
+  padding: 0.6rem;
+  margin-bottom: 0.6rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#controls label {
+  text-align: center;
+  flex-grow: 1;
+}
+
+#controls-1 {
+  padding-inline-end: 0;
+}
+
+#controls-1 label {
+  margin-inline-end: 0;
+}
+
+#controls .cell-output:has(#controls-2) {
+  flex-grow: 1;
+}
+
+#controls-2 {
+  width: 100%;
+  padding: 0;
+  min-width: 200px;
+}
+
+#controls-2 input[type="search"] {
+  font-weight: normal;
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+}
+
+input[type="search" i]::-webkit-search-cancel-button {
+
+}
+
+#controls .observablehq,
+#controls form
+{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-block: 0.125em;
 }
 

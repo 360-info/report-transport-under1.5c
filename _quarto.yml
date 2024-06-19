@@ -3,12 +3,13 @@ project:
   output-dir: out
   render:
     - "README.qmd"
-    - "analysis/*/*.qmd"
-    - "analysis/*.qmd"
-    - "*/*.qmd"
+    # - "analysis/*/*.qmd"
+    # - "analysis/*.qmd"
+    - "public-transport/index.qmd"
   post-render: cp -f out/README.md README.md
   resources:
     - /data/pt-access.csv
+    - /public-transport/pt-access-banner.png
   
 # only re-render if the source changes or if we specifically render that file
 execute:
