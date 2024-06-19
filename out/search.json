@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "public-transport/index.html#use-remix",
+    "href": "public-transport/index.html#use-remix",
+    "title": "Access to public transport",
+    "section": "Use + Remix",
+    "text": "Use + Remix\nThis map, as well as the analysis that underpins it, is available under a Creative Commons Attribution 4.0 licence.\nPlease acknowledge 360info and our data sources when you use them.\n\nEmbed this chart in your article\nCopy and paste the following code:\n\n&lt;div style=\"aspect-ratio: 20 / 19; width: 100%; min-height: 500px;\"&gt;\n  &lt;iframe\n    allow=\"fullscreen; clipboard-write self https://transport.360visuals.org\"\n    allowfullscreen=\"true\"\n    src=\"https://transport.360visuals.org/map/\"\n    title=\"Interactive: access to public transport\"\n    style=\"width:100%; height:100%; position: relative; top: 0; left: 0; border:none; background-color: white;\" scrolling=\"no\"&gt;&lt;/iframe&gt;\n&lt;/div&gt;\n\nThis content is subject to 360info’s Terms of Use.\n\n\nGet the data and code\nVisit the GitHub repository to:\n\nDownload the data\nRecreate or remix the chart"
+  },
+  {
+    "objectID": "public-transport/index.html#modal-about-title",
+    "href": "public-transport/index.html#modal-about-title",
+    "title": "Access to public transport",
+    "section": "About",
+    "text": "About"
+  }
+]
