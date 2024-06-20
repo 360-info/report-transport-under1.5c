@@ -71,8 +71,8 @@ tr_subsector_list <- get_climatetrace_data("/definitions/subsectors")
 tr_country_list   <- get_climatetrace_data("/definitions/countries")
 
 # let's see the sector and subsector lists
-tr_sector_list |> print(n = Inf)
-tr_subsectors |> print(n = Inf)
+tr_sector_list    |> print(n = Inf)
+tr_subsector_list |> print(n = Inf)
 ```
 
 ```{r}
@@ -115,8 +115,6 @@ That means we need to request each subsector individually.
 
 ```{r}
 #| label: get-subsector-emissions
-
-# now transport subsector emissions
 requested_subsectors <- c(
   "domestic-aviation", 
   "domestic-shipping", 
@@ -133,10 +131,10 @@ tr_subsector_list |>
   filter(sector %in% requested_subsectors) |>
   mutate(data = map(sector,
     ~ get_climatetrace_data("/country/emissions",
-      subsectors = .x,
-      countries = country_string,
-      since = year_since,
-      to = year_to,
+        subsectors = .x,
+        countries = country_string,
+        since = year_since,
+        to = year_to,
       .progress = TRUE))) |>
   unnest(data) |>
     unpack(
@@ -166,4 +164,34 @@ tr_combined |>
   write_csv(here("data", "transport-emissions.csv")) |>
   print() ->
 tr_combined_wide
+```
+
+# Population
+
+Finally, let's merge population data in. We'll get these from the [UN Population Division](https://population.un.org).
+
+
+```{r}
+#| label: get-population
+here("data", "raw", "population.csv") |>
+  read_csv() |>
+  select(iso2 = ISO2_code, iso3 = ISO3_code, Location, Time,
+    TPopulation1July) |>
+  filter(Time == 2022, !is.na(iso3)) ->
+population
+
+# merge the population data and calculate per capita figures
+# alongside gross ones
+tr_combined_wide |>
+  rename_with(~ paste0("gross_", .x), where(is.double)) |>
+  left_join(population, join_by(iso3)) |>
+  select(-iso2.y, -Location, -Time) |>
+  rename(population = TPopulation1July, iso2 = iso2.x) |>
+  mutate(across(where(is.double), ~ .x / population,
+    .names = "percapita_{.col}")) |>
+  rename_with(~ str_replace(.x, "percapita_gross_", "percapita_")) |>
+  select(-population, -percapita_population) |>
+  write_csv(here("data", "transport-emissions.csv"), na = "") |>
+  print() ->
+tr_combined_percapita
 ```
