@@ -1,6 +1,6 @@
 ---
-title: Untitled
-subtitle: A slightly longer title
+title: Transport emissions
+subtitle: From Climate Trace
 format:
   360-analysis-html: default
 author: James Goldie
@@ -12,6 +12,7 @@ code-fold: true
 #| label: setup
 library(tidyverse)
 library(httr2)
+library(countrycode)
 library(here)
 ```
 
@@ -28,13 +29,19 @@ We'll use the [`/country/emissions`](https://api.climatetrace.org/v4/swagger/ind
 
 - `since`
 - `to`
-- `sector`
+- `sectors`: note that this is not `sector` (API docs are wrong)
 - `subsectors`
 - `countries`: comma-separated list of 3-letter country codes
 - `continents`: comma-separated list of continents
 - `groups`: comma-separated list of country groups
 
 We'll get the codes we need to filter our output from the definitions endpoints below.
+
+```{r}
+#| label: api-options
+year_since <- 2022
+year_to <- 2022
+```
 
 
 ```{r}
@@ -59,37 +66,46 @@ get_climatetrace_data <- function(endpoint, ...) {
 
 ```{r}
 #| label: get-def-data
-tr_sectors    <- get_climatetrace_data("/definitions/sectors") 
-tr_subsectors <- get_climatetrace_data("/definitions/subsectors")
-tr_countries  <- get_climatetrace_data("/definitions/countries")
+tr_sector_list    <- get_climatetrace_data("/definitions/sectors") 
+tr_subsector_list <- get_climatetrace_data("/definitions/subsectors")
+tr_country_list   <- get_climatetrace_data("/definitions/countries")
 
 # let's see the sector and subsector lists
-tr_sectors |> print(n = Inf)
+tr_sector_list |> print(n = Inf)
 tr_subsectors |> print(n = Inf)
 ```
 
 ```{r}
 #| label: get-emissions-data
 # squash the country code list into a comma-separated string
-tr_countries |>
+tr_country_list |>
   pull(alpha3) |>
   paste(collapse = ",") ->
 country_string
 
 # get total emissions
 "/country/emissions" |>
-  get_climatetrace_data(countries = country_string) |>
+  get_climatetrace_data(
+    countries = country_string,
+    since = year_since,
+    to = year_to) |>
   unpack(
     cols = c(emissions, worldEmissions, emissionsChange),
-    names_sep = "_") ->
+    names_sep = "_") |>
+  mutate(sector = "All emissions") ->
 tr_all
 
 # now transport emissions
 "/country/emissions" |>
-  get_climatetrace_data(countries = country_string, sector = "transportation") |>
+  get_climatetrace_data(
+    countries = country_string,
+    sectors = "transportation",
+    since = year_since,
+    to = year_to) |>
   unpack(
     cols = c(emissions, worldEmissions, emissionsChange),
-    names_sep = "_") ->
+    names_sep = "_") |>
+  mutate(sector = "All transport emissions") ->
 tr_transport
 ```
 
@@ -112,25 +128,42 @@ requested_subsectors <- c(
   "road-transportation", 
   "road-transportation-road-segment")
 
-tr_subsectors |>
-  rename(subsector = value) |>
-  filter(subsector %in% requested_subsectors) |>
-  mutate(data = map(subsector,
+tr_subsector_list |>
+  rename(sector = value) |>
+  filter(sector %in% requested_subsectors) |>
+  mutate(data = map(sector,
     ~ get_climatetrace_data("/country/emissions",
       subsectors = .x,
-      countries = country_string))) ->
-tr_subsector_nested
+      countries = country_string,
+      since = year_since,
+      to = year_to,
+      .progress = TRUE))) |>
+  unnest(data) |>
+    unpack(
+      cols = c(emissions, worldEmissions, emissionsChange),
+      names_sep = "_") ->
+tr_subsectors
 ```
 
-I think we might have a problem: the transport sector data seems to be identical to the all sectors data. It also seems to be much larger than the sum of the subsectors, so it's probably the transport sector data that's problematic. Take a look at `MDG`:
+Now we can tidy and combine the figures.
 
 ```{r}
-#| label: api-problem
-# now unnest and unpack the data
-# this one is wrong! it's the same as `tr_all`
-tr_transport |>
-  filter(country == "MDG")
+#| label: sum-subsectors
+bind_rows(
+  tr_all        |> select(sector, country, emissions_co2e_100yr),
+  tr_transport  |> select(sector, country, emissions_co2e_100yr),
+  tr_subsectors |> select(sector, country, emissions_co2e_100yr)) |>
+  rename(emissions = emissions_co2e_100yr) |>
+  mutate(sector = str_replace_all(str_to_sentence(sector), "-", " ")) ->
+tr_combined
 
-tr_all |>
-  filter(country == "MDG")
+tr_combined |>
+  pivot_wider(names_from = sector, values_from = emissions) |>
+  mutate(
+    iso2 = countrycode(country, "iso3c", "iso2c"),
+    name = countrycode(country, "iso3c", "country.name.en")) |>
+  select(iso2, iso3 = country, name, everything()) |>
+  write_csv(here("data", "transport-emissions.csv")) |>
+  print() ->
+tr_combined_wide
 ```
