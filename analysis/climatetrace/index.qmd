@@ -43,6 +43,9 @@ year_since <- 2022
 year_to <- 2022
 ```
 
+Here's the wrapper function we'll use to access the API, setting some defaults and throttling requests to be polite. We'll also automatically fold the list of countries into a single, comma-separated string—httr2 can handle this for us.
+
+All of the endpoints return JSON that can be reduced to a nested data frame, so we'll handle that too (though the outputs might need further unpacking):
 
 ```{r}
 #| label: get-data-function
@@ -56,7 +59,7 @@ get_climatetrace_data <- function(endpoint, ...) {
   request("https://api.climatetrace.org") |>
     req_url_path("/v4") |>
     req_url_path_append(endpoint) |>
-    req_url_query(...) |>
+    req_url_query(..., .multi = "comma") |>
     req_throttle(1 / 2) |>
     req_perform() |>
     resp_body_json(simplifyVector = TRUE) |>
@@ -64,29 +67,28 @@ get_climatetrace_data <- function(endpoint, ...) {
 }
 ```
 
+Let's get started! First we'll hit endpoints giving us the terms for the sectors, subsectors and countries that are available:
+
 ```{r}
 #| label: get-def-data
 tr_sector_list    <- get_climatetrace_data("/definitions/sectors") 
 tr_subsector_list <- get_climatetrace_data("/definitions/subsectors")
-tr_country_list   <- get_climatetrace_data("/definitions/countries")
+tr_country_list   <-
+  get_climatetrace_data("/definitions/countries") |>
+  pull(alpha3)
 
 # let's see the sector and subsector lists
 tr_sector_list    |> print(n = Inf)
 tr_subsector_list |> print(n = Inf)
 ```
 
+Now we'll combine the coun
+
 ```{r}
 #| label: get-emissions-data
-# squash the country code list into a comma-separated string
-tr_country_list |>
-  pull(alpha3) |>
-  paste(collapse = ",") ->
-country_string
-
-# get total emissions
 "/country/emissions" |>
   get_climatetrace_data(
-    countries = country_string,
+    countries = tr_country_list,
     since = year_since,
     to = year_to) |>
   unpack(
@@ -98,7 +100,7 @@ tr_all
 # now transport emissions
 "/country/emissions" |>
   get_climatetrace_data(
-    countries = country_string,
+    countries = tr_country_list,
     sectors = "transportation",
     since = year_since,
     to = year_to) |>
@@ -132,7 +134,7 @@ tr_subsector_list |>
   mutate(data = map(sector,
     ~ get_climatetrace_data("/country/emissions",
         subsectors = .x,
-        countries = country_string,
+        countries = tr_country_list,
         since = year_since,
         to = year_to,
       .progress = TRUE))) |>
@@ -187,10 +189,13 @@ tr_combined_wide |>
   left_join(population, join_by(iso3)) |>
   select(-iso2.y, -Location, -Time) |>
   rename(population = TPopulation1July, iso2 = iso2.x) |>
-  mutate(across(where(is.double), ~ .x / population,
-    .names = "percapita_{.col}")) |>
+  mutate(
+    # population appears to be in 1000s
+    population = population * 1000,
+    across(where(is.double), ~ .x / population,
+      .names = "percapita_{.col}")) |>
   rename_with(~ str_replace(.x, "percapita_gross_", "percapita_")) |>
-  select(-population, -percapita_population) |>
+  select(-percapita_population) |>
   write_csv(here("data", "transport-emissions.csv"), na = "") |>
   print() ->
 tr_combined_percapita
