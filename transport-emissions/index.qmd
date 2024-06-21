@@ -1,0 +1,154 @@
+---
+# omit title and subtitle if you're doing a custom title block
+title: Transport emissions
+subtitle: A thing here
+# for social previews
+pagetitle: Transport emissions
+description: A description for social previews
+twitter-card:
+  site: "@360info_global"
+  image: "/folder/example.png"
+open-graph:
+  image: "/folder/example.png"
+resources:
+  - /data/transport-emissions.csv
+format:
+  360-embed-html: default
+# metadata for modals and embed sharing functionality
+360embed:
+  byline: James Goldie, 360info
+  data-source: XXX
+  type: map
+  aspect-ratio: 20 / 19
+  min-height: 500px
+  max-height: 893px
+  bg-colour: white
+  title: "Interactive: Transport emissions"
+  repo: report-example
+  domain: https://transport.360visuals.org
+  path: /transport-emissions
+  # fragments: state, month
+  about: |
+    Here's a place to **tell people** and [link to things](https://example.com)!
+---
+
+```{ojs}
+//| label: setup
+import { aq, op } from "@uwdata/arquero"
+import { PieChart } from "@jimjamslam/pie-chart-component"
+```
+
+```{ojs}
+//| label: get-data
+allData = FileAttachment("/data/transport-emissions.csv").csv({ typed: true })
+
+apData = allData
+  .filter(d => ["CHN", "HKG", "MAC", "PRK", "JPN", "MNG", "KOR", "BRN", "KHM",
+  "IDN", "LAO", "MYS", "MMR", "PHL", "SGP", "THA", "TLS", "VNM", "AFG", "BGD",
+  "BTN", "IND", "IRN", "MDV", "NPL", "PAK", "LKA", "AUS", "CXR", "CCK", "NZL",
+  "NFK"].includes(d.iso3))
+
+Inputs.table(apData)
+```
+
+```{ojs}
+//| label: controls
+viewof selectedCities = Inputs.search(apData, {
+  required: false,
+  columns: ["name"],
+  datalist: allData.map(x => x.name)
+})
+
+viewof selectedView = Inputs.radio(
+  new Map([
+    ["Total emissions", "gross_"],
+    ["Emissions per person", "percapita_"]
+  ]), {
+    value: "percapita_"
+  })
+
+selectedView
+```
+
+```{ojs}
+//| label: format-data
+selectedData = allData
+  .filter(d => selectedCities.map(x => x.name).includes(d.name))
+emissionsAll       = selectedData[0][selectedView + "All emissions"]
+emissionsTransport = selectedData[0][selectedView + "All transport emissions"]
+
+// put headline figures into an array for the pie chart
+pieChartData = [
+  {
+    name: "Transport: " + d3.format(".1%")(emissionsTransport / emissionsAll),
+    value: emissionsTransport
+  },
+  {
+    name: "Other sectors",
+    value: emissionsAll - emissionsTransport,
+  }
+]
+```
+ 
+```{ojs}
+//| label: pie-chart
+chartSuffix = selectedView == "gross_" ? "t" : "t p.p."
+PieChart(pieChartData, {
+  name: d => d.name,
+  value: d => d.value,
+  width: 80,
+  height: 80,
+  innerRadius: 25,
+  format: ".2s",
+  suffix: chartSuffix,
+  colors: ["orangered", "lightgrey"]
+})
+```
+
+```{ojs}
+//| label: bar-chart
+selectedFigures = aq
+  .from(selectedData)
+  .select(aq.not("iso2", "iso3", "name"))
+  .fold(aq.all())
+  .params({ selectedView: selectedView })
+  .filter(d => op.startswith(d.key, selectedView))
+  .filter(d => !op.match(d.key, /_All/))
+  .derive({
+    frac: d => d.value / op.sum(d.value),
+    key: d => op.split(d.key, "_")[1]
+    })
+  .objects()
+
+Plot.plot({
+  marks: [
+    Plot.barX(selectedFigures, {
+      x: "value",
+      fill: "key",
+    }),
+    Plot.tip(selectedFigures, Plot.pointerX(Plot.stackX({
+      x: "value",
+      fill: "key",
+      channels: {
+        "Percent": d => d.frac * 100
+      },
+      format: {
+        "frac": d => d3.format("%")
+      }
+    })))
+  ],
+  x: {
+    label: "Emissions", // TODO - per person?
+    tickFormat: d => d3.format(".2s")(d) + "t",
+  },
+  marginBottom: 100,
+  style: {
+    fontFamily: "Roboto Condensed",
+    fontSize: 18
+  }
+})
+```
+
+{{< include _popups/_buttons.qmd >}}
+
+{{< include _popups/_dialogs.qmd >}}
