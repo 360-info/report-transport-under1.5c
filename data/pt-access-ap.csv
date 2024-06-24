@@ -1,0 +1,401 @@
+country_iso2,country_name,city,city_std,year,region,subregion,geoname_id,lat,lon,population,pct_pt_access
+AF,Afghanistan,Charikar,Charikar,2020,Asia,Southern Asia,1145352,35.01361,69.17139,53676,77.51385
+AF,Afghanistan,Farah,Farah,2020,Asia,Southern Asia,1142264,32.37451,62.11638,43561,69.49938
+AF,Afghanistan,Herat,Herāt,2020,Asia,Southern Asia,1140026,34.34817,62.19967,574300,50.35842
+AF,Afghanistan,Jalalabad,Jalālābād,2020,Asia,Southern Asia,1139715,34.42647,70.45153,271900,44.18398
+AF,Afghanistan,Kabul,Kabul,2020,Asia,Southern Asia,1138958,34.52813,69.17233,4434550,19.06218
+AF,Afghanistan,Kandahar,Kandahār,2020,Asia,Southern Asia,1138336,31.61332,65.71013,523300,43.14528
+AF,Afghanistan,Khan Abad,Khanabad,2020,Asia,Southern Asia,1137168,36.68304,69.11279,71531,82.36933
+AF,Afghanistan,Lashkargah,Lashkar Gāh,2020,Asia,Southern Asia,1134720,31.59382,64.37161,43934,56.29534
+AF,Afghanistan,Lashkargah,Lashkar Gāh,2020,Asia,Southern Asia,1134720,31.59382,64.37161,43934,56.29534
+AF,Afghanistan,Mazar E Sharif,Mazār-e Sharīf,2020,Asia,Southern Asia,1133616,36.70904,67.11087,523300,57.76331
+AF,Afghanistan,Mazar E Sharif,Mazār-e Sharīf,2020,Asia,Southern Asia,1133616,36.70904,67.11087,523300,57.76331
+AF,Afghanistan,Pul E Khumri,Pul-e Khumrī,2020,Asia,Southern Asia,1130490,35.94458,68.71512,56369,49.0424
+AF,Afghanistan,Pul E Khumri,Pul-e Khumrī,2020,Asia,Southern Asia,1130490,35.94458,68.71512,56369,49.0424
+AU,Australia,Adelaide,Adelaide,2020,Oceania,Australia and New Zealand,2078025,-34.92866,138.59863000000001,1387290,92.54682
+AU,Australia,Alice Springs,Alice Springs,2020,Oceania,Australia and New Zealand,2077895,-23.69748,133.88362,25186,94.56754
+AU,Australia,Brisbane,Brisbane,2020,Oceania,Australia and New Zealand,2174003,-27.46794,153.02809,2582007,89.05395
+AU,Australia,Bunbury,Bunbury,2020,Oceania,Australia and New Zealand,2075432,-33.32711,115.64137,76452,93.92291
+AU,Australia,Cairns,Cairns,2020,Oceania,Australia and New Zealand,2172797,-16.92366,145.76613,153075,77.17623
+AU,Australia,Canberra,Canberra,2020,Oceania,Australia and New Zealand,2172517,-35.28346,149.12807,367752,96.32951
+AU,Australia,Cessnock,Cessnock,2020,Oceania,Australia and New Zealand,2171845,-32.83211,151.35623,15076,93.49626
+AU,Australia,Darwin,Darwin,2020,Oceania,Australia and New Zealand,2073124,-12.46113,130.84185,147255,91.56038
+AU,Australia,Geelong,Geelong,2020,Oceania,Australia and New Zealand,2165798,-38.14711,144.36069,268984,89.67638
+AU,Australia,Gold Coast,Gold Coast,2020,Oceania,Australia and New Zealand,2165087,-28.00029,153.43088,640778,82.82429
+AU,Australia,Hobart,Hobart,2020,Oceania,Australia and New Zealand,2163355,-42.87936,147.32941,247086,94.30946
+AU,Australia,Kingaroy,Kingaroy,2020,Oceania,Australia and New Zealand,2161376,-26.53994,151.8373,10064,55.72358
+AU,Australia,Launceston,Launceston,2020,Oceania,Australia and New Zealand,2160517,-41.43876,147.13467,87345,93.29659
+AU,Australia,Melbourne,Melbourne,2020,Oceania,Australia and New Zealand,2158177,-37.814,144.96332,4917750,88.90529
+AU,Australia,Muswellbrook,Muswellbrook,2020,Oceania,Australia and New Zealand,2156034,-32.26118,150.89009,12135,66.19799
+AU,Australia,Newcastle,Newcastle,2020,Oceania,Australia and New Zealand,2155472,-32.92953,151.7801,348539,90.89723
+AU,Australia,Perth,Perth,2020,Oceania,Australia and New Zealand,2063523,-31.95224,115.8614,2192229,45.4463
+AU,Australia,Shepparton,Shepparton,2020,Oceania,Australia and New Zealand,2149645,-36.38047,145.39867,51631,91.84179
+AU,Australia,Sunshine Coast,Sunshine Coast,2020,Oceania,Australia and New Zealand,10630449,-26.65682,153.07955,0,75.35554
+AU,Australia,Sydney,Sydney,2020,Oceania,Australia and New Zealand,2147714,-33.86785,151.20732,5231147,69.5895
+AU,Australia,Wollongong,Wollongong,2020,Oceania,Australia and New Zealand,2171507,-34.424,150.89345,280153,90.58917
+BD,Bangladesh,Barisal,Barishal,2020,Asia,Southern Asia,1336137,22.70497,90.37013,202242,58.59474
+BD,Bangladesh,Bogra,Bogra,2020,Asia,Southern Asia,1337233,24.85098,89.37108,210000,37.3821
+BD,Bangladesh,Chittagong,Chattogram,2020,Asia,Southern Asia,1205733,22.3384,91.83168,3920222,61.86911
+BD,Bangladesh,Comilla,Comilla,2020,Asia,Southern Asia,1185186,23.46186,91.18503,1030000,19.91655
+BD,Bangladesh,Dhaka,Dhaka,2020,Asia,Southern Asia,1185241,23.7104,90.40744,10356500,47.55256
+BD,Bangladesh,Dinajpur,Dinājpur,2020,Asia,Southern Asia,1203891,25.62745,88.63779,206234,75.97052
+BD,Bangladesh,Gazipur,Rāipur,2020,Asia,Southern Asia,1185236,23.0391,90.76808,64652,21.94245
+BD,Bangladesh,Jamalpur,Jamālpur,2020,Asia,Southern Asia,1185106,24.91965,89.94812,167900,54.82655
+BD,Bangladesh,Jessore,Jessore,2020,Asia,Southern Asia,1336140,23.16971,89.21371,243987,67.92352
+BD,Bangladesh,Khulna,Khulna,2020,Asia,Southern Asia,1336135,22.80979,89.56439,1500689,68.28657
+BD,Bangladesh,Mymensingh,Mymensingh,2020,Asia,Southern Asia,1185162,24.75636,90.40646,225126,35.38094
+BD,Bangladesh,Rajshahi,Rājshāhi,2020,Asia,Southern Asia,1185128,24.374,88.60114,763580,59.65252
+BD,Bangladesh,Saidpur,Saidpur,2020,Asia,Southern Asia,6545349,25.77769,88.89169,199422,60.11994
+BD,Bangladesh,Sylhet,Sylhet,2020,Asia,Southern Asia,1185099,24.89904,91.87198,237000,56.29293
+BN,Brunei Darussalam,Bandar Seri Begawan,Bandar Seri Begawan,2020,Asia,South-eastern Asia,1820906,4.89035,114.94006,64409,30.3932
+BT,Bhutan,Thimphu,Thimphu,2020,Asia,Southern Asia,1252416,27.46609,89.64191,98676,33.45546
+CN,China,Anqing,Anqing,2020,Asia,Eastern Asia,1817993,30.51365,117.04723,804493,46.75849
+CN,China,Bengbu,Bengbu,2020,Asia,Eastern Asia,1816440,32.94083,117.36083000000001,972784,16.03495
+CN,China,Changzhi,Changzhi,2020,Asia,Eastern Asia,1808956,36.18389,113.10528,1214940,51.46643
+CN,China,Changzhou,Changzhou,2020,Asia,Eastern Asia,1815456,31.77359,119.95401,3290918,66.67522
+CN,China,Chengdu,Chengdu,2020,Asia,Eastern Asia,1815286,30.66667,104.06667,13568357,49.2838
+CN,China,Gaoyou,Gaoyou,2020,Asia,Eastern Asia,1810309,32.78933,119.44182,90911,59.569
+CN,China,Guangzhou,Guangzhou,2020,Asia,Eastern Asia,1809858,23.11667,113.25,16096724,63.74071
+CN,China,Guixi,Guixi,2020,Asia,Eastern Asia,1809467,30.33355,107.34545,188980,81.51951
+CN,China,Haikou,Haikou,2020,Asia,Eastern Asia,1809078,20.03421,110.34651,2873358,52.2181
+CN,China,Hangzhou,Hangzhou,2020,Asia,Eastern Asia,1808926,30.29365,120.16142,9236032,37.66081
+CN,China,Hong,Hangzhou,2020,Asia,Eastern Asia,1808926,30.29365,120.16142,9236032,98.54797
+CN,China,Hong,Heng,2020,Asia,Eastern Asia,1808361,22.68314,109.25713,0,98.54797
+CN,China,Hong,Shengping,2020,Asia,Eastern Asia,1280013,28.48563,98.91139,0,98.54797
+CN,China,Jinan,Jinan,2020,Asia,Eastern Asia,1805753,36.66833,116.99722,4335989,34.29938
+CN,China,Kaiping,Kaiping,2020,Asia,Eastern Asia,1804863,39.67798,118.25217,0,69.34189
+CN,China,Leshan,Leshan,2020,Asia,Eastern Asia,1804153,29.56227,103.76386,662814,59.28245
+CN,China,Mudanjiang,Mudanjiang,2020,Asia,Eastern Asia,2035715,44.54804,129.62594000000001,665915,28.15745
+CN,China,Qingdao,Qingdao,2020,Asia,Eastern Asia,1797929,36.06488,120.38042,7172451,67.06167
+CN,China,Qujing,Qujing,2020,Asia,Eastern Asia,1797318,25.48333,103.78333,1408500,19.05989
+CN,China,Shanghai,Shanghai,2020,Asia,Eastern Asia,1796236,31.22222,121.45806,22315474,55.30318
+CN,China,Shenzhen,Shenzhen,2020,Asia,Eastern Asia,1795565,22.54554,114.0683,17494398,70.97894
+CN,China,Suining,Changpu,2020,Asia,Eastern Asia,1815594,26.57584,110.10785,0,35.37908
+CN,China,Tangshan,Tangshan,2020,Asia,Eastern Asia,1793346,39.63333,118.18333,3372102,42.6211
+CN,China,Tianjin,Tianjin,2020,Asia,Eastern Asia,1792947,39.14222,117.17667,11090314,47.81025
+CN,China,Wuhan,Wuhan,2020,Asia,Eastern Asia,1791247,30.58333,114.26667,10392693,60.04815
+CN,China,Xingping,Guishan,2020,Asia,Eastern Asia,1809481,24.05027,102.00018,0,46.69638
+CN,China,Xingping,Jingping,2020,Asia,Eastern Asia,1805599,39.52,112.28389,0,46.69638
+CN,China,Xingping,Lushan,2020,Asia,Eastern Asia,1801740,26.65,107.78333,25074,46.69638
+CN,China,Xingping,Xingning,2020,Asia,Eastern Asia,8594670,24.1483,115.72272,274499,46.69638
+CN,China,Xucheng,Xucheng,2020,Asia,Eastern Asia,1787837,20.33025,110.16643,83267,50.72881
+CN,China,Yanggu,Yanggu,2020,Asia,Eastern Asia,1787601,36.11056,115.77528,74725,33.93995
+CN,China,Yiyang,Yiyang,2020,Asia,Eastern Asia,1808316,28.58917,112.32833,1249807,56.87577
+CN,China,Yulin,Yulin,2020,Asia,Eastern Asia,1785781,22.6305,110.14686,1056743,64.34075
+CN,China,Zhengzhou,Zhengzhou,2020,Asia,Eastern Asia,1784658,34.75778,113.64861,4253913,43.73151
+CN,China,Zhuji,Shangqiu,2020,Asia,Eastern Asia,1783934,34.45,115.65,1536392,41.84145
+CN,China,Zunyi,Zunyi,2020,Asia,Eastern Asia,1783621,27.68667,106.90722,2037775,40.77393
+ID,Indonesia,Banda Aceh,Banda Aceh,2020,Asia,South-eastern Asia,1215502,5.54167,95.33333,255029,29.73602
+ID,Indonesia,Bandar Lampung,Bandar Lampung,2020,Asia,South-eastern Asia,1624917,-5.42917,105.26111,1166066,26.34003
+ID,Indonesia,Bandung,Bandung,2020,Asia,South-eastern Asia,1650357,-6.92222,107.60694,2444160,47.34926
+ID,Indonesia,Bengkulu,Bengkulu,2020,Asia,South-eastern Asia,1649150,-3.80044,102.26554,373591,48.28485
+ID,Indonesia,Cirebon,Cirebon,2020,Asia,South-eastern Asia,1646170,-6.7063,108.557,333303,8.03121
+ID,Indonesia,Jakarta,Jakarta,2020,Asia,South-eastern Asia,1642911,-6.21462,106.84513,8540121,54.36042
+ID,Indonesia,Jambi,Jambi City,2020,Asia,South-eastern Asia,1642858,-1.6,103.61667,606200,14.22627
+ID,Indonesia,Jombang,Jombang,2020,Asia,South-eastern Asia,1642414,-7.54595,112.23307,126465,14.22627
+ID,Indonesia,Kendari,Kendari,2020,Asia,South-eastern Asia,1640344,-3.9778,122.51507,345107,27.24836
+ID,Indonesia,Makassar,Makassar,2020,Asia,South-eastern Asia,1622786,-5.14861,119.43194,1423877,45.30079
+ID,Indonesia,Medan,Medan,2020,Asia,South-eastern Asia,1214520,3.58333,98.66667,2435252,41.49328
+ID,Indonesia,Palembang,Palembang,2020,Asia,South-eastern Asia,1633070,-2.91673,104.7458,1668848,52.45505
+ID,Indonesia,Palu,Palu,2020,Asia,South-eastern Asia,1633034,-0.90833,119.87083,373218,1.43383
+ID,Indonesia,Parepare,Parepare,2020,Asia,South-eastern Asia,1632353,-4.0135,119.6255,151454,7.28209
+ID,Indonesia,Pati,Pati,2020,Asia,South-eastern Asia,1631992,-6.7559,111.038,107028,46.03755
+ID,Indonesia,Pekalongan,Pekalongan,2020,Asia,South-eastern Asia,1631766,-6.8886,109.6753,307097,13.89645
+ID,Indonesia,Pemalang,Pemalang,2020,Asia,South-eastern Asia,1631648,-6.89193,109.38263,184149,41.93393
+ID,Indonesia,Pematangsiantar,Pematangsiantar,2020,Asia,South-eastern Asia,1214204,2.9595,99.0687,268254,8.04443
+ID,Indonesia,Purwakarta,Purwakarta,2020,Asia,South-eastern Asia,1630341,-6.55694,107.44333,179233,46.90526
+ID,Indonesia,Samarinda,Samarinda,2020,Asia,South-eastern Asia,1629001,-0.49167,117.14583,831460,36.99901
+ID,Indonesia,Semarang,Semarang,2020,Asia,South-eastern Asia,1627896,-6.99306,110.42083,1653524,33.41022
+ID,Indonesia,Subang,Subang,2020,Asia,South-eastern Asia,1626443,-7.1277,108.5283,0,61.89521
+ID,Indonesia,Surabaya,Surabaya,2020,Asia,South-eastern Asia,1625822,-7.24917,112.75083,2874314,30.554
+IN,India,Adoni,Ādoni,2020,Asia,Southern Asia,1279335,15.62788,77.27495,163631,24.80125
+IN,India,Ahmadabad,Ahmedabad,2020,Asia,Southern Asia,1279233,23.02579,72.58727,6357693,78.6697
+IN,India,Ahmadnagar,Ahmadnagar,2020,Asia,Southern Asia,1279228,19.09457,74.73843,367140,19.56927
+IN,India,Aizawl,Aizawl,2020,Asia,Southern Asia,1279186,23.72894,92.71791,265331,3.0244
+IN,India,Akola,Akola,2020,Asia,Southern Asia,1279105,20.70957,76.9981,428857,5.14616
+IN,India,Alwar,Alwar,2020,Asia,Southern Asia,1278946,27.56246,76.625,283228,23.30366
+IN,India,Amravati,Amrāvati,2020,Asia,Southern Asia,1278718,20.93333,77.75,603837,68.12346
+IN,India,Amroha,Amroha,2020,Asia,Southern Asia,1278708,28.90314,78.46984,176253,10.6985
+IN,India,Anand,Anand,2020,Asia,Southern Asia,1278685,22.55251,72.9552,138009,30.52685
+IN,India,Anantapur,Anantapur,2020,Asia,Southern Asia,1278672,14.67784,77.60813,240442,25.42674
+IN,India,Anantnag,Anantnag,2020,Asia,Southern Asia,1278667,33.73068,75.15418,79821,4.01205
+IN,India,Bareilly,Bareilly,2020,Asia,Southern Asia,1277013,28.36678,79.43167,745435,52.36141
+IN,India,Belgaum,Belagavi,2020,Asia,Southern Asia,1276533,15.85212,74.50447,428720,50.30467
+IN,India,Bengaluru,Bengaluru,2020,Asia,Southern Asia,1277333,12.97194,77.59369,8443675,73.92503
+IN,India,Berhampore,Baharampur,2020,Asia,Southern Asia,1277820,24.10473,88.25155,180547,10.19197
+IN,India,Bhiwandi,Bhiwandi,2020,Asia,Southern Asia,1275901,19.30023,73.05881,874032,16.64599
+IN,India,Bhopal,Bhopāl,2020,Asia,Southern Asia,1275841,23.25469,77.40289,1599914,61.97034
+IN,India,Chandigarh,Chandīgarh,2020,Asia,Southern Asia,1274746,30.73629,76.7884,960787,26.45617
+IN,India,Coimbatore,Coimbatore,2020,Asia,Southern Asia,1273865,11.00555,76.96612,2136916,62.82771
+IN,India,Delhi,Delhi,2020,Asia,Southern Asia,1273294,28.65195,77.23149,10927986,62.01457
+IN,India,Hindupur,Hindupur,2020,Asia,Southern Asia,1270079,13.82807,77.49143,133298,26.13263
+IN,India,Hyderabad,Hyderābād,2020,Asia,Southern Asia,1269843,17.38405,78.45636,6809970,71.98613
+IN,India,Jaipur,Jaipur,2020,Asia,Southern Asia,1269515,26.91962,75.78781,2711758,47.91922
+IN,India,Jalna,Jālna,2020,Asia,Southern Asia,1269395,19.84102,75.88636,262034,14.60284
+IN,India,Kanchipuram,Kanchipuram,2020,Asia,Southern Asia,1268159,12.83515,79.70006,221715,10.54313
+IN,India,Kanpur,Kanpur,2020,Asia,Southern Asia,1267995,26.46523,80.34975,2823249,16.06004
+IN,India,Kochi,Cochin,2020,Asia,Southern Asia,1273874,9.93988,76.26022,604696,69.97733
+IN,India,Kolkata,Kolkata,2020,Asia,Southern Asia,1275004,22.56263,88.36304,4631392,54.3365
+IN,India,Kozhikode,Kozhikode,2020,Asia,Southern Asia,1265873,11.24802,75.7804,550440,45.7522
+IN,India,Malegaon,Mālegaon,2020,Asia,Southern Asia,1264115,20.54966,74.53462,435362,48.2099
+IN,India,Morena,Morena,2020,Asia,Southern Asia,1262771,26.49892,77.99534,152004,15.45947
+IN,India,Mumbai,Mumbai,2020,Asia,Southern Asia,1275339,19.07283,72.88261,12691836,80.87505
+IN,India,Nellore,Nellore,2020,Asia,Southern Asia,1261529,14.44992,79.98697,404158,19.72759
+IN,India,Pali,Pāli,2020,Asia,Southern Asia,1260716,25.77276,73.32335,210103,10.08994
+IN,India,Parbhani,Parbhani,2020,Asia,Southern Asia,1260341,19.26855,76.77081,289629,24.84587
+IN,India,Patna,Patna,2020,Asia,Southern Asia,1260086,25.59408,85.13563,1599920,15.2502
+IN,India,Pune,Pune,2020,Asia,Southern Asia,1259229,18.51957,73.85535,3124458,75.07753
+IN,India,Rewa,Rewa,2020,Asia,Southern Asia,1258182,24.53256,81.29234,208461,5.41125
+IN,India,Singrauli,Singrauli,2020,Asia,Southern Asia,7279754,24.19973,82.67535,185580,24.33915
+IN,India,Sitapur,Sītāpur,2020,Asia,Southern Asia,1255969,27.56192,80.68265,164435,18.46013
+IN,India,Surat,Jalalpore,2020,Asia,Southern Asia,1269439,20.94896,72.89829,17325,56.79022
+IN,India,Thoothukkudi,Thoothukudi,2020,Asia,Southern Asia,8629640,8.76735,78.13425,410760,9.94481
+IN,India,Tumkur,Tumkūr,2020,Asia,Southern Asia,1254089,13.34136,77.1022,307359,12.3969
+IN,India,Vijayawada,Vijayawada,2020,Asia,Southern Asia,1253184,16.50745,80.6466,874587,70.60771
+IR,Iran (Islamic Republic of),Abadan,Abadan,2020,Asia,Southern Asia,145459,30.3392,48.3043,370180,14.03409
+IR,Iran (Islamic Republic of),Ahvaz,Ahvaz,2020,Asia,Southern Asia,144448,31.31901,48.6842,841145,11.69851
+IR,Iran (Islamic Republic of),Amol,Āmol,2020,Asia,Southern Asia,143534,36.46961,52.35072,199382,3.53249
+IR,Iran (Islamic Republic of),Arak,Arāk,2020,Asia,Southern Asia,143127,34.09493,49.69809,503647,66.19557
+IR,Iran (Islamic Republic of),Ardabil,Ardabīl,2020,Asia,Southern Asia,143083,38.2498,48.2933,410753,54.0941
+IR,Iran (Islamic Republic of),Babol,Bābol,2020,Asia,Southern Asia,142363,36.55102,52.6786,202796,42.44032
+IR,Iran (Islamic Republic of),Bandar E Abas,Bandar Abbas,2020,Asia,Southern Asia,141681,27.1865,56.2808,352173,36.33693
+IR,Iran (Islamic Republic of),Bojnurd,Bojnūrd,2020,Asia,Southern Asia,140380,37.47473,57.32903,192041,55.70277
+IR,Iran (Islamic Republic of),Dehdasht,Dehdasht,2020,Asia,Southern Asia,136987,30.79337,50.56508,69726,62.18807
+IR,Iran (Islamic Republic of),Esfahan,Isfahan,2020,Asia,Southern Asia,418863,32.65246,51.67462,1547164,43.19462
+IR,Iran (Islamic Republic of),Gorgan,Gorgān,2020,Asia,Southern Asia,132892,36.8427,54.44391,244937,12.77372
+IR,Iran (Islamic Republic of),Karaj,Karaj,2020,Asia,Southern Asia,128747,35.83266,50.99155,1448075,14.09944
+IR,Iran (Islamic Republic of),Kashan,Kāshān,2020,Asia,Southern Asia,6861211,33.99728,51.44158,0,22.50826
+IR,Iran (Islamic Republic of),Kashmar,Kāshmar,2020,Asia,Southern Asia,128447,35.23831,58.46558,96151,19.48757
+IR,Iran (Islamic Republic of),Kerman,Kerman,2020,Asia,Southern Asia,128234,30.28321,57.07879,577514,18.05284
+IR,Iran (Islamic Republic of),Mashhad,Mashhad,2020,Asia,Southern Asia,124665,36.29807,59.60567,2307177,55.17288
+IR,Iran (Islamic Republic of),Nishabur,Neyshābūr,2020,Asia,Southern Asia,122285,36.21329,58.79575,220929,32.16869
+IR,Iran (Islamic Republic of),Piranshahr,Piranshahr,2020,Asia,Southern Asia,121110,36.701,45.1413,61973,38.09396
+IR,Iran (Islamic Republic of),Qazvin,Qazvin,2020,Asia,Southern Asia,119505,36.26877,50.0041,333635,69.3208
+IR,Iran (Islamic Republic of),Qom,Qom,2020,Asia,Southern Asia,119208,34.6401,50.8764,900000,22.61231
+IR,Iran (Islamic Republic of),Salmas,Salmās,2020,Asia,Southern Asia,117656,38.1973,44.7653,81606,81.58118
+IR,Iran (Islamic Republic of),Sanandaj,Sanandaj,2020,Asia,Southern Asia,117574,35.31495,46.99883,349176,53.1133
+IR,Iran (Islamic Republic of),Sari,Sari,2020,Asia,Southern Asia,116996,36.56332,53.06009,255396,38.89761
+IR,Iran (Islamic Republic of),Shadegan,Shādegān,2020,Asia,Southern Asia,116102,30.64924,48.66497,37220,39.96839
+IR,Iran (Islamic Republic of),Shahin Shahr,Shāhīn Shahr,2020,Asia,Southern Asia,417472,32.85788,51.5529,0,15.36
+IR,Iran (Islamic Republic of),Shiraz,Shiraz,2020,Asia,Southern Asia,115019,29.61031,52.53113,1249942,45.44857
+IR,Iran (Islamic Republic of),Tabriz,Tabriz,2020,Asia,Southern Asia,113646,38.08,46.2919,1424641,59.00695
+IR,Iran (Islamic Republic of),Tehran,Tehran,2020,Asia,Southern Asia,112931,35.69439,51.42151,7153309,71.70666
+IR,Iran (Islamic Republic of),Varamin,Varāmīn,2020,Asia,Southern Asia,112214,35.3242,51.6457,179603,20.86507
+JP,Japan,Akita,Akita,2020,Asia,Eastern Asia,2113126,39.71667,140.11667,305625,83.90617
+JP,Japan,Aomori,Aomori,2020,Asia,Eastern Asia,2130658,40.81667,140.73333,298394,92.61416
+JP,Japan,Asahikawa,Asahikawa,2020,Asia,Eastern Asia,2130629,43.77063,142.36489,333530,96.83519
+JP,Japan,Fukuoka,Fukuoka,2020,Asia,Eastern Asia,1863967,33.6,130.41667,1603543,95.38969
+JP,Japan,Iwaki,Iwaki,2020,Asia,Eastern Asia,2112539,37.05,140.88333,357309,28.47085
+JP,Japan,Kanazawa,Kanazawa,2020,Asia,Eastern Asia,1860243,36.6,136.61667,466029,76.57024
+JP,Japan,Koriyama,Kōriyama,2020,Asia,Eastern Asia,2112141,37.4,140.38333,322996,85.07629
+JP,Japan,Matsue,Matsue,2020,Asia,Eastern Asia,1857550,35.48333,133.05,156811,92.05282
+JP,Japan,Mishima,Mishima,2020,Asia,Eastern Asia,1856977,35.11667,138.91667,107851,82.15713
+JP,Japan,Morioka,Morioka,2020,Asia,Eastern Asia,2111834,39.7,141.15,290700,61.86935
+JP,Japan,Niigata,Niigata,2020,Asia,Eastern Asia,1855431,37.92259,139.04125,797591,70.37219
+JP,Japan,Okayama,Okayama,2020,Asia,Eastern Asia,1854383,34.65,133.93333,720841,24.98324
+JP,Japan,Osaka,Osaka,2020,Asia,Eastern Asia,1853909,34.69379,135.50107,2753862,69.42229
+JP,Japan,Sapporo,Sapporo,2020,Asia,Eastern Asia,2128295,43.06667,141.35,1973832,95.70086
+JP,Japan,Sasebo,Sasebo,2020,Asia,Eastern Asia,1852899,33.16834,129.72502,237444,88.99579
+JP,Japan,Tokushima,Tokushima,2020,Asia,Eastern Asia,1850158,34.06667,134.56667,267345,70.21159
+JP,Japan,Tokyo,Tokyo,2020,Asia,Eastern Asia,1850147,35.6895,139.69171,8336599,74.03309
+JP,Japan,Tomakomai,Tomakomai,2020,Asia,Eastern Asia,2127733,42.63694,141.60333,174806,88.8921
+JP,Japan,Yamagata,Yamagata,2020,Asia,Eastern Asia,2110556,38.23333,140.36667,248772,50.14859
+JP,Japan,Yamaguchi,Yamaguchi,2020,Asia,Eastern Asia,1848689,34.18333,131.46667,145515,20.1821
+KH,Cambodia,Phnum Penh,Phnom Penh,2020,Asia,South-eastern Asia,1821306,11.56245,104.91601,1573544,47.38118
+KH,Cambodia,Siem Reab,Siem Reap,2020,Asia,South-eastern Asia,1822214,13.36179,103.86056,139458,27.81262
+KP,Democratic People's Republic of Korea,Chongjin,Chongjin,2020,Asia,Eastern Asia,2044757,41.79556,129.77583,327000,15.56723
+KP,Democratic People's Republic of Korea,Chongju,Chŏngju,2020,Asia,Eastern Asia,1878389,39.69333,125.21028,29065,13.54737
+KP,Democratic People's Republic of Korea,Hamhung,Hamhŭng,2020,Asia,Eastern Asia,1877449,39.91833,127.53639,559056,37.8242
+KP,Democratic People's Republic of Korea,Kanggye,Kanggye,2020,Asia,Eastern Asia,2043572,40.96946,126.58523,209530,24.10468
+KP,Democratic People's Republic of Korea,Pyongyang,Pyongyang,2020,Asia,Eastern Asia,1871859,39.03385,125.75432,3222000,17.65872
+KP,Democratic People's Republic of Korea,Rason,Rajin,2020,Asia,Eastern Asia,2042645,42.25559,130.28308,66224,79.99364
+KP,Democratic People's Republic of Korea,Sinuiju,Sinŭiju,2020,Asia,Eastern Asia,2040893,40.10056,124.39806,288112,9.77775
+KP,Democratic People's Republic of Korea,Songrim,Songnim-ni,2020,Asia,Eastern Asia,1869446,38.76349,125.64096,152425,26.04096
+KR,Republic of Korea,Busan,Busan,2020,Asia,Eastern Asia,1838524,35.10168,129.03004,3678555,89.63823
+KR,Republic of Korea,Cheonan,Cheonan,2020,Asia,Eastern Asia,1845759,36.8065,127.1522,666417,35.4541
+KR,Republic of Korea,Gwangju,Gwangju,2020,Asia,Eastern Asia,1841811,35.15472,126.91556,1490092,87.47892
+KR,Republic of Korea,Jeju,Jeju City,2020,Asia,Eastern Asia,1846266,33.50972,126.52194,486306,93.4639
+KR,Republic of Korea,Jinju,Chinju,2020,Asia,Eastern Asia,1846052,35.19278,128.08472,307242,64.79202
+KR,Republic of Korea,Seoul,Seoul,2020,Asia,Eastern Asia,1835848,37.566,126.9784,10349312,70.56299
+LA,Lao People's Democratic Republic,Viengchan,Vientiane,2020,Asia,South-eastern Asia,1651944,17.96667,102.6,196731,23.95793
+LA,Lao People's Democratic Republic,Vientiane,Vientiane,2020,Asia,South-eastern Asia,1651944,17.96667,102.6,196731,24.9697
+LK,Sri Lanka,Anuradhapura,Anuradhapura,2020,Asia,Southern Asia,1251081,8.31223,80.41306,60943,48.50492
+LK,Sri Lanka,Badulla,Badulla,2020,Asia,Southern Asia,1250615,6.9802,81.0577,47587,41.37242
+LK,Sri Lanka,Batticaloa,Batticaloa,2020,Asia,Southern Asia,1250161,7.7102,81.6924,86742,26.60588
+LK,Sri Lanka,Chilaw,Chilaw,2020,Asia,Southern Asia,1249145,7.57583,79.79528,24712,24.19322
+LK,Sri Lanka,Colombo,Colombo,2020,Asia,Southern Asia,1248991,6.93548,79.84868,648034,62.60215
+LK,Sri Lanka,Galle,Galle,2020,Asia,Southern Asia,1246294,6.0461,80.2103,93118,70.54135
+LK,Sri Lanka,Haputale,Haputale,2020,Asia,Southern Asia,1244713,6.76566,80.95104,4721,53.59487
+LK,Sri Lanka,Jaffna,Jaffna,2020,Asia,Southern Asia,1242833,9.66845,80.00742,169102,27.38994
+LK,Sri Lanka,Kandy,Kandy,2020,Asia,Southern Asia,1241622,7.2906,80.6336,111701,65.69054
+LK,Sri Lanka,Matara,Matara,2020,Asia,Southern Asia,1235846,5.94851,80.53528,76254,53.66363
+LK,Sri Lanka,Puttalam,Puttalam,2020,Asia,Southern Asia,1229293,8.0362,79.8283,45661,34.65526
+LK,Sri Lanka,Ratnapura,Ratnapura,2020,Asia,Southern Asia,1228730,6.6858,80.4036,47832,59.60004
+MM,Myanmar,Aunglan,Myaydo,2020,Asia,South-eastern Asia,1329239,19.36838,95.21512,57897,31.47793
+MM,Myanmar,Bago,Bago,2020,Asia,South-eastern Asia,1300466,17.33521,96.48135,244376,73.58716
+MM,Myanmar,Kale,Dawei,2020,Asia,South-eastern Asia,1293625,14.0823,98.19151,136783,39.73648
+MM,Myanmar,Kale,Kanbe,2020,Asia,South-eastern Asia,1320944,16.70728,96.00168,58146,39.73648
+MM,Myanmar,Kale,Kanbe,2020,Asia,South-eastern Asia,1320944,16.70728,96.00168,58146,39.73648
+MM,Myanmar,Lashio,Lashio,2020,Asia,South-eastern Asia,1314759,22.9359,97.7498,131016,19.53128
+MM,Myanmar,Loikaw,Loikaw,2020,Asia,South-eastern Asia,1313479,19.67798,97.20975,17293,15.74953
+MM,Myanmar,Mandalay,Mandalay,2020,Asia,South-eastern Asia,1311874,21.97473,96.08359,1208099,52.36828
+MM,Myanmar,Mawlamyine,Mawlamyine,2020,Asia,South-eastern Asia,1308465,16.49051,97.62825,438861,66.59472
+MM,Myanmar,Myeik,Myeik,2020,Asia,South-eastern Asia,1309611,12.43954,98.60028,173298,61.56866
+MM,Myanmar,Myitkyina,Myitkyina,2020,Asia,South-eastern Asia,1307741,25.38327,97.39637,90894,10.46568
+MM,Myanmar,Naypyitaw,Nay Pyi Taw,2020,Asia,South-eastern Asia,6611854,19.745,96.12972,925000,37.43263
+MM,Myanmar,Pathein,Pathein,2020,Asia,South-eastern Asia,1328421,16.77919,94.73212,237089,19.08751
+MM,Myanmar,Tachileik,Tachilek,2020,Asia,South-eastern Asia,1295301,20.4475,99.88083,51553,27.53108
+MM,Myanmar,Taunggyi,Taunggyi,2020,Asia,South-eastern Asia,1293960,20.78919,97.03776,160115,66.2288
+MM,Myanmar,Yangon,Yangon,2020,Asia,South-eastern Asia,1298824,16.80528,96.15611,4477638,70.45843
+MN,Mongolia,Ulaanbaatar,Ulan Bator,2020,Asia,Eastern Asia,2028462,47.90771,106.88324,844818,47.29551
+MV,Maldives,Male,Male,2020,Asia,Southern Asia,1282027,4.17521,73.50916,103693,98.78737
+MY,Malaysia,Alor Star,Alor Setar,2020,Asia,South-eastern Asia,1736309,6.12104,100.36014,417800,34.37175
+MY,Malaysia,Bukit Mertajam,Bukit Mertajam,2020,Asia,South-eastern Asia,1735079,5.36301,100.4667,212329,70.5004
+MY,Malaysia,George Town,George Town,2020,Asia,South-eastern Asia,1735106,5.41123,100.33543,158336,91.93147
+MY,Malaysia,Ipoh,Ipoh,2020,Asia,South-eastern Asia,1734634,4.5841,101.0829,840000,38.06187
+MY,Malaysia,Johor Bahru,Johor Bahru,2020,Asia,South-eastern Asia,1732752,1.4655,103.7578,858118,58.55654
+MY,Malaysia,Kota Bharu,Kota Bharu,2020,Asia,South-eastern Asia,1736376,6.12361,102.24333,568900,5.21525
+MY,Malaysia,Kuala Lumpur,Kuala Lumpur,2020,Asia,South-eastern Asia,1735161,3.1412,101.68653,1453975,66.69899
+MY,Malaysia,Kulim,Kulim,2020,Asia,South-eastern Asia,1734393,5.36499,100.56177,170889,36.03666
+MY,Malaysia,Rawang,Rawang,2020,Asia,South-eastern Asia,1735150,3.3213,101.5767,120447,41.09621
+NP,Nepal,Bharatpur,Bharatpur,2020,Asia,Southern Asia,1283613,27.6768,84.43589,369377,45.76345
+NP,Nepal,Biratnagar,Biratnagar,2020,Asia,Southern Asia,1283582,26.45505,87.27007,244750,9.92923
+NP,Nepal,Birendranagar,Birendranagar,2020,Asia,Southern Asia,6254843,28.59669,81.61658,31381,13.94467
+NP,Nepal,Birgunj,Birgañj,2020,Asia,Southern Asia,1283581,27.01709,84.8808,268273,13.50975
+NP,Nepal,Butwal,Butwāl,2020,Asia,Southern Asia,1283562,27.70055,83.44836,91733,16.11446
+NP,Nepal,Dharan,Dharān,2020,Asia,Southern Asia,1283460,26.81436,87.27972,173096,18.79817
+NP,Nepal,Itahari,Īṭahari̇̄,2020,Asia,Southern Asia,1283329,26.66371,87.27403,47984,23.79819
+NP,Nepal,Janakpur,Janakpur,2020,Asia,Southern Asia,1283318,26.72882,85.92628,93767,10.30346
+NP,Nepal,Kathmandu,Kathmandu,2020,Asia,Southern Asia,1283240,27.70169,85.3206,1442271,56.36664
+NP,Nepal,Pokhara,Pokhara,2020,Asia,Southern Asia,1282898,28.26689,83.96851,200000,75.8218
+NP,Nepal,Tikapur,Ṭikāpur,2020,Asia,Southern Asia,1282666,28.52823,81.11798,44758,87.32565
+NZ,New Zealand,Auckland,Auckland,2020,Oceania,Australia and New Zealand,2193733,-36.84853,174.76349,417910,94.39424
+NZ,New Zealand,Christchurch,Christchurch,2020,Oceania,Australia and New Zealand,2192362,-43.53333,172.63333,363926,91.05591
+NZ,New Zealand,Dunedin,Dunedin,2020,Oceania,Australia and New Zealand,2191562,-45.87416,170.50361,133300,94.3783
+NZ,New Zealand,Hamilton,Hamilton,2020,Oceania,Australia and New Zealand,2190324,-37.78333,175.28333,178500,96.48607
+NZ,New Zealand,Lower Hutt,Lower Hutt,2020,Oceania,Australia and New Zealand,2188164,-41.21667,174.91667,114000,97.08462
+NZ,New Zealand,Napier,Napier,2020,Oceania,Australia and New Zealand,2186313,-39.4926,176.91233,66700,89.44061
+NZ,New Zealand,Palmerston,Palmerston,2020,Oceania,Australia and New Zealand,6215161,-45.47837,170.7201,1040,95.56496
+NZ,New Zealand,Tauranga,Tauranga,2020,Oceania,Australia and New Zealand,2208032,-37.68611,176.16667,155200,91.70675
+NZ,New Zealand,Wellington,Wellington,2020,Oceania,Australia and New Zealand,2179537,-41.28664,174.77557,381900,97.66539
+PH,Philippines,Bacolod,Bacolod,2020,Asia,South-eastern Asia,1729580,8.11667,123.91667,5294,13.91251
+PH,Philippines,Baguio City,Baguio,2020,Asia,South-eastern Asia,1728930,16.41639,120.59306,272714,61.64731
+PH,Philippines,Cagayan De Oro City,Cagayan de Oro,2020,Asia,South-eastern Asia,1721080,8.48222,124.64722,445103,67.77595
+PH,Philippines,Cebu,Cebu City,2020,Asia,South-eastern Asia,1717512,10.31672,123.89071,964169,48.07984
+PH,Philippines,Davao City,Davao,2020,Asia,South-eastern Asia,1715348,7.07306,125.61278,1776949,59.14224
+PH,Philippines,Manila,Manila,2020,Asia,South-eastern Asia,1701668,14.6042,120.9822,1600000,32.45894
+PH,Philippines,Tacloban,Tacloban,2020,Asia,South-eastern Asia,1684712,11.24333,125.00472,242089,32.49883
+PK,Pakistan,Abbottabad,Abbottabad,2020,Asia,Southern Asia,1185056,34.1463,73.21168,120000,82.29856
+PK,Pakistan,Awaran,Awaran,2020,Asia,Southern Asia,1184205,26.45677,65.23144,0,100
+PK,Pakistan,Badin,Badin,2020,Asia,Southern Asia,1184055,24.656,68.837,73569,59.53172
+PK,Pakistan,Bahawalnagar,Bahawalnagar,2020,Asia,Southern Asia,1332083,30.55083,73.39083,126700,44.43415
+PK,Pakistan,Bahawalpur,Bahawalpur,2020,Asia,Southern Asia,1183880,29.39779,71.6752,552607,39.33075
+PK,Pakistan,Bannu,Bannu,2020,Asia,Southern Asia,1183460,32.98527,70.60403,49008,88.83165
+PK,Pakistan,Barkhan,Barkhan,2020,Asia,Southern Asia,1183307,29.89773,69.52558,8760,100
+PK,Pakistan,Bhakkar,Bhakkar,2020,Asia,Southern Asia,1182815,31.62685,71.06471,81950,41.34641
+PK,Pakistan,Chakwal,Chakwal,2020,Asia,Southern Asia,1181636,32.93286,72.85394,101200,71.3778
+PK,Pakistan,Charsadda,Charsadda,2020,Asia,Southern Asia,1181439,34.14822,71.7406,95319,99.57588
+PK,Pakistan,Chiniot,Chiniot,2020,Asia,Southern Asia,1181096,31.72091,72.97836,201781,72.12806
+PK,Pakistan,Chitral,Chitral,2020,Asia,Southern Asia,1181065,35.8518,71.78636,0,49.49934
+PK,Pakistan,Dadu,Dadu,2020,Asia,Southern Asia,1180809,26.73033,67.7769,139784,64.33712
+PK,Pakistan,Dera Bugti,Dera Bugti,2020,Asia,Southern Asia,1180295,29.03619,69.15849,18120,33.11416
+PK,Pakistan,Duki,Duki,2020,Asia,Southern Asia,1179515,30.15307,68.57323,6384,6.66667
+PK,Pakistan,Faisalabad,Faisalabad,2020,Asia,Southern Asia,1179400,31.41554,73.08969,2506595,73.7769
+PK,Pakistan,Ghotki,Ghotki,2020,Asia,Southern Asia,1178456,28.00437,69.31569,64295,86.47555
+PK,Pakistan,Gujranwala,Gujranwala,2020,Asia,Southern Asia,1177662,32.15567,74.18705,1384471,54.24052
+PK,Pakistan,Gujrat,Gujrat,2020,Asia,Southern Asia,1177654,32.5742,74.07542,301506,54.11499
+PK,Pakistan,Gwadar,Gwadar,2020,Asia,Southern Asia,1177446,25.12163,62.32541,51901,68.44706
+PK,Pakistan,Hafizabad,Hafizabad,2020,Asia,Southern Asia,1177384,32.07095,73.68802,153656,58.61455
+PK,Pakistan,Hangu,Hangu,2020,Asia,Southern Asia,1177203,33.53198,71.0595,36150,100
+PK,Pakistan,Haripur,Haripur,2020,Asia,Southern Asia,1177107,33.99783,72.93493,56977,80.73693
+PK,Pakistan,Harnai,Harnai,2020,Asia,Southern Asia,1177098,30.10077,67.93824,11066,20.58636
+PK,Pakistan,Hyderabad,Hyderabad,2020,Asia,Southern Asia,1176734,25.39689,68.37718,1386330,67.65216
+PK,Pakistan,Islamabad,Islamabad,2020,Asia,Southern Asia,1176615,33.72148,73.04329,601600,52.02097
+PK,Pakistan,Jacobabad,Jacobabad,2020,Asia,Southern Asia,1176515,28.28187,68.43761,170588,65.43545
+PK,Pakistan,Jaffarabad,Jauharabad,2020,Asia,Southern Asia,1176022,32.29016,72.28182,46545,69.33124
+PK,Pakistan,Jamshoro,Jamshoro,2020,Asia,Southern Asia,1176229,25.43608,68.28017,0,51.79399
+PK,Pakistan,Jhang,Jhang City,2020,Asia,Southern Asia,1330335,31.30568,72.32594,0,68.96912
+PK,Pakistan,Jhelum,Jhelum,2020,Asia,Southern Asia,1175864,32.93448,73.73102,145000,59.47811
+PK,Pakistan,Karak,Karak,2020,Asia,Southern Asia,1174074,33.11633,71.09354,13679,78.57143
+PK,Pakistan,Kashmore,Kashmor,2020,Asia,Southern Asia,1174653,28.4326,69.58364,33732,63.46996
+PK,Pakistan,Kasur,Kasur,2020,Asia,Southern Asia,1174625,31.11866,74.45025,290643,64.00745
+PK,Pakistan,Khairpur,Khairpur,2020,Asia,Southern Asia,1174357,28.06437,69.70363,40083,66.94677
+PK,Pakistan,Khanewal,Khanewal,2020,Asia,Southern Asia,1174220,30.30173,71.93212,0,51.88349
+PK,Pakistan,Kharan,Kharan,2020,Asia,Southern Asia,1174062,28.58459,65.41501,30841,100
+PK,Pakistan,Khushab,Khushāb,2020,Asia,Southern Asia,1173687,32.29667,72.3525,102793,86.19885
+PK,Pakistan,Kohat,Kohat,2020,Asia,Southern Asia,1173491,33.58196,71.44929,151427,98.42427
+PK,Pakistan,Kohlu,Kohlu,2020,Asia,Southern Asia,1173464,29.903,69.231,11089,30.76923
+PK,Pakistan,Lahore,Lahore,2020,Asia,Southern Asia,1172451,31.558,74.35071,6310888,59.46292
+PK,Pakistan,Lakki Marwat,Lakki,2020,Asia,Southern Asia,1172339,32.60724,70.91234,36391,96.93552
+PK,Pakistan,Larkana,Larkana,2020,Asia,Southern Asia,1172128,27.55898,68.21204,364033,50.327
+PK,Pakistan,Lasbela,Bela,2020,Asia,Southern Asia,1182998,26.22718,66.31178,20119,78.43063
+PK,Pakistan,Layyah,Layyah,2020,Asia,Southern Asia,1172035,30.96128,70.93904,78954,33.09696
+PK,Pakistan,Lodhran,Lodhran,2020,Asia,Southern Asia,1171965,29.5339,71.63244,97249,74.84245
+PK,Pakistan,Loralai,Loralai,2020,Asia,Southern Asia,1171868,30.37051,68.59795,37787,71.47549
+PK,Pakistan,Malakand,Malakand,2020,Asia,Southern Asia,1171389,34.56561,71.93043,0,29.62963
+PK,Pakistan,Mandi Bahauddin,Mandi Bahauddin,2020,Asia,Southern Asia,1171123,32.58704,73.49123,129733,70.01458
+PK,Pakistan,Mansehra,Mansehra,2020,Asia,Southern Asia,1170951,34.33023,73.19679,66486,92.01482
+PK,Pakistan,Mardan,Mardan,2020,Asia,Southern Asia,1170880,34.19794,72.04965,300424,97.32339
+PK,Pakistan,Mastung,Mastung,2020,Asia,Southern Asia,1170706,29.79966,66.84553,29082,94.46213
+PK,Pakistan,Matiari,Matiari,2020,Asia,Southern Asia,1170677,25.59709,68.4467,18929,87.34588
+PK,Pakistan,Mianwali,Mianwali,2020,Asia,Southern Asia,1170425,32.57756,71.52847,89570,28.42923
+PK,Pakistan,Mirpur Khas,Mirpur Khas,2020,Asia,Southern Asia,1170295,25.5276,69.01255,215657,67.49373
+PK,Pakistan,Multan,Multan,2020,Asia,Southern Asia,1169825,30.19679,71.47824,1437230,50.29702
+PK,Pakistan,Muzaffargarh,Muzaffargarh,2020,Asia,Southern Asia,1169605,30.07258,71.19379,165192,68.00841
+PK,Pakistan,Nankana Sahib,Nankana Sahib,2020,Asia,Southern Asia,1169372,31.4501,73.70653,56366,81.53654
+PK,Pakistan,Narowal,Narowal,2020,Asia,Southern Asia,1169278,32.10197,74.87303,68291,95.89471
+PK,Pakistan,Nowshera,Nowshera,2020,Asia,Southern Asia,1168864,34.01583,71.98123,0,94.8679
+PK,Pakistan,Nushki,Nushki,2020,Asia,Southern Asia,1168749,29.55218,66.02288,27680,98.1107
+PK,Pakistan,Okara,Okara,2020,Asia,Southern Asia,1168718,30.81029,73.45155,223648,69.48093
+PK,Pakistan,Pakpattan,Pakpattan,2020,Asia,Southern Asia,1168555,30.343139999999998,73.38944,126706,80.3447
+PK,Pakistan,Peshawar,Peshawar,2020,Asia,Southern Asia,1168197,34.008,71.57849,1218773,83.49452
+PK,Pakistan,Pishin,Pishin,2020,Asia,Southern Asia,1167821,30.58176,66.99406,24239,7.46284
+PK,Pakistan,Qilla Abdullah,Qila Abdullah,2020,Asia,Southern Asia,1167579,30.72803,66.66117,0,49.25661
+PK,Pakistan,Qilla Abdullah,Qila Abdullah,2020,Asia,Southern Asia,1167579,30.72803,66.66117,0,49.25661
+PK,Pakistan,Quetta,Quetta,2020,Asia,Southern Asia,1167528,30.18414,67.00141,733675,54.22207
+PK,Pakistan,Rahim Yar Khan,Rahim Yar Khan,2020,Asia,Southern Asia,1167460,28.41987,70.30345,788915,48.16154
+PK,Pakistan,Rajanpur,Rajanpur,2020,Asia,Southern Asia,1167380,29.10408,70.32969,50682,74.08915
+PK,Pakistan,Rawalpindi,Rawalpindi,2020,Asia,Southern Asia,1166993,33.59733,73.0479,1743101,71.25704
+PK,Pakistan,Sahiwal,Sahiwal,2020,Asia,Southern Asia,1166548,30.66595,73.10186,235695,76.78215
+PK,Pakistan,Sanghar,Sanghar,2020,Asia,Southern Asia,1166164,26.04694,68.94917,62033,63.90444
+PK,Pakistan,Sargodha,Sargodha,2020,Asia,Southern Asia,1166000,32.08586,72.67418,542603,66.89226
+PK,Pakistan,Shahdadkot,Shahdad Kot,2020,Asia,Southern Asia,1165638,27.84726,67.90679,75411,29.8309
+PK,Pakistan,Sheikhupura,Shekhupura,2020,Asia,Southern Asia,1165221,31.71287,73.98556,361303,75.43227
+PK,Pakistan,Shikarpur,Shikarpur,2020,Asia,Southern Asia,1165108,27.95558,68.63823,156901,73.88328
+PK,Pakistan,Sialkot,Sialkot,2020,Asia,Southern Asia,1164909,32.49268,74.53134,477396,74.86143
+PK,Pakistan,Sibbi,Sibi,2020,Asia,Southern Asia,1164896,29.54299,67.87726,64069,83.01125
+PK,Pakistan,Sohbatpur,Sohbatpur,2020,Asia,Southern Asia,1164660,28.52038,68.54298,8940,82.14286
+PK,Pakistan,Sukkur,Sukkur,2020,Asia,Southern Asia,1164408,27.70323,68.85889,417767,67.8377
+PK,Pakistan,Swabi,Swabi,2020,Asia,Southern Asia,1164216,34.12018,72.46982,97363,87.96711
+PK,Pakistan,Swat,Quetta,2020,Asia,Southern Asia,1167528,30.18414,67.00141,733675,93.73662
+PK,Pakistan,Swat,Swabi,2020,Asia,Southern Asia,1164216,34.12018,72.46982,97363,93.73662
+PK,Pakistan,Tando Allahyar,Tando Allahyar,2020,Asia,Southern Asia,1163965,25.4605,68.71745,127202,77.23222
+PK,Pakistan,Tando Muhammad Khan,Tando Muhammad Khan,2020,Asia,Southern Asia,1163952,25.12384,68.53677,72659,60.28971
+PK,Pakistan,Tank,Tank,2020,Asia,Southern Asia,1163905,32.21707,70.38315,38488,96.66667
+PK,Pakistan,Thatta,Thatta,2020,Asia,Southern Asia,1163582,24.74745,67.92353,44302,58.48868
+PK,Pakistan,Turbat,Turbat,2020,Asia,Southern Asia,1163054,26.00122,63.04849,75694,39.03877
+PK,Pakistan,Umerkot,Umarkot,2020,Asia,Southern Asia,1162959,25.36329,69.74184,42074,30.39555
+PK,Pakistan,Upper Dir,Upper Dir,2020,Asia,Southern Asia,1179757,35.2074,71.8768,29869,25
+PK,Pakistan,Vehari,Vihari,2020,Asia,Southern Asia,1162813,30.0445,72.3556,112840,66.73882
+PK,Pakistan,Ziarat,Ziarat,2020,Asia,Southern Asia,1162094,30.38244,67.72562,733,88.46154
+SG,Singapore,Singapore,Singapore,2022,Asia,South-eastern Asia,1880252,1.28967,103.85007,5638700,99
+TH,Thailand,Bangkok,Bangkok,2020,Asia,South-eastern Asia,1609350,13.75398,100.50144,5104476,26.04893
+TH,Thailand,Cha Am,Cha-am,2020,Asia,South-eastern Asia,1153807,12.8,99.96667,49375,13.92923
+TH,Thailand,Chiang Mai,Chiang Mai,2020,Asia,South-eastern Asia,1153671,18.79038,98.98468,127240,33.91553
+TH,Thailand,Chiang Rai,Chiang Rai,2020,Asia,South-eastern Asia,1153669,19.90858,99.8325,78756,14.45995
+TH,Thailand,Chumphon,Chumphon,2020,Asia,South-eastern Asia,1153557,10.4957,99.17971,55835,37.80847
+TH,Thailand,Khon Kaen,Khon Kaen,2020,Asia,South-eastern Asia,1609776,16.44671,102.833,114459,27.16988
+TH,Thailand,Phatthalung,Phatthalung,2020,Asia,South-eastern Asia,1607779,7.61786,100.07792,43522,37.07122
+TH,Thailand,Songkhla,Songkhla,2020,Asia,South-eastern Asia,1606147,7.19882,100.5951,61758,22.12306
+TL,Timor-Leste,Dili,Dili,2020,Asia,South-eastern Asia,1645457,-8.55861,125.57361,150000,16.08716
+VN,Viet Nam,Da Lat,Ðà Lạt,2020,Asia,South-eastern Asia,1584071,11.94646,108.44193,197000,58.9498
+VN,Viet Nam,Ha Noi,Hanoi,2020,Asia,South-eastern Asia,1581130,21.0245,105.84117,8053663,69.03708
+VN,Viet Nam,Hai Phong,Haiphong,2020,Asia,South-eastern Asia,1581298,20.86481,106.68345,841520,61.17115
+VN,Viet Nam,Hue,Huế,2020,Asia,South-eastern Asia,1580240,16.4619,107.59546,351456,26.87815
+VN,Viet Nam,Long Xuyen,Long Xuyên,2020,Asia,South-eastern Asia,1575627,10.38639,105.43518,272365,55.20491
+VN,Viet Nam,Nha Trang,Nha Trang,2020,Asia,South-eastern Asia,1572151,12.24507,109.19432,283441,42.64092
+VN,Viet Nam,Phan Thiet,Phan Thiết,2020,Asia,South-eastern Asia,1571058,10.92889,108.10208,160652,56.61577
+VN,Viet Nam,Thanh Pho Ho Chi Minh,Ho Chi Minh City,2020,Asia,South-eastern Asia,1566083,10.82302,106.62965,8993082,68.65293
+VN,Viet Nam,Vinh,Vinh,2020,Asia,South-eastern Asia,1562798,18.67337,105.69232,163759,56.10722
+VN,Viet Nam,Vinh Long,Vĩnh Long,2020,Asia,South-eastern Asia,1562693,10.25369,105.9722,137870,8.27839
+VN,Viet Nam,Vungtau,Vũng Tàu,2020,Asia,South-eastern Asia,1562414,10.34599,107.08426,341552,49.33515

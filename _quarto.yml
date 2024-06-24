@@ -6,10 +6,13 @@ project:
     # - "analysis/*/*.qmd"
     # - "analysis/*.qmd"
     - "public-transport/index.qmd"
+    - "public-transport-ap/index.qmd"
     - "transport-emissions/index.qmd"
+    - "transport-emissions-ap/index.qmd"
   post-render: cp -f out/README.md README.md
   resources:
     - /data/pt-access.csv
+    - /data/pt-access-ap.csv
     - /data/transport-emissions.csv
     - /data/transport-emissions-ap.csv
     - /public-transport/pt-access-banner.png

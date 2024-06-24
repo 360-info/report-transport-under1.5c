@@ -1,9 +1,9 @@
 ---
 # omit title and subtitle if you're doing a custom title block
-title: Transport emissions
+title: Transport in Asia-Pacific
 subtitle: Transport makes up nearly 10% of all greenhouse gas emissions across the Asia-Pacific. But that percentage is very different for countries across the region.
 # for social previews
-pagetitle: Transport emissions globally
+pagetitle: Transport emissions in Asia-Pacific
 description: A description for social previews
 twitter-card:
   site: "@360info_global"
@@ -11,7 +11,7 @@ twitter-card:
 open-graph:
   image: "/folder/example.png"
 resources:
-  - /data/transport-emissions.csv
+  - /data/transport-emissions-ap.csv
 format:
   360-embed-html: default
 # metadata for modals and embed sharing functionality
@@ -23,10 +23,10 @@ format:
   min-height: 680px
   max-height: 680px
   bg-colour: white
-  title: "Interactive: Transport emissions"
+  title: "Interactive: Transport emissions in Asia-Pacific"
   repo: report-transport-under1.5c
   domain: https://transport.360visuals.org
-  path: /transport-emissions
+  path: /transport-emissions-ap
   # fragments: state, month
   about: |
     The data for this graphic comes from [Climate Trace](https://climatetrace.org), which independently tracks greenhouse gas emissions globally.<br><br>
@@ -46,7 +46,7 @@ import { PieChart } from "@jimjamslam/pie-chart-component"
 
 ```{ojs}
 //| label: get-data
-allData = FileAttachment("/data/transport-emissions.csv").csv({ typed: true })
+allData = FileAttachment("/data/transport-emissions-ap.csv").csv({ typed: true })
 ```
 
 ```{ojs}
@@ -70,7 +70,7 @@ viewof selectedView = Inputs.radio(
 //| label: format-data
 selectedData = selectedCities.length == 1 ?
   allData.filter(d => selectedCities.map(x => x.name).includes(d.name)) :
-  allData.filter(d => d.name == "China")
+  allData.filter(d => d.name == "Asia-Pacific region")
 emissionsAll       = selectedData[0][selectedView + "All emissions"]
 emissionsTransport = selectedData[0][selectedView + "All transport emissions"]
 
@@ -90,7 +90,7 @@ pieChartData = [
 ```{ojs}
 //| label: subtitle
 selectedCities.length == 1 ? md`## ${selectedCities[0].name}` :
-  selectedCities.length == 0 ? md`## China` :
+  selectedCities.length == 0 ? md`## Asia-Pacific region` :
     md``
 ```
 

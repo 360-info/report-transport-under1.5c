@@ -199,15 +199,6 @@ pt_tidy |>
     by = join_by(country_iso2 == country_code)) ->
 nested_cities_by_country
 
-# the match function gets a pair of vectors with every possible combo of
-# potential matches. it needs to return a logical vector of true matches
-# city_name_in <- function(x, y) {
-#   message("Matching... ", length(x), " combos")
-#   m <- map2_lgl(tolower(x), tolower(y), ~ str_detect(.y, fixed(.x)))
-#   View(tibble(x, y, m))
-#   return(m)
-# }
-
 # now join the pt and the cities in lockstep
 # (this takes a few minutes)
 nested_cities_by_country |>
@@ -219,7 +210,7 @@ nested_cities_by_country |>
       .progress = TRUE)) ->
 nested_matched_cities
 
-# how many missing matches? about 90 (pretty good!)
+# how many missing matches? about 150 (pretty good!)
 nested_matched_cities |>
 # nested_jp |>
   select(country_iso2, matches) |>
@@ -299,7 +290,6 @@ un_groups
 
 We have a big list of regions, subregions, and countries (and other areas that have an ISO3 code), plus IDs of their parents. We also have some regions, like Sub-Saharan Africa, that are broken down further into _sub-_ subregions. I'm going to combine those with the subregions so that we just categorise all countries into the broadest regions.
 
-
 ```{r}
 #| label: arrange-region-hierarchy
 regions <- un_groups |> filter(parent == 1)
@@ -360,4 +350,14 @@ located_cities |>
   select(where(is.character), where(is.numeric)) |>
   write_csv(here("data", "pt-access.csv")) ->
 located_cities_regions
+  
+# also do an asia-pac one
+located_cities |>
+  left_join(country_region_maps, join_by(country_iso2 == iso2)) |>
+  select(-name, -id) |>
+  select(where(is.character), where(is.numeric)) |>
+  filter(iso3 %in% c(
+    "CHN", "HKG", "MAC", "PRK", "JPN", "MNG", "KOR", "BRN", "KHM", "IDN", "LAO", "MYS", "MMR", "PHL", "SGP", "THA", "TLS", "VNM", "AFG", "BGD", "BTN", "IND", "IRN", "MDV", "NPL", "PAK", "LKA", "AUS", "CXR", "CCK", "NZL", "NFK")) |>
+  select(-iso3) |>
+  write_csv(here("data", "pt-access-ap.csv"))
 ``` 

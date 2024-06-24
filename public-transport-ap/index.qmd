@@ -1,0 +1,156 @@
+---
+# omit title and subtitle if you're doing a custom title block
+title: Public transport access in Asia-Pacific
+subtitle: "**How many people in your city have a stop nearby?**<br><span style='font-size: 85%; color: #555555;'>This measures the percentage of people in a city with a **minor stop (bus) within 500 m** or a **major stop (train, metro or ferry) within 1 km** of their home. It doesn't take into account the quality or frequency of that transport.</span>"
+# for social previews
+pagetitle: "Interactive: Public transport access in Asia-Pacific"
+description: "How many people in your city have a stop nearby?" 
+twitter-card:
+  site: "@360info_global"
+  image: "/public-transport/pt-access-banner.png"
+open-graph:
+  image: "/public-transport/pt-access-banner.png"
+resources:
+  - /data/pt-access-ap.csv
+format:
+  360-embed-html: default
+# metadata for modals and embed sharing functionality
+360embed:
+  byline: James Goldie, 360info
+  data-source: UNStats, OpenDataSoft, United Nations
+  type: map
+  aspect-ratio: 27 / 40
+  min-height: 650px
+  max-height: 840px
+  bg-colour: white
+  title: "Interactive: access to public transport"
+  repo: report-transport-under1.5c
+  domain: https://transport.360visuals.org
+  path: /public-transport-ap/  
+  fragments: 
+  about: |
+    Data underpinning this graphic comes from three sources:<br><br>
+    1. The [UN's SDG Data Portal](https://unstats.un.org/sdgs/dataportal/database)<br>
+    2. [OpenDataSoft's dataset of cities over 1000 people](https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000)<br>  
+    3. the [the UN's hierarchy of country regions](https://unstats.un.org/unsd/methodology/m49)<br><br>
+    These data sources are available under a [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0).
+---
+
+```{ojs}
+//| label: download-data
+cities = FileAttachment("/data/pt-access-ap.csv").csv({ typed: true })
+```
+
+```{ojs}
+//| label: controls
+//| panel: input
+viewof zoomOptions = Inputs.checkbox(["Zoom"], {
+  disabled: selectedCities.length == 0
+})
+
+viewof selectedCities = Inputs.search(cities, {
+  required: false,
+  columns: ["city", "country_name"]
+})
+```
+
+```{ojs}
+//| label: zoom-boolean
+zoomToSelection = selectedCities.length > 0 &&
+  zoomOptions.includes("Zoom")
+```
+
+```{ojs}
+//| label: filter-to-zoom
+activeData = zoomToSelection ?
+  cities.filter(
+    d => selectedCities
+      .map(d => d.city.toLowerCase())
+      .includes(d.city.toLowerCase())) :
+  cities
+```
+
+```{ojs}
+//| label: width-calculations
+
+// 800px is the "natural" width - below that the entire svg scales down 
+textSize = 18
+maxWidth = 500
+excessWidth = Math.max(0, width - 800)
+
+// until we hit 800px, keep the max bubble radius at 12 (unless zooming)
+baseMaxRadius = 25
+zoomMaxRadius = 30
+
+// after that, add radius scale according to excess with
+extraMaxRadius = d3.scaleLinear([0, 900], [0, 7]).clamp(true)
+```
+
+```{ojs}
+//| label: beeswarm
+Plot.plot({
+  marks: [
+    Plot.dot(activeData, Plot.dodgeX("middle", {
+      y: "pct_pt_access",
+      fill: "pct_pt_access",
+      r: "population",
+      opacity: d =>
+        selectedCities.length > 0 &&
+          (!selectedCities
+            .map(d => d.city.toLowerCase())
+            .includes(d.city.toLowerCase())) ?
+        0.1 :
+        1,
+    })),
+    Plot.tip(activeData, Plot.pointer(Plot.dodgeX("middle", {
+      y: "pct_pt_access",
+      r: "population",
+      channels: {
+        "City": "city",
+        "Country": "country_name",
+        "Access": "pct_pt_access"
+      },
+      format: {
+        // "x": d => d.toFixed(1) + "%",
+        "y": false,
+        "City": true,
+        "Country": true,
+        "r": true,
+        "Access": d => d.toFixed(1) + "% of people"
+      }
+    })))
+  ],
+  y: {
+    label: "Access to public transport",
+    grid: true,
+    tickFormat: d => d.toFixed(0) + "%",
+    // axis: "top",
+    domain: [0, 100],
+    fill: "grey"
+  },
+  color: {
+    reverse: true,
+    domain: [0, 100]
+  },
+  r: {
+    label: "Population",
+    range: zoomToSelection ?
+      [0.25, zoomMaxRadius] :
+      [0.15, baseMaxRadius + extraMaxRadius(excessWidth)]
+  },
+  height: zoomToSelection ? 500 : 600,
+  width: maxWidth + excessWidth,
+  marginLeft: 50,
+  marginTop: 80,
+  style: {
+    fontFamily: "Roboto Condensed",
+    fontSize: width < maxWidth * 0.6 ?
+      textSize * 1.5 :
+      textSize
+  }
+})
+```
+
+{{< include _popups/_buttons.qmd >}}
+
+{{< include _popups/_dialogs.qmd >}}
