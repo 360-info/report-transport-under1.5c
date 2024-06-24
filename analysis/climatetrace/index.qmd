@@ -82,7 +82,7 @@ tr_sector_list    |> print(n = Inf)
 tr_subsector_list |> print(n = Inf)
 ```
 
-Now we'll combine the coun
+Now we'll get the total and transport sector emissions:
 
 ```{r}
 #| label: get-emissions-data
@@ -113,7 +113,7 @@ tr_transport
 
 One gotcha for the emissions endpoint is that, unlike the country parameters, the subsectors endpoint (and probably the sector one, but we're only doing one sector) doesn't return data for _each_ of them—rather it seems to return aggregated figures for all the requested subsectors.
 
-That means we need to request each subsector individually.
+That means we need to request each subsector individually:
 
 ```{r}
 #| label: get-subsector-emissions
@@ -182,6 +182,8 @@ here("data", "raw", "population.csv") |>
   filter(Time == 2022, !is.na(iso3)) ->
 population
 
+# 
+
 # merge the population data and calculate per capita figures
 # alongside gross ones
 tr_combined_wide |>
@@ -199,4 +201,30 @@ tr_combined_wide |>
   write_csv(here("data", "transport-emissions.csv"), na = "") |>
   print() ->
 tr_combined_percapita
+
+# let's also run off a version restricted to asia-pacific for the publication
+# version
+tr_combined_percapita |>
+  filter(iso3 %in% c(
+    "CHN", "HKG", "MAC", "PRK", "JPN", "MNG", "KOR", "BRN", "KHM", "IDN", "LAO", "MYS", "MMR", "PHL", "SGP", "THA", "TLS", "VNM", "AFG", "BGD", "BTN", "IND", "IRN", "MDV", "NPL", "PAK", "LKA", "AUS", "CXR", "CCK", "NZL", "NFK"
+  )) ->
+ap_figures
+
+# get the region-wide figures (make sure we recalculate )
+ap_figures |>
+  select(iso2, iso3, name, population, starts_with("gross_")) |>
+  summarise(
+    iso2 = NA,
+    iso3 = NA,
+    name = "Asia-Pacific region",
+    across(where(is.numeric), sum, na.rm = TRUE)) |>
+    mutate(across(starts_with("gross_"), .fns = ~ .x / population,
+      .names = "percapita_{.col}")) |>
+    rename_with(~ str_replace(.x, "percapita_gross_", "percapita_")) ->
+ap_region
+
+# bind country figures with AP "total" row and write out to disk
+ap_figures |>
+  bind_rows(ap_region) |> glimpse()
+  write_csv(here("data", "transport-emissions-ap.csv"), na = "")
 ```

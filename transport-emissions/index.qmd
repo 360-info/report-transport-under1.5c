@@ -1,9 +1,9 @@
 ---
 # omit title and subtitle if you're doing a custom title block
-title: Transport emissions
-subtitle: A thing here
+title: Transport in Asia-Pacific
+subtitle: Transport makes up nearly 10% of all greenhouse gas emissions across the Asia-Pacific. But that percentage is very different for countries across the region.
 # for social previews
-pagetitle: Transport emissions
+pagetitle: Transport emissions in Asia-Pacific
 description: A description for social previews
 twitter-card:
   site: "@360info_global"
@@ -11,25 +11,31 @@ twitter-card:
 open-graph:
   image: "/folder/example.png"
 resources:
-  - /data/transport-emissions.csv
+  - /data/transport-emissions-ap.csv
 format:
   360-embed-html: default
 # metadata for modals and embed sharing functionality
 360embed:
   byline: James Goldie, 360info
-  data-source: XXX
+  data-source: Climate Trace
   type: map
-  aspect-ratio: 20 / 19
-  min-height: 500px
-  max-height: 893px
+  aspect-ratio: 4 / 3
+  min-height: 680px
+  max-height: 680px
   bg-colour: white
-  title: "Interactive: Transport emissions"
-  repo: report-example
+  title: "Interactive: Transport emissions in Asia-Pacific"
+  repo: report-transport-under1.5c
   domain: https://transport.360visuals.org
   path: /transport-emissions
   # fragments: state, month
   about: |
-    Here's a place to **tell people** and [link to things](https://example.com)!
+    The data for this graphic comes from [Climate Trace](https://climatetrace.org), which independently tracks greenhouse gas emissions globally.<br><br>
+    
+    The graphic depicts how a country's transport-related emissions compare to its overall greenhouse gas emissions, and how transport-related emissions break down into domestic and international aviation and shipping, as well as road and rail transport. You can see these in gross terms or in "per capita" terms (emissions per person), which allows for comparisons between larger and smaller countries.<br><br>
+
+    The emissions are measured in units of tonnes of CO2 equivalent. The "equivalent" part is designed to account for other greenhouse gases by comparing the effect they would have on the climate over 100 years to that of carbon dioxide.<br><br>
+
+    <strong>Note:</strong> In the pie chart, "mt" means millitonnes, or kilograms, _not_ megatonnes (1 million tonnes).
 ---
 
 ```{ojs}
@@ -40,20 +46,12 @@ import { PieChart } from "@jimjamslam/pie-chart-component"
 
 ```{ojs}
 //| label: get-data
-allData = FileAttachment("/data/transport-emissions.csv").csv({ typed: true })
-
-apData = allData
-  .filter(d => ["CHN", "HKG", "MAC", "PRK", "JPN", "MNG", "KOR", "BRN", "KHM",
-  "IDN", "LAO", "MYS", "MMR", "PHL", "SGP", "THA", "TLS", "VNM", "AFG", "BGD",
-  "BTN", "IND", "IRN", "MDV", "NPL", "PAK", "LKA", "AUS", "CXR", "CCK", "NZL",
-  "NFK"].includes(d.iso3))
-
-Inputs.table(apData)
+allData = FileAttachment("/data/transport-emissions-ap.csv").csv({ typed: true })
 ```
 
 ```{ojs}
 //| label: controls
-viewof selectedCities = Inputs.search(apData, {
+viewof selectedCities = Inputs.search(allData, {
   required: false,
   columns: ["name"],
   datalist: allData.map(x => x.name)
@@ -64,16 +62,15 @@ viewof selectedView = Inputs.radio(
     ["Total emissions", "gross_"],
     ["Emissions per person", "percapita_"]
   ]), {
-    value: "percapita_"
+    value: "gross_"
   })
-
-selectedView
 ```
 
 ```{ojs}
 //| label: format-data
-selectedData = allData
-  .filter(d => selectedCities.map(x => x.name).includes(d.name))
+selectedData = selectedCities.length == 1 ?
+  allData.filter(d => selectedCities.map(x => x.name).includes(d.name)) :
+  allData.filter(d => d.name == "Asia-Pacific region")
 emissionsAll       = selectedData[0][selectedView + "All emissions"]
 emissionsTransport = selectedData[0][selectedView + "All transport emissions"]
 
@@ -89,24 +86,36 @@ pieChartData = [
   }
 ]
 ```
+
+```{ojs}
+//| label: subtitle
+selectedCities.length == 1 ? md`## ${selectedCities[0].name}` :
+  selectedCities.length == 0 ? md`## Asia-Pacific region` :
+    md``
+```
+
+::::{#visuals}
  
 ```{ojs}
 //| label: pie-chart
 chartSuffix = selectedView == "gross_" ? "t" : "t p.p."
-PieChart(pieChartData, {
+selectedData.length == 1 ? PieChart(pieChartData, {
   name: d => d.name,
   value: d => d.value,
-  width: 80,
-  height: 80,
-  innerRadius: 25,
+  width: 200,
+  height: 160, 
+  innerRadius: 20,
+  outerRadius: 40, // defaults 0.5 * min(width, height)
+  // TODO - make this work with `tonnesOrKilos`
   format: ".2s",
   suffix: chartSuffix,
   colors: ["orangered", "lightgrey"]
-})
+}) : null
 ```
 
 ```{ojs}
-//| label: bar-chart
+//| label: reshape-figures
+//| output: false
 selectedFigures = aq
   .from(selectedData)
   .select(aq.not("iso2", "iso3", "name"))
@@ -120,34 +129,65 @@ selectedFigures = aq
     })
   .objects()
 
-Plot.plot({
+tonnesOrKilos = d =>
+  d > 1 ?
+    d3.format(".2s")(d) + "t" :
+    d3.format(".2s")(d * 1000000) + "g"
+```
+
+```{ojs}
+//| label: bar-chart
+//| output: false
+barChartVertical = Plot.plot({
   marks: [
-    Plot.barX(selectedFigures, {
-      x: "value",
+    Plot.barY(selectedFigures, {
+      y: "value",
       fill: "key",
     }),
-    Plot.tip(selectedFigures, Plot.pointerX(Plot.stackX({
-      x: "value",
+    Plot.text(selectedFigures, Plot.dodgeX("right", Plot.stackY({
+      y: "value",
+      text: "key",
+      fill: "key",
+      stroke: "white",
+      strokeWidth: 4,
+      textAnchor: "start",
+      fontWeight: "bold"
+    }))),
+    Plot.tip(selectedFigures, Plot.pointerY(Plot.stackY({
+      y: "value",
       fill: "key",
       channels: {
-        "Percent": d => d.frac * 100
+        "Subsector": "key",
+        "Percent": "frac"
       },
       format: {
-        "frac": d => d3.format("%")
+        "Percent": d => d3.format(".1%")(d),
+        "y": tonnesOrKilos,
+        "fill": null
       }
     })))
   ],
-  x: {
-    label: "Emissions", // TODO - per person?
-    tickFormat: d => d3.format(".2s")(d) + "t",
+  y: {
+    label: selectedView == "gross_" ? "Emissions" : "Emissions per person",
+    // TODO - switch to kg for smaller figures
+    tickFormat: tonnesOrKilos,
   },
-  marginBottom: 100,
+  marginLeft: 50,
+  marginRight: 180,
   style: {
     fontFamily: "Roboto Condensed",
-    fontSize: 18
-  }
+    fontSize: 16
+  },
+  width: 300,
+  height: 400
 })
 ```
+
+```{ojs}
+selectedData.length == 1 ? html`${barChartVertical}` : null
+```
+
+::::
 
 {{< include _popups/_buttons.qmd >}}
 

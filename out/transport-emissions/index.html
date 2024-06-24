@@ -8,7 +8,7 @@
 
 <meta name="description" content="A description for social previews">
 
-<title>Transport emissions</title>
+<title>Transport emissions in Asia-Pacific</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -75,10 +75,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="_extensions/360-info/360-embed/embed.css">
 <link rel="stylesheet" href="_extensions/360-info/360-embed/modal.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-<meta property="og:title" content="Transport emissions">
+<meta property="og:title" content="Transport emissions in Asia-Pacific">
 <meta property="og:description" content="A description for social previews">
 <meta property="og:image" content="/folder/example.png">
-<meta name="twitter:title" content="Transport emissions">
+<meta name="twitter:title" content="Transport emissions in Asia-Pacific">
 <meta name="twitter:description" content="A description for social previews">
 <meta name="twitter:image" content="/folder/example.png">
 <meta name="twitter:site" content="@360info_global">
@@ -89,15 +89,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <header id="title-block-header">
-<h1 class="title">Transport emissions</h1>
-<p class="subtitle">A thing here</p>
+<h1 class="title">Transport in Asia-Pacific</h1>
+<p class="subtitle">Transport makes up nearly 10% of all greenhouse gas emissions across the Asia-Pacific. But that percentage is very different for countries across the region.</p>
 
 </header>
 
 
 <div id="setup" class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="37" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 36;"><span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { aq<span class="op">,</span> op } <span class="im">from</span> <span class="st">"@uwdata/arquero"</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { PieChart } <span class="im">from</span> <span class="st">"@jimjamslam/pie-chart-component"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="43" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 42;"><span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { aq<span class="op">,</span> op } <span class="im">from</span> <span class="st">"@uwdata/arquero"</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { PieChart } <span class="im">from</span> <span class="st">"@jimjamslam/pie-chart-component"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="setup-1">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -113,54 +113,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="get-data" class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="43" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 42;"><span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>allData <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"/data/transport-emissions.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>apData <span class="op">=</span> allData</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> [<span class="st">"CHN"</span><span class="op">,</span> <span class="st">"HKG"</span><span class="op">,</span> <span class="st">"MAC"</span><span class="op">,</span> <span class="st">"PRK"</span><span class="op">,</span> <span class="st">"JPN"</span><span class="op">,</span> <span class="st">"MNG"</span><span class="op">,</span> <span class="st">"KOR"</span><span class="op">,</span> <span class="st">"BRN"</span><span class="op">,</span> <span class="st">"KHM"</span><span class="op">,</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  <span class="st">"IDN"</span><span class="op">,</span> <span class="st">"LAO"</span><span class="op">,</span> <span class="st">"MYS"</span><span class="op">,</span> <span class="st">"MMR"</span><span class="op">,</span> <span class="st">"PHL"</span><span class="op">,</span> <span class="st">"SGP"</span><span class="op">,</span> <span class="st">"THA"</span><span class="op">,</span> <span class="st">"TLS"</span><span class="op">,</span> <span class="st">"VNM"</span><span class="op">,</span> <span class="st">"AFG"</span><span class="op">,</span> <span class="st">"BGD"</span><span class="op">,</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BTN"</span><span class="op">,</span> <span class="st">"IND"</span><span class="op">,</span> <span class="st">"IRN"</span><span class="op">,</span> <span class="st">"MDV"</span><span class="op">,</span> <span class="st">"NPL"</span><span class="op">,</span> <span class="st">"PAK"</span><span class="op">,</span> <span class="st">"LKA"</span><span class="op">,</span> <span class="st">"AUS"</span><span class="op">,</span> <span class="st">"CXR"</span><span class="op">,</span> <span class="st">"CCK"</span><span class="op">,</span> <span class="st">"NZL"</span><span class="op">,</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="st">"NFK"</span>]<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">iso3</span>))</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(apData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div id="get-data-1">
-<div id="ojs-cell-2-1" data-nodetype="declaration">
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="48" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 47;"><span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>allData <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"/data/transport-emissions-ap.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="get-data" class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="declaration">
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div id="get-data-2">
-<div id="ojs-cell-2-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div id="get-data-3">
-<div id="ojs-cell-2-3" data-nodetype="expression">
-
-</div>
 </div>
 </div>
 </div>
 <div id="controls" class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="56" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 55;"><span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>viewof selectedCities <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">search</span>(apData<span class="op">,</span> {</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  <span class="dt">required</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">columns</span><span class="op">:</span> [<span class="st">"name"</span>]<span class="op">,</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">datalist</span><span class="op">:</span> allData<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> x<span class="op">.</span><span class="at">name</span>)</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>viewof selectedView <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">new</span> <span class="bu">Map</span>([</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Total emissions"</span><span class="op">,</span> <span class="st">"gross_"</span>]<span class="op">,</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Emissions per person"</span><span class="op">,</span> <span class="st">"percapita_"</span>]</span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>  ])<span class="op">,</span> {</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="st">"percapita_"</span></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>selectedView</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="54" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 53;"><span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>viewof selectedCities <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">search</span>(allData<span class="op">,</span> {</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">required</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  <span class="dt">columns</span><span class="op">:</span> [<span class="st">"name"</span>]<span class="op">,</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  <span class="dt">datalist</span><span class="op">:</span> allData<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> x<span class="op">.</span><span class="at">name</span>)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>viewof selectedView <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  <span class="kw">new</span> <span class="bu">Map</span>([</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Total emissions"</span><span class="op">,</span> <span class="st">"gross_"</span>]<span class="op">,</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Emissions per person"</span><span class="op">,</span> <span class="st">"percapita_"</span>]</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>  ])<span class="op">,</span> {</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="st">"gross_"</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="controls-1">
 <div id="ojs-cell-3-1" data-nodetype="declaration">
@@ -175,31 +149,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="cell-output cell-output-display">
-<div id="controls-3">
-<div id="ojs-cell-3-3" data-nodetype="expression">
-
-</div>
-</div>
-</div>
 </div>
 <div id="format-data" class="cell">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="75" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 74;"><span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>selectedData <span class="op">=</span> allData</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> selectedCities<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> x<span class="op">.</span><span class="at">name</span>)<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">name</span>))</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>emissionsAll       <span class="op">=</span> selectedData[<span class="dv">0</span>][selectedView <span class="op">+</span> <span class="st">"All emissions"</span>]</span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>emissionsTransport <span class="op">=</span> selectedData[<span class="dv">0</span>][selectedView <span class="op">+</span> <span class="st">"All transport emissions"</span>]</span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="co">// put headline figures into an array for the pie chart</span></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>pieChartData <span class="op">=</span> [</span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"Transport: "</span> <span class="op">+</span> d3<span class="op">.</span><span class="fu">format</span>(<span class="st">".1%"</span>)(emissionsTransport <span class="op">/</span> emissionsAll)<span class="op">,</span></span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> emissionsTransport</span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"Other sectors"</span><span class="op">,</span></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> emissionsAll <span class="op">-</span> emissionsTransport<span class="op">,</span></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="71" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 70;"><span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>selectedData <span class="op">=</span> selectedCities<span class="op">.</span><span class="at">length</span> <span class="op">==</span> <span class="dv">1</span> <span class="op">?</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>  allData<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> selectedCities<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> x<span class="op">.</span><span class="at">name</span>)<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">name</span>)) <span class="op">:</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>  allData<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">name</span> <span class="op">==</span> <span class="st">"Asia-Pacific region"</span>)</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>emissionsAll       <span class="op">=</span> selectedData[<span class="dv">0</span>][selectedView <span class="op">+</span> <span class="st">"All emissions"</span>]</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>emissionsTransport <span class="op">=</span> selectedData[<span class="dv">0</span>][selectedView <span class="op">+</span> <span class="st">"All transport emissions"</span>]</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="co">// put headline figures into an array for the pie chart</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>pieChartData <span class="op">=</span> [</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"Transport: "</span> <span class="op">+</span> d3<span class="op">.</span><span class="fu">format</span>(<span class="st">".1%"</span>)(emissionsTransport <span class="op">/</span> emissionsAll)<span class="op">,</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> emissionsTransport</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"Other sectors"</span><span class="op">,</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> emissionsAll <span class="op">-</span> emissionsTransport<span class="op">,</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="format-data-1">
 <div id="ojs-cell-4-1" data-nodetype="declaration">
@@ -229,84 +197,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="91" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 90;"><span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>selectedCities<span class="op">.</span><span class="at">length</span> <span class="op">==</span> <span class="dv">1</span> <span class="op">?</span> <span class="fu">md</span><span class="vs">`## </span><span class="sc">${</span>selectedCities[<span class="dv">0</span>]<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs">`</span> <span class="op">:</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>  selectedCities<span class="op">.</span><span class="at">length</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">?</span> <span class="fu">md</span><span class="vs">`## Asia-Pacific region`</span> <span class="op">:</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>    <span class="fu">md</span><span class="vs">``</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="subtitle" class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div id="visuals">
 <div id="pie-chart" class="cell">
-<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="95" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 94;"><span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>chartSuffix <span class="op">=</span> selectedView <span class="op">==</span> <span class="st">"gross_"</span> <span class="op">?</span> <span class="st">"t"</span> <span class="op">:</span> <span class="st">"t p.p."</span></span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="fu">PieChart</span>(pieChartData<span class="op">,</span> {</span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>  <span class="dt">name</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">name</span><span class="op">,</span></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">value</span><span class="op">,</span></span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>  <span class="dt">innerRadius</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> <span class="st">".2s"</span><span class="op">,</span></span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>  <span class="dt">suffix</span><span class="op">:</span> chartSuffix<span class="op">,</span></span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>  <span class="dt">colors</span><span class="op">:</span> [<span class="st">"orangered"</span><span class="op">,</span> <span class="st">"lightgrey"</span>]</span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="101" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 100;"><span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>chartSuffix <span class="op">=</span> selectedView <span class="op">==</span> <span class="st">"gross_"</span> <span class="op">?</span> <span class="st">"t"</span> <span class="op">:</span> <span class="st">"t p.p."</span></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>selectedData<span class="op">.</span><span class="at">length</span> <span class="op">==</span> <span class="dv">1</span> <span class="op">?</span> <span class="fu">PieChart</span>(pieChartData<span class="op">,</span> {</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>  <span class="dt">name</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">name</span><span class="op">,</span></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">value</span><span class="op">,</span></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span></span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">160</span><span class="op">,</span> </span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>  <span class="dt">innerRadius</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>  <span class="dt">outerRadius</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span> <span class="co">// defaults 0.5 * min(width, height)</span></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>  <span class="co">// </span><span class="al">TODO</span><span class="co"> - make this work with `tonnesOrKilos`</span></span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> <span class="st">".2s"</span><span class="op">,</span></span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>  <span class="dt">suffix</span><span class="op">:</span> chartSuffix<span class="op">,</span></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>  <span class="dt">colors</span><span class="op">:</span> [<span class="st">"orangered"</span><span class="op">,</span> <span class="st">"lightgrey"</span>]</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>}) <span class="op">:</span> <span class="kw">null</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="pie-chart-1">
-<div id="ojs-cell-5-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div id="pie-chart-2">
-<div id="ojs-cell-5-2" data-nodetype="expression">
-
-</div>
-</div>
-</div>
-</div>
-<div id="bar-chart" class="cell">
-<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="110" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 109;"><span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>selectedFigures <span class="op">=</span> aq</span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">from</span>(selectedData)</span>
-<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">select</span>(aq<span class="op">.</span><span class="fu">not</span>(<span class="st">"iso2"</span><span class="op">,</span> <span class="st">"iso3"</span><span class="op">,</span> <span class="st">"name"</span>))</span>
-<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">fold</span>(aq<span class="op">.</span><span class="fu">all</span>())</span>
-<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">params</span>({ <span class="dt">selectedView</span><span class="op">:</span> selectedView })</span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> op<span class="op">.</span><span class="fu">startswith</span>(d<span class="op">.</span><span class="at">key</span><span class="op">,</span> selectedView))</span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> <span class="op">!</span>op<span class="op">.</span><span class="fu">match</span>(d<span class="op">.</span><span class="at">key</span><span class="op">,</span> <span class="ss">/_All/</span>))</span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">derive</span>({</span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>    <span class="dt">frac</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">value</span> <span class="op">/</span> op<span class="op">.</span><span class="fu">sum</span>(d<span class="op">.</span><span class="at">value</span>)<span class="op">,</span></span>
-<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>    <span class="dt">key</span><span class="op">:</span> d <span class="kw">=&gt;</span> op<span class="op">.</span><span class="fu">split</span>(d<span class="op">.</span><span class="at">key</span><span class="op">,</span> <span class="st">"_"</span>)[<span class="dv">1</span>]</span>
-<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">objects</span>()</span>
-<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barX</span>(selectedFigures<span class="op">,</span> {</span>
-<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span></span>
-<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"key"</span><span class="op">,</span></span>
-<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
-<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">tip</span>(selectedFigures<span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointerX</span>(Plot<span class="op">.</span><span class="fu">stackX</span>({</span>
-<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span></span>
-<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"key"</span><span class="op">,</span></span>
-<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>      <span class="dt">channels</span><span class="op">:</span> {</span>
-<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Percent"</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">frac</span> <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
-<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>      <span class="dt">format</span><span class="op">:</span> {</span>
-<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>        <span class="st">"frac"</span><span class="op">:</span> d <span class="kw">=&gt;</span> d3<span class="op">.</span><span class="fu">format</span>(<span class="st">"%"</span>)</span>
-<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>    })))</span>
-<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Emissions"</span><span class="op">,</span> <span class="co">// </span><span class="al">TODO</span><span class="co"> - per person?</span></span>
-<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> d <span class="kw">=&gt;</span> d3<span class="op">.</span><span class="fu">format</span>(<span class="st">".2s"</span>)(d) <span class="op">+</span> <span class="st">"t"</span><span class="op">,</span></span>
-<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span></span>
-<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
-<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Roboto Condensed"</span><span class="op">,</span></span>
-<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">18</span></span>
-<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div id="bar-chart-1">
 <div id="ojs-cell-6-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
-<div id="bar-chart-2">
+<div id="pie-chart-2">
 <div id="ojs-cell-6-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="reshape-figures" class="cell hidden">
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="119" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 118;"><span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>selectedFigures <span class="op">=</span> aq</span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">from</span>(selectedData)</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">select</span>(aq<span class="op">.</span><span class="fu">not</span>(<span class="st">"iso2"</span><span class="op">,</span> <span class="st">"iso3"</span><span class="op">,</span> <span class="st">"name"</span>))</span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">fold</span>(aq<span class="op">.</span><span class="fu">all</span>())</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">params</span>({ <span class="dt">selectedView</span><span class="op">:</span> selectedView })</span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> op<span class="op">.</span><span class="fu">startswith</span>(d<span class="op">.</span><span class="at">key</span><span class="op">,</span> selectedView))</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> <span class="op">!</span>op<span class="op">.</span><span class="fu">match</span>(d<span class="op">.</span><span class="at">key</span><span class="op">,</span> <span class="ss">/_All/</span>))</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">derive</span>({</span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a>    <span class="dt">frac</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">value</span> <span class="op">/</span> op<span class="op">.</span><span class="fu">sum</span>(d<span class="op">.</span><span class="at">value</span>)<span class="op">,</span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>    <span class="dt">key</span><span class="op">:</span> d <span class="kw">=&gt;</span> op<span class="op">.</span><span class="fu">split</span>(d<span class="op">.</span><span class="at">key</span><span class="op">,</span> <span class="st">"_"</span>)[<span class="dv">1</span>]</span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">objects</span>()</span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>tonnesOrKilos <span class="op">=</span> d <span class="kw">=&gt;</span></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a>  d <span class="op">&gt;</span> <span class="dv">1</span> <span class="op">?</span></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>    d3<span class="op">.</span><span class="fu">format</span>(<span class="st">".2s"</span>)(d) <span class="op">+</span> <span class="st">"t"</span> <span class="op">:</span></span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a>    d3<span class="op">.</span><span class="fu">format</span>(<span class="st">".2s"</span>)(d <span class="op">*</span> <span class="dv">1000000</span>) <span class="op">+</span> <span class="st">"g"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display hidden">
+<div id="reshape-figures-1">
+<div id="ojs-cell-7-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div id="reshape-figures-2">
+<div id="ojs-cell-7-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell hidden">
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="140" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 139;"><span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a>barChartVertical <span class="op">=</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(selectedFigures<span class="op">,</span> {</span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span></span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"key"</span><span class="op">,</span></span>
+<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>(selectedFigures<span class="op">,</span> Plot<span class="op">.</span><span class="fu">dodgeX</span>(<span class="st">"right"</span><span class="op">,</span> Plot<span class="op">.</span><span class="fu">stackY</span>({</span>
+<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span></span>
+<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a>      <span class="dt">text</span><span class="op">:</span> <span class="st">"key"</span><span class="op">,</span></span>
+<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"key"</span><span class="op">,</span></span>
+<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"white"</span><span class="op">,</span></span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a>      <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span></span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span></span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a>    })))<span class="op">,</span></span>
+<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">tip</span>(selectedFigures<span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointerY</span>(Plot<span class="op">.</span><span class="fu">stackY</span>({</span>
+<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span></span>
+<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"key"</span><span class="op">,</span></span>
+<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a>      <span class="dt">channels</span><span class="op">:</span> {</span>
+<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Subsector"</span><span class="op">:</span> <span class="st">"key"</span><span class="op">,</span></span>
+<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Percent"</span><span class="op">:</span> <span class="st">"frac"</span></span>
+<span id="cb8-161"><a href="#cb8-161" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb8-162"><a href="#cb8-162" aria-hidden="true" tabindex="-1"></a>      <span class="dt">format</span><span class="op">:</span> {</span>
+<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Percent"</span><span class="op">:</span> d <span class="kw">=&gt;</span> d3<span class="op">.</span><span class="fu">format</span>(<span class="st">".1%"</span>)(d)<span class="op">,</span></span>
+<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a>        <span class="st">"y"</span><span class="op">:</span> tonnesOrKilos<span class="op">,</span></span>
+<span id="cb8-165"><a href="#cb8-165" aria-hidden="true" tabindex="-1"></a>        <span class="st">"fill"</span><span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb8-166"><a href="#cb8-166" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a>    })))</span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> selectedView <span class="op">==</span> <span class="st">"gross_"</span> <span class="op">?</span> <span class="st">"Emissions"</span> <span class="op">:</span> <span class="st">"Emissions per person"</span><span class="op">,</span></span>
+<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co"> - switch to kg for smaller figures</span></span>
+<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> tonnesOrKilos<span class="op">,</span></span>
+<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">180</span><span class="op">,</span></span>
+<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Roboto Condensed"</span><span class="op">,</span></span>
+<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">16</span></span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span></span>
+<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span></span>
+<span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="bar-chart" class="cell-output cell-output-display hidden">
+<div id="ojs-cell-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="186" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 185;"><span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a>selectedData<span class="op">.</span><span class="at">length</span> <span class="op">==</span> <span class="dv">1</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`</span><span class="sc">${</span>barChartVertical<span class="sc">}</span><span class="vs">`</span> <span class="op">:</span> <span class="kw">null</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-9" data-nodetype="expression">
 
 </div>
 </div>
@@ -318,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   * Editor names, 360info (hint: put &shy; in the middle of long names!)
   * Data: ORG
   (if there isn't room, put it in the ABOUT dialog) -->
-<p><strong>Chart:</strong> James Goldie, 360info<br> <strong>Data:</strong> XXX</p>
+<p><strong>Chart:</strong> James Goldie, 360info<br> <strong>Data:</strong> Climate Trace</p>
 </div>
 <!-- here's the EDITOR SHARE button. it's a quick way to copy the
      embed code for editors and will only appear if ?edshare=true is in the
@@ -416,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
         // copy the embed code to the clipboard
         navigator.clipboard.writeText(
-          `<div style="aspect-ratio: 20 / 19; width: 100%; min-height: 500px; max-height: 893px;"><iframe  allow="fullscreen; clipboard-write self https://transport.360visuals.org" allowfullscreen="true" src="https://transport.360visuals.org/transport-emissions${fragmentString}" title="Interactive: Transport emissions"  style="width:100%; height:100%; position: relative; top: 0; left: 0; border:none; background-color: white;" scrolling="no"></iframe></div>`);
+          `<div style="aspect-ratio: 4 / 3; width: 100%; min-height: 680px; max-height: 680px;"><iframe  allow="fullscreen; clipboard-write self https://transport.360visuals.org" allowfullscreen="true" src="https://transport.360visuals.org/transport-emissions${fragmentString}" title="Interactive: Transport emissions in Asia-Pacific"  style="width:100%; height:100%; position: relative; top: 0; left: 0; border:none; background-color: white;" scrolling="no"></iframe></div>`);
 
         // update button styles and content
         edshareBtn.classList.remove("ready");
@@ -443,21 +460,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 <!-- initialise miromodal.js -->
 <div class="cell" data-include="false">
-<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>micro <span class="op">=</span> <span class="pp">require</span>(<span class="st">"micromodal@0.4.10"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>micro<span class="op">.</span><span class="fu">init</span>({</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">awaitOpenAnimation</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">awaitCloseAnimation</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>micro <span class="op">=</span> <span class="pp">require</span>(<span class="st">"micromodal@0.4.10"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>micro<span class="op">.</span><span class="fu">init</span>({</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">awaitOpenAnimation</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">awaitCloseAnimation</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display hidden">
 <div>
-<div id="ojs-cell-7-1" data-nodetype="declaration">
+<div id="ojs-cell-10-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display hidden">
 <div>
-<div id="ojs-cell-7-2" data-nodetype="expression">
+<div id="ojs-cell-10-2" data-nodetype="expression">
 
 </div>
 </div>
@@ -475,21 +492,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 id="embed-this-chart-in-your-article" class="anchored">Embed this chart in your article</h4>
 <p>Copy and paste the following code:</p>
 <div class="embedcode">
-<div class="sourceCode" id="cb8"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"aspect-ratio: 20 / 19; width: 100%; min-height: 500px; max-height: 893px"</span><span class="dt">&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">iframe</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    allow</span><span class="op">=</span><span class="st">"fullscreen; clipboard-write self https://transport.360visuals.org"</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    allowfullscreen</span><span class="op">=</span><span class="st">"true"</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    src</span><span class="op">=</span><span class="st">"https://transport.360visuals.org/transport-emissions"</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ot">    title</span><span class="op">=</span><span class="st">"Interactive: Transport emissions"</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ot">    style</span><span class="op">=</span><span class="st">"width:100%; height:100%; position: relative; top: 0; left: 0; border:none; background-color: white;"</span><span class="ot"> scrolling</span><span class="op">=</span><span class="st">"no"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"aspect-ratio: 4 / 3; width: 100%; min-height: 680px; max-height: 680px"</span><span class="dt">&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">iframe</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    allow</span><span class="op">=</span><span class="st">"fullscreen; clipboard-write self https://transport.360visuals.org"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    allowfullscreen</span><span class="op">=</span><span class="st">"true"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    src</span><span class="op">=</span><span class="st">"https://transport.360visuals.org/transport-emissions"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ot">    title</span><span class="op">=</span><span class="st">"Interactive: Transport emissions in Asia-Pacific"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="ot">    style</span><span class="op">=</span><span class="st">"width:100%; height:100%; position: relative; top: 0; left: 0; border:none; background-color: white;"</span><span class="ot"> scrolling</span><span class="op">=</span><span class="st">"no"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This content is subject to <a href="https://newshub.360info.org/page/terms">360info’s Terms of Use</a>.</p>
 <h4 id="get-the-data-and-code" class="anchored">Get the data and code</h4>
-<p>Visit the <a href="https://github.com/360-info/report-example/tree/main/data">GitHub repository</a> to:</p>
+<p>Visit the <a href="https://github.com/360-info/report-transport-under1.5c/tree/main/data">GitHub repository</a> to:</p>
 <ul>
-<li><a href="https://github.com/360-info/report-example/tree/main/data"><strong>Download the data</strong></a></li>
-<li><a href="https://github.com/360-info/report-example"><strong>Recreate or remix the chart</strong></a></li>
+<li><a href="https://github.com/360-info/report-transport-under1.5c/tree/main/data"><strong>Download the data</strong></a></li>
+<li><a href="https://github.com/360-info/report-transport-under1.5c"><strong>Recreate or remix the chart</strong></a></li>
 </ul>
 </div>
 </div>
@@ -505,7 +522,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 id="modal-about-title" class="anchored">About</h2>
 </header>
 <div id="modal-about-content">
-<p>Here’s a place to <strong>tell people</strong> and <a href="https://example.com">link to things</a>!</p>
+<p>The data for this graphic comes from <a href="https://climatetrace.org">Climate Trace</a>, which independently tracks greenhouse gas emissions globally.<br><br><br>
+The graphic depicts how a country’s transport-related emissions compare to its overall greenhouse gas emissions, and how transport-related emissions break down into domestic and international aviation and shipping, as well as road and rail transport. You can see these in gross terms or in “per capita” terms (emissions per person), which allows for comparisons between larger and smaller countries.<br><br><br>
+The emissions are measured in units of tonnes of CO2 equivalent. The “equivalent” part is designed to account for other greenhouse gases by comparing the effect they would have on the climate over 100 years to that of carbon dioxide.<br><br><br>
+<strong>Note:</strong> In the pie chart, “mt” means millitonnes, or kilograms, <em>not</em> megatonnes (1 million tonnes).</p>
 </div>
 </div>
 </div>
@@ -513,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7IGFxLCBvcCB9IGZyb20gXCJAdXdkYXRhL2FycXVlcm9cIlxuaW1wb3J0IHsgUGllQ2hhcnQgfSBmcm9tIFwiQGppbWphbXNsYW0vcGllLWNoYXJ0LWNvbXBvbmVudFwiXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJhbGxEYXRhID0gRmlsZUF0dGFjaG1lbnQoXCIvZGF0YS90cmFuc3BvcnQtZW1pc3Npb25zLmNzdlwiKS5jc3YoeyB0eXBlZDogdHJ1ZSB9KVxuXG5hcERhdGEgPSBhbGxEYXRhXG4gIC5maWx0ZXIoZCA9PiBbXCJDSE5cIiwgXCJIS0dcIiwgXCJNQUNcIiwgXCJQUktcIiwgXCJKUE5cIiwgXCJNTkdcIiwgXCJLT1JcIiwgXCJCUk5cIiwgXCJLSE1cIixcbiAgXCJJRE5cIiwgXCJMQU9cIiwgXCJNWVNcIiwgXCJNTVJcIiwgXCJQSExcIiwgXCJTR1BcIiwgXCJUSEFcIiwgXCJUTFNcIiwgXCJWTk1cIiwgXCJBRkdcIiwgXCJCR0RcIixcbiAgXCJCVE5cIiwgXCJJTkRcIiwgXCJJUk5cIiwgXCJNRFZcIiwgXCJOUExcIiwgXCJQQUtcIiwgXCJMS0FcIiwgXCJBVVNcIiwgXCJDWFJcIiwgXCJDQ0tcIiwgXCJOWkxcIixcbiAgXCJORktcIl0uaW5jbHVkZXMoZC5pc28zKSlcblxuSW5wdXRzLnRhYmxlKGFwRGF0YSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBzZWxlY3RlZENpdGllcyA9IElucHV0cy5zZWFyY2goYXBEYXRhLCB7XG4gIHJlcXVpcmVkOiBmYWxzZSxcbiAgY29sdW1uczogW1wibmFtZVwiXSxcbiAgZGF0YWxpc3Q6IGFsbERhdGEubWFwKHggPT4geC5uYW1lKVxufSlcblxudmlld29mIHNlbGVjdGVkVmlldyA9IElucHV0cy5yYWRpbyhcbiAgbmV3IE1hcChbXG4gICAgW1wiVG90YWwgZW1pc3Npb25zXCIsIFwiZ3Jvc3NfXCJdLFxuICAgIFtcIkVtaXNzaW9ucyBwZXIgcGVyc29uXCIsIFwicGVyY2FwaXRhX1wiXVxuICBdKSwge1xuICAgIHZhbHVlOiBcInBlcmNhcGl0YV9cIlxuICB9KVxuXG5zZWxlY3RlZFZpZXdcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InNlbGVjdGVkRGF0YSA9IGFsbERhdGFcbiAgLmZpbHRlcihkID0+IHNlbGVjdGVkQ2l0aWVzLm1hcCh4ID0+IHgubmFtZSkuaW5jbHVkZXMoZC5uYW1lKSlcbmVtaXNzaW9uc0FsbCAgICAgICA9IHNlbGVjdGVkRGF0YVswXVtzZWxlY3RlZFZpZXcgKyBcIkFsbCBlbWlzc2lvbnNcIl1cbmVtaXNzaW9uc1RyYW5zcG9ydCA9IHNlbGVjdGVkRGF0YVswXVtzZWxlY3RlZFZpZXcgKyBcIkFsbCB0cmFuc3BvcnQgZW1pc3Npb25zXCJdXG5cbi8vIHB1dCBoZWFkbGluZSBmaWd1cmVzIGludG8gYW4gYXJyYXkgZm9yIHRoZSBwaWUgY2hhcnRcbnBpZUNoYXJ0RGF0YSA9IFtcbiAge1xuICAgIG5hbWU6IFwiVHJhbnNwb3J0OiBcIiArIGQzLmZvcm1hdChcIi4xJVwiKShlbWlzc2lvbnNUcmFuc3BvcnQgLyBlbWlzc2lvbnNBbGwpLFxuICAgIHZhbHVlOiBlbWlzc2lvbnNUcmFuc3BvcnRcbiAgfSxcbiAge1xuICAgIG5hbWU6IFwiT3RoZXIgc2VjdG9yc1wiLFxuICAgIHZhbHVlOiBlbWlzc2lvbnNBbGwgLSBlbWlzc2lvbnNUcmFuc3BvcnQsXG4gIH1cbl1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImNoYXJ0U3VmZml4ID0gc2VsZWN0ZWRWaWV3ID09IFwiZ3Jvc3NfXCIgPyBcInRcIiA6IFwidCBwLnAuXCJcblBpZUNoYXJ0KHBpZUNoYXJ0RGF0YSwge1xuICBuYW1lOiBkID0+IGQubmFtZSxcbiAgdmFsdWU6IGQgPT4gZC52YWx1ZSxcbiAgd2lkdGg6IDgwLFxuICBoZWlnaHQ6IDgwLFxuICBpbm5lclJhZGl1czogMjUsXG4gIGZvcm1hdDogXCIuMnNcIixcbiAgc3VmZml4OiBjaGFydFN1ZmZpeCxcbiAgY29sb3JzOiBbXCJvcmFuZ2VyZWRcIiwgXCJsaWdodGdyZXlcIl1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJzZWxlY3RlZEZpZ3VyZXMgPSBhcVxuICAuZnJvbShzZWxlY3RlZERhdGEpXG4gIC5zZWxlY3QoYXEubm90KFwiaXNvMlwiLCBcImlzbzNcIiwgXCJuYW1lXCIpKVxuICAuZm9sZChhcS5hbGwoKSlcbiAgLnBhcmFtcyh7IHNlbGVjdGVkVmlldzogc2VsZWN0ZWRWaWV3IH0pXG4gIC5maWx0ZXIoZCA9PiBvcC5zdGFydHN3aXRoKGQua2V5LCBzZWxlY3RlZFZpZXcpKVxuICAuZmlsdGVyKGQgPT4gIW9wLm1hdGNoKGQua2V5LCAvX0FsbC8pKVxuICAuZGVyaXZlKHtcbiAgICBmcmFjOiBkID0+IGQudmFsdWUgLyBvcC5zdW0oZC52YWx1ZSksXG4gICAga2V5OiBkID0+IG9wLnNwbGl0KGQua2V5LCBcIl9cIilbMV1cbiAgICB9KVxuICAub2JqZWN0cygpXG5cblBsb3QucGxvdCh7XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5iYXJYKHNlbGVjdGVkRmlndXJlcywge1xuICAgICAgeDogXCJ2YWx1ZVwiLFxuICAgICAgZmlsbDogXCJrZXlcIixcbiAgICB9KSxcbiAgICBQbG90LnRpcChzZWxlY3RlZEZpZ3VyZXMsIFBsb3QucG9pbnRlclgoUGxvdC5zdGFja1goe1xuICAgICAgeDogXCJ2YWx1ZVwiLFxuICAgICAgZmlsbDogXCJrZXlcIixcbiAgICAgIGNoYW5uZWxzOiB7XG4gICAgICAgIFwiUGVyY2VudFwiOiBkID0+IGQuZnJhYyAqIDEwMFxuICAgICAgfSxcbiAgICAgIGZvcm1hdDoge1xuICAgICAgICBcImZyYWNcIjogZCA9PiBkMy5mb3JtYXQoXCIlXCIpXG4gICAgICB9XG4gICAgfSkpKVxuICBdLFxuICB4OiB7XG4gICAgbGFiZWw6IFwiRW1pc3Npb25zXCIsIC8vIFRPRE8gLSBwZXIgcGVyc29uP1xuICAgIHRpY2tGb3JtYXQ6IGQgPT4gZDMuZm9ybWF0KFwiLjJzXCIpKGQpICsgXCJ0XCIsXG4gIH0sXG4gIG1hcmdpbkJvdHRvbTogMTAwLFxuICBzdHlsZToge1xuICAgIGZvbnRGYW1pbHk6IFwiUm9ib3RvIENvbmRlbnNlZFwiLFxuICAgIGZvbnRTaXplOiAxOFxuICB9XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoibWljcm8gPSByZXF1aXJlKFwibWljcm9tb2RhbEAwLjQuMTBcIilcbm1pY3JvLmluaXQoe1xuICBhd2FpdE9wZW5BbmltYXRpb246IHRydWUsXG4gIGF3YWl0Q2xvc2VBbmltYXRpb246IHRydWVcbn0pO1xuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzZWxlY3RlZENpdGllcycpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzZWxlY3RlZFZpZXcnKSJ9XX0=
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7IGFxLCBvcCB9IGZyb20gXCJAdXdkYXRhL2FycXVlcm9cIlxuaW1wb3J0IHsgUGllQ2hhcnQgfSBmcm9tIFwiQGppbWphbXNsYW0vcGllLWNoYXJ0LWNvbXBvbmVudFwiXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJhbGxEYXRhID0gRmlsZUF0dGFjaG1lbnQoXCIvZGF0YS90cmFuc3BvcnQtZW1pc3Npb25zLWFwLmNzdlwiKS5jc3YoeyB0eXBlZDogdHJ1ZSB9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld29mIHNlbGVjdGVkQ2l0aWVzID0gSW5wdXRzLnNlYXJjaChhbGxEYXRhLCB7XG4gIHJlcXVpcmVkOiBmYWxzZSxcbiAgY29sdW1uczogW1wibmFtZVwiXSxcbiAgZGF0YWxpc3Q6IGFsbERhdGEubWFwKHggPT4geC5uYW1lKVxufSlcblxudmlld29mIHNlbGVjdGVkVmlldyA9IElucHV0cy5yYWRpbyhcbiAgbmV3IE1hcChbXG4gICAgW1wiVG90YWwgZW1pc3Npb25zXCIsIFwiZ3Jvc3NfXCJdLFxuICAgIFtcIkVtaXNzaW9ucyBwZXIgcGVyc29uXCIsIFwicGVyY2FwaXRhX1wiXVxuICBdKSwge1xuICAgIHZhbHVlOiBcImdyb3NzX1wiXG4gIH0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJzZWxlY3RlZERhdGEgPSBzZWxlY3RlZENpdGllcy5sZW5ndGggPT0gMSA/XG4gIGFsbERhdGEuZmlsdGVyKGQgPT4gc2VsZWN0ZWRDaXRpZXMubWFwKHggPT4geC5uYW1lKS5pbmNsdWRlcyhkLm5hbWUpKSA6XG4gIGFsbERhdGEuZmlsdGVyKGQgPT4gZC5uYW1lID09IFwiQXNpYS1QYWNpZmljIHJlZ2lvblwiKVxuZW1pc3Npb25zQWxsICAgICAgID0gc2VsZWN0ZWREYXRhWzBdW3NlbGVjdGVkVmlldyArIFwiQWxsIGVtaXNzaW9uc1wiXVxuZW1pc3Npb25zVHJhbnNwb3J0ID0gc2VsZWN0ZWREYXRhWzBdW3NlbGVjdGVkVmlldyArIFwiQWxsIHRyYW5zcG9ydCBlbWlzc2lvbnNcIl1cblxuLy8gcHV0IGhlYWRsaW5lIGZpZ3VyZXMgaW50byBhbiBhcnJheSBmb3IgdGhlIHBpZSBjaGFydFxucGllQ2hhcnREYXRhID0gW1xuICB7XG4gICAgbmFtZTogXCJUcmFuc3BvcnQ6IFwiICsgZDMuZm9ybWF0KFwiLjElXCIpKGVtaXNzaW9uc1RyYW5zcG9ydCAvIGVtaXNzaW9uc0FsbCksXG4gICAgdmFsdWU6IGVtaXNzaW9uc1RyYW5zcG9ydFxuICB9LFxuICB7XG4gICAgbmFtZTogXCJPdGhlciBzZWN0b3JzXCIsXG4gICAgdmFsdWU6IGVtaXNzaW9uc0FsbCAtIGVtaXNzaW9uc1RyYW5zcG9ydCxcbiAgfVxuXVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoic2VsZWN0ZWRDaXRpZXMubGVuZ3RoID09IDEgPyBtZGAjIyAke3NlbGVjdGVkQ2l0aWVzWzBdLm5hbWV9YCA6XG4gIHNlbGVjdGVkQ2l0aWVzLmxlbmd0aCA9PSAwID8gbWRgIyMgQXNpYS1QYWNpZmljIHJlZ2lvbmAgOlxuICAgIG1kYGBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImNoYXJ0U3VmZml4ID0gc2VsZWN0ZWRWaWV3ID09IFwiZ3Jvc3NfXCIgPyBcInRcIiA6IFwidCBwLnAuXCJcbnNlbGVjdGVkRGF0YS5sZW5ndGggPT0gMSA/IFBpZUNoYXJ0KHBpZUNoYXJ0RGF0YSwge1xuICBuYW1lOiBkID0+IGQubmFtZSxcbiAgdmFsdWU6IGQgPT4gZC52YWx1ZSxcbiAgd2lkdGg6IDIwMCxcbiAgaGVpZ2h0OiAxNjAsIFxuICBpbm5lclJhZGl1czogMjAsXG4gIG91dGVyUmFkaXVzOiA0MCwgLy8gZGVmYXVsdHMgMC41ICogbWluKHdpZHRoLCBoZWlnaHQpXG4gIC8vIFRPRE8gLSBtYWtlIHRoaXMgd29yayB3aXRoIGB0b25uZXNPcktpbG9zYFxuICBmb3JtYXQ6IFwiLjJzXCIsXG4gIHN1ZmZpeDogY2hhcnRTdWZmaXgsXG4gIGNvbG9yczogW1wib3JhbmdlcmVkXCIsIFwibGlnaHRncmV5XCJdXG59KSA6IG51bGxcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InNlbGVjdGVkRmlndXJlcyA9IGFxXG4gIC5mcm9tKHNlbGVjdGVkRGF0YSlcbiAgLnNlbGVjdChhcS5ub3QoXCJpc28yXCIsIFwiaXNvM1wiLCBcIm5hbWVcIikpXG4gIC5mb2xkKGFxLmFsbCgpKVxuICAucGFyYW1zKHsgc2VsZWN0ZWRWaWV3OiBzZWxlY3RlZFZpZXcgfSlcbiAgLmZpbHRlcihkID0+IG9wLnN0YXJ0c3dpdGgoZC5rZXksIHNlbGVjdGVkVmlldykpXG4gIC5maWx0ZXIoZCA9PiAhb3AubWF0Y2goZC5rZXksIC9fQWxsLykpXG4gIC5kZXJpdmUoe1xuICAgIGZyYWM6IGQgPT4gZC52YWx1ZSAvIG9wLnN1bShkLnZhbHVlKSxcbiAgICBrZXk6IGQgPT4gb3Auc3BsaXQoZC5rZXksIFwiX1wiKVsxXVxuICAgIH0pXG4gIC5vYmplY3RzKClcblxudG9ubmVzT3JLaWxvcyA9IGQgPT5cbiAgZCA+IDEgP1xuICAgIGQzLmZvcm1hdChcIi4yc1wiKShkKSArIFwidFwiIDpcbiAgICBkMy5mb3JtYXQoXCIuMnNcIikoZCAqIDEwMDAwMDApICsgXCJnXCJcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImJhckNoYXJ0VmVydGljYWwgPSBQbG90LnBsb3Qoe1xuICBtYXJrczogW1xuICAgIFBsb3QuYmFyWShzZWxlY3RlZEZpZ3VyZXMsIHtcbiAgICAgIHk6IFwidmFsdWVcIixcbiAgICAgIGZpbGw6IFwia2V5XCIsXG4gICAgfSksXG4gICAgUGxvdC50ZXh0KHNlbGVjdGVkRmlndXJlcywgUGxvdC5kb2RnZVgoXCJyaWdodFwiLCBQbG90LnN0YWNrWSh7XG4gICAgICB5OiBcInZhbHVlXCIsXG4gICAgICB0ZXh0OiBcImtleVwiLFxuICAgICAgZmlsbDogXCJrZXlcIixcbiAgICAgIHN0cm9rZTogXCJ3aGl0ZVwiLFxuICAgICAgc3Ryb2tlV2lkdGg6IDQsXG4gICAgICB0ZXh0QW5jaG9yOiBcInN0YXJ0XCIsXG4gICAgICBmb250V2VpZ2h0OiBcImJvbGRcIlxuICAgIH0pKSksXG4gICAgUGxvdC50aXAoc2VsZWN0ZWRGaWd1cmVzLCBQbG90LnBvaW50ZXJZKFBsb3Quc3RhY2tZKHtcbiAgICAgIHk6IFwidmFsdWVcIixcbiAgICAgIGZpbGw6IFwia2V5XCIsXG4gICAgICBjaGFubmVsczoge1xuICAgICAgICBcIlN1YnNlY3RvclwiOiBcImtleVwiLFxuICAgICAgICBcIlBlcmNlbnRcIjogXCJmcmFjXCJcbiAgICAgIH0sXG4gICAgICBmb3JtYXQ6IHtcbiAgICAgICAgXCJQZXJjZW50XCI6IGQgPT4gZDMuZm9ybWF0KFwiLjElXCIpKGQpLFxuICAgICAgICBcInlcIjogdG9ubmVzT3JLaWxvcyxcbiAgICAgICAgXCJmaWxsXCI6IG51bGxcbiAgICAgIH1cbiAgICB9KSkpXG4gIF0sXG4gIHk6IHtcbiAgICBsYWJlbDogc2VsZWN0ZWRWaWV3ID09IFwiZ3Jvc3NfXCIgPyBcIkVtaXNzaW9uc1wiIDogXCJFbWlzc2lvbnMgcGVyIHBlcnNvblwiLFxuICAgIC8vIFRPRE8gLSBzd2l0Y2ggdG8ga2cgZm9yIHNtYWxsZXIgZmlndXJlc1xuICAgIHRpY2tGb3JtYXQ6IHRvbm5lc09yS2lsb3MsXG4gIH0sXG4gIG1hcmdpbkxlZnQ6IDUwLFxuICBtYXJnaW5SaWdodDogMTgwLFxuICBzdHlsZToge1xuICAgIGZvbnRGYW1pbHk6IFwiUm9ib3RvIENvbmRlbnNlZFwiLFxuICAgIGZvbnRTaXplOiAxNlxuICB9LFxuICB3aWR0aDogMzAwLFxuICBoZWlnaHQ6IDQwMFxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InNlbGVjdGVkRGF0YS5sZW5ndGggPT0gMSA/IGh0bWxgJHtiYXJDaGFydFZlcnRpY2FsfWAgOiBudWxsXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTEwIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoibWljcm8gPSByZXF1aXJlKFwibWljcm9tb2RhbEAwLjQuMTBcIilcbm1pY3JvLmluaXQoe1xuICBhd2FpdE9wZW5BbmltYXRpb246IHRydWUsXG4gIGF3YWl0Q2xvc2VBbmltYXRpb246IHRydWVcbn0pO1xuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzZWxlY3RlZENpdGllcycpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzZWxlY3RlZFZpZXcnKSJ9XX0=
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }

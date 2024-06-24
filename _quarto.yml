@@ -11,6 +11,7 @@ project:
   resources:
     - /data/pt-access.csv
     - /data/transport-emissions.csv
+    - /data/transport-emissions-ap.csv
     - /public-transport/pt-access-banner.png
   
 # only re-render if the source changes or if we specifically render that file

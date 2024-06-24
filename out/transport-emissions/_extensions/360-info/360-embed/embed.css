@@ -56,7 +56,6 @@ header#title-block-header p {
   header#title-block-header p 
   {
     font-size: 100%;
-    font-weight: bold;
   }
 
   .inputForm {
@@ -75,7 +74,6 @@ header#title-block-header p {
   header#title-block-header p 
   {
     font-size: 80%;
-    font-weight: bold;
   }
 }
 
@@ -114,11 +112,32 @@ header#title-block-header p {
   flex-wrap: wrap;
 }
 
-/* label on pie chart */
+
+#visuals {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5em;
+  margin-inline-start: 0.2em;
+}
+
+/* labels on pie chart */
 
 #pie-chart-2 svg text {
   font-family: "Roboto Condensed";
+  font-size: 175%;
   stroke: white;
   paint-order: stroke fill;
   stroke-width: 4px;
+}
+
+#pie-chart-2 svg g:nth-child(2) text:nth-child(1) {
+  text-anchor: end;
+  transform: translate(100px, -50px);
+}
+
+#pie-chart-2 svg g:nth-child(2) text:nth-child(2) {
+  text-anchor: start;
+  transform: translate(-100px, 50px);
 }
