@@ -158,6 +158,11 @@ bind_rows(
 tr_combined
 
 tr_combined |>
+  mutate(sector = case_match(sector,
+    "Railways" ~ "Domestic railway",
+    "Road transportation" ~ "Domestic road transport",
+    .default = sector
+  )) |>
   pivot_wider(names_from = sector, values_from = emissions) |>
   mutate(
     iso2 = countrycode(country, "iso3c", "iso2c"),
