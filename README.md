@@ -2,7 +2,7 @@
 
 # Transport under 1.5°C
 
-### [📋 Graphic 1](https://transport.360visuals.org/public-transport?edshare) • [📋 Graphic 2](https://www.datawrapper.de/_/FxQj1/) • [📊 Get the data](data) • [💻 Reproduce the analysis](#-reproduce-the-analysis)
+### [📋 Public transport graphic](https://transport.360visuals.org/public-transport?edshare) • [📋 Transport emissions graphic](https://transport.360visuals.org/transport-emissions?edshare) • [📊 Get the data](data) • [💻 Reproduce the analysis](#-reproduce-the-analysis)
 
 Visualises emissions from the transport sector and access to public
 transport
@@ -30,6 +30,9 @@ dataset of cities over 1000 people</a>
 <li>  
 <a href="https://unstats.un.org/unsd/methodology/m49">The UN’s hierarchy
 of country regions</a>  
+<li>  
+<a href="https://climatetrace.org">Climate Trace</a>  
+</li>  
 </ul>
 
 **Please attribute 360info and the data sources when you use and remix
