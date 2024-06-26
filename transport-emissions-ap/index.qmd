@@ -1,9 +1,9 @@
 ---
 # omit title and subtitle if you're doing a custom title block
-title: Transport in Asia-Pacific
-subtitle: Transport makes up nearly 10% of all greenhouse gas emissions across the Asia-Pacific. But that percentage is very different for countries across the region.
+title: Transport emissions in the Indo-Pacific
+subtitle: Transport makes up nearly 10% of all greenhouse gas emissions across the Indo-Pacific. But that percentage is very different for countries across the region.
 # for social previews
-pagetitle: Transport emissions in Asia-Pacific
+pagetitle: Transport emissions in the Indo-Pacific
 description: A description for social previews
 twitter-card:
   site: "@360info_global"
@@ -17,13 +17,13 @@ format:
 # metadata for modals and embed sharing functionality
 360embed:
   byline: James Goldie, 360info
-  data-source: Climate Trace
+  data-source: "<a style=\"text-transform: none; font-weight: normal;\" href=\"https://climatetrace.org\">Climate Trace</a>"
   type: map
   aspect-ratio: 4 / 3
   min-height: 680px
   max-height: 680px
   bg-colour: white
-  title: "Interactive: Transport emissions in Asia-Pacific"
+  title: "Interactive: Transport emissions in the Indo-Pacific"
   repo: report-transport-under1.5c
   domain: https://transport.360visuals.org
   path: /transport-emissions-ap
@@ -54,7 +54,9 @@ allData = FileAttachment("/data/transport-emissions-ap.csv").csv({ typed: true }
 viewof selectedCities = Inputs.search(allData, {
   required: false,
   columns: ["name"],
-  datalist: allData.map(x => x.name)
+  datalist: allData.map(x => x.name).sort(),
+  placeholder: "Search for a country",
+  format: n => n + " countr" + (n == 1 ? "y" : "ies")
 })
 
 viewof selectedView = Inputs.radio(
@@ -70,7 +72,7 @@ viewof selectedView = Inputs.radio(
 //| label: format-data
 selectedData = selectedCities.length == 1 ?
   allData.filter(d => selectedCities.map(x => x.name).includes(d.name)) :
-  allData.filter(d => d.name == "Asia-Pacific region")
+  allData.filter(d => d.name == "Indo-Pacific region")
 emissionsAll       = selectedData[0][selectedView + "All emissions"]
 emissionsTransport = selectedData[0][selectedView + "All transport emissions"]
 
@@ -89,8 +91,8 @@ pieChartData = [
 
 ```{ojs}
 //| label: subtitle
-selectedCities.length == 1 ? md`## ${selectedCities[0].name}` :
-  selectedCities.length == 0 ? md`## Asia-Pacific region` :
+selectedCities.length == 1 ? md`## ${selectedCities[0].name.toUpperCase()}` :
+  selectedCities.length == 0 ? md`## INDO-PACIFIC REGION` :
     md``
 ```
 
@@ -109,7 +111,7 @@ selectedData.length == 1 ? PieChart(pieChartData, {
   // TODO - make this work with `tonnesOrKilos`
   format: ".2s",
   suffix: chartSuffix,
-  colors: ["orangered", "lightgrey"]
+  colors: ["#333333", "lightgrey"]
 }) : null
 ```
 

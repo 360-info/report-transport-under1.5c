@@ -59,9 +59,6 @@ CN,China,Guangzhou,Guangzhou,2020,Asia,Eastern Asia,1809858,23.11667,113.25,1609
 CN,China,Guixi,Guixi,2020,Asia,Eastern Asia,1809467,30.33355,107.34545,188980,81.51951
 CN,China,Haikou,Haikou,2020,Asia,Eastern Asia,1809078,20.03421,110.34651,2873358,52.2181
 CN,China,Hangzhou,Hangzhou,2020,Asia,Eastern Asia,1808926,30.29365,120.16142,9236032,37.66081
-CN,China,Hong,Hangzhou,2020,Asia,Eastern Asia,1808926,30.29365,120.16142,9236032,98.54797
-CN,China,Hong,Heng,2020,Asia,Eastern Asia,1808361,22.68314,109.25713,0,98.54797
-CN,China,Hong,Shengping,2020,Asia,Eastern Asia,1280013,28.48563,98.91139,0,98.54797
 CN,China,Jinan,Jinan,2020,Asia,Eastern Asia,1805753,36.66833,116.99722,4335989,34.29938
 CN,China,Kaiping,Kaiping,2020,Asia,Eastern Asia,1804863,39.67798,118.25217,0,69.34189
 CN,China,Leshan,Leshan,2020,Asia,Eastern Asia,1804153,29.56227,103.76386,662814,59.28245
@@ -85,6 +82,7 @@ CN,China,Yulin,Yulin,2020,Asia,Eastern Asia,1785781,22.6305,110.14686,1056743,64
 CN,China,Zhengzhou,Zhengzhou,2020,Asia,Eastern Asia,1784658,34.75778,113.64861,4253913,43.73151
 CN,China,Zhuji,Shangqiu,2020,Asia,Eastern Asia,1783934,34.45,115.65,1536392,41.84145
 CN,China,Zunyi,Zunyi,2020,Asia,Eastern Asia,1783621,27.68667,106.90722,2037775,40.77393
+HK,China,Hong Kong,Hong Kong,2020,Asia,Eastern Asia,1819729,22.27832,114.17469,7491609,98.54797
 ID,Indonesia,Banda Aceh,Banda Aceh,2020,Asia,South-eastern Asia,1215502,5.54167,95.33333,255029,29.73602
 ID,Indonesia,Bandar Lampung,Bandar Lampung,2020,Asia,South-eastern Asia,1624917,-5.42917,105.26111,1166066,26.34003
 ID,Indonesia,Bandung,Bandung,2020,Asia,South-eastern Asia,1650357,-6.92222,107.60694,2444160,47.34926

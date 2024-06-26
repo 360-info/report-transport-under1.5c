@@ -17,15 +17,6 @@ header#title-block-header {
   
   color: black;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  
-  /* uncomment following for an inset header */
-  
-  /* position: absolute;
-  margin-right: 160px;
-  top: 0;
-  left: 0;
-  padding: 10px;
-  z-index: 1000;  */
 
 }
 
@@ -140,4 +131,32 @@ header#title-block-header p {
 #pie-chart-2 svg g:nth-child(2) text:nth-child(2) {
   text-anchor: start;
   transform: translate(-100px, 50px);
+}
+
+/* search box styling */
+
+#controls .cell-output:has(#controls-1) {
+  flex-grow: 1;
+}
+
+#controls-1 {
+  width: 100%;
+  padding: 0;
+  min-width: 200px;
+}
+
+#controls-1 input[type="search"] {
+  font-weight: normal;
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+}
+
+#controls .observablehq,
+#controls form
+{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-block: 0.125em;
 }

@@ -113,7 +113,9 @@ pt_data |>
   filter(!str_ends(city, "_total")) |>
   mutate(
     city = case_when(
+      # hk washington dc are tricky examples
       city == "Washington_d_c" ~ "Washington DC",
+      city == "Hong_kong" ~ "Hong Kong",
       country_name %in% c("Canada", "China", "United States of America") ~
         str_remove(city, "_[^_]*$"),
       country_name == "Mexico" ~
@@ -131,7 +133,10 @@ pt_data |>
   # finally, drop non-latest data for a city
   group_by(city) |>
   slice_max(year) |>
-  ungroup() ->
+  ungroup() |>
+  # for hong kong, we need to switch the country code to match the city db
+  mutate(country_iso2 =
+    case_match(city, "Hong Kong" ~ "HK", .default = country_iso2)) ->
 pt_tidy
 ```
 
@@ -141,7 +146,8 @@ I might just double-check my assumption that the apparent iso2 code in the data 
 #| label: check-iso
 pt_data |>
   filter(Cities != "NOCITI") |>
-  separate_wider_delim(Cities, "_", names = c("country_iso2", "city"),too_many = "merge") |>
+  separate_wider_delim(Cities, "_", names = c("country_iso2", "city"),
+    too_many = "merge") |>
   mutate(iso2_check = countrycode(geoAreaCode, "un", "iso2c")) |>
   filter(iso2_check != country_iso2) ->
 iso2_mismatch
@@ -212,7 +218,6 @@ nested_matched_cities
 
 # how many missing matches? about 150 (pretty good!)
 nested_matched_cities |>
-# nested_jp |>
   select(country_iso2, matches) |>
   unnest(matches) |>
   filter(is.na(coordinates)) |> select(country_iso2, city, all_names) |>

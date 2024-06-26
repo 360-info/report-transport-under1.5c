@@ -59,9 +59,9 @@ header#title-block-header p {
     font-size: 100%;
   }
 
-  #controls {
+  /* #controls {
     font-size: 90%;
-  }
+  } */
 }
 
 @media (max-width: 34em) {
@@ -76,9 +76,9 @@ header#title-block-header p {
     font-size: 80%;
   }
 
-  #controls {
+  /* #controls {
     font-size: 80%;
-  }
+  } */
 }
 
 
@@ -144,10 +144,6 @@ header#title-block-header p {
   border: none;
   border-bottom: 1px solid black;
   background-color: transparent;
-}
-
-input[type="search" i]::-webkit-search-cancel-button {
-
 }
 
 #controls .observablehq,

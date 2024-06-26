@@ -1,9 +1,9 @@
 ---
 # omit title and subtitle if you're doing a custom title block
-title: Public transport access in Asia-Pacific
+title: Public transport access in the Indo-Pacific
 subtitle: "**How many people in your city have a stop nearby?**<br><span style='font-size: 85%; color: #555555;'>This measures the percentage of people in a city with a **minor stop (bus) within 500 m** or a **major stop (train, metro or ferry) within 1 km** of their home. It doesn't take into account the quality or frequency of that transport.</span>"
 # for social previews
-pagetitle: "Interactive: Public transport access in Asia-Pacific"
+pagetitle: "Interactive: Public transport access in Indo-Pacific"
 description: "How many people in your city have a stop nearby?" 
 twitter-card:
   site: "@360info_global"
@@ -50,7 +50,10 @@ viewof zoomOptions = Inputs.checkbox(["Zoom"], {
 
 viewof selectedCities = Inputs.search(cities, {
   required: false,
-  columns: ["city", "country_name"]
+  columns: ["country_name"],
+  datalist: Array.from(new Set(cities.map(x => x.country_name).sort())),
+  placeholder: "Search for a country",
+  format: n => n + " cit" + (n == 1 ? "y" : "ies")
 })
 ```
 

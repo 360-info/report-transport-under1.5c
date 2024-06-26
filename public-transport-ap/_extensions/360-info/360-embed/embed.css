@@ -146,10 +146,6 @@ header#title-block-header p {
   background-color: transparent;
 }
 
-input[type="search" i]::-webkit-search-cancel-button {
-
-}
-
 #controls .observablehq,
 #controls form
 {

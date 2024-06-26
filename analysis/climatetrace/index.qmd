@@ -163,6 +163,8 @@ tr_combined |>
     iso2 = countrycode(country, "iso3c", "iso2c"),
     name = countrycode(country, "iso3c", "country.name.en")) |>
   select(iso2, iso3 = country, name, everything()) |>
+  # remove 'sar china' from are names
+  mutate(name = str_remove_all(name, " SAR China")) |>
   write_csv(here("data", "transport-emissions.csv")) |>
   print() ->
 tr_combined_wide
@@ -181,8 +183,6 @@ here("data", "raw", "population.csv") |>
     TPopulation1July) |>
   filter(Time == 2022, !is.na(iso3)) ->
 population
-
-# 
 
 # merge the population data and calculate per capita figures
 # alongside gross ones
@@ -210,13 +210,13 @@ tr_combined_percapita |>
   )) ->
 ap_figures
 
-# get the region-wide figures (make sure we recalculate )
+# get the region-wide figures (make sure we recalculate)
 ap_figures |>
   select(iso2, iso3, name, population, starts_with("gross_")) |>
   summarise(
     iso2 = NA,
     iso3 = NA,
-    name = "Asia-Pacific region",
+    name = "Indo-Pacific region",
     across(where(is.numeric), sum, na.rm = TRUE)) |>
     mutate(across(starts_with("gross_"), .fns = ~ .x / population,
       .names = "percapita_{.col}")) |>
@@ -225,6 +225,6 @@ ap_region
 
 # bind country figures with AP "total" row and write out to disk
 ap_figures |>
-  bind_rows(ap_region) |> glimpse()
+  bind_rows(ap_region) |>
   write_csv(here("data", "transport-emissions-ap.csv"), na = "")
 ```
