@@ -1,17 +1,4 @@
 country_iso2,country_name,city,city_std,year,region,subregion,geoname_id,lat,lon,population,pct_pt_access
-AF,Afghanistan,Charikar,Charikar,2020,Asia,Southern Asia,1145352,35.01361,69.17139,53676,77.51385
-AF,Afghanistan,Farah,Farah,2020,Asia,Southern Asia,1142264,32.37451,62.11638,43561,69.49938
-AF,Afghanistan,Herat,Herāt,2020,Asia,Southern Asia,1140026,34.34817,62.19967,574300,50.35842
-AF,Afghanistan,Jalalabad,Jalālābād,2020,Asia,Southern Asia,1139715,34.42647,70.45153,271900,44.18398
-AF,Afghanistan,Kabul,Kabul,2020,Asia,Southern Asia,1138958,34.52813,69.17233,4434550,19.06218
-AF,Afghanistan,Kandahar,Kandahār,2020,Asia,Southern Asia,1138336,31.61332,65.71013,523300,43.14528
-AF,Afghanistan,Khan Abad,Khanabad,2020,Asia,Southern Asia,1137168,36.68304,69.11279,71531,82.36933
-AF,Afghanistan,Lashkargah,Lashkar Gāh,2020,Asia,Southern Asia,1134720,31.59382,64.37161,43934,56.29534
-AF,Afghanistan,Lashkargah,Lashkar Gāh,2020,Asia,Southern Asia,1134720,31.59382,64.37161,43934,56.29534
-AF,Afghanistan,Mazar E Sharif,Mazār-e Sharīf,2020,Asia,Southern Asia,1133616,36.70904,67.11087,523300,57.76331
-AF,Afghanistan,Mazar E Sharif,Mazār-e Sharīf,2020,Asia,Southern Asia,1133616,36.70904,67.11087,523300,57.76331
-AF,Afghanistan,Pul E Khumri,Pul-e Khumrī,2020,Asia,Southern Asia,1130490,35.94458,68.71512,56369,49.0424
-AF,Afghanistan,Pul E Khumri,Pul-e Khumrī,2020,Asia,Southern Asia,1130490,35.94458,68.71512,56369,49.0424
 AU,Australia,Adelaide,Adelaide,2020,Oceania,Australia and New Zealand,2078025,-34.92866,138.59863000000001,1387290,92.54682
 AU,Australia,Alice Springs,Alice Springs,2020,Oceania,Australia and New Zealand,2077895,-23.69748,133.88362,25186,94.56754
 AU,Australia,Brisbane,Brisbane,2020,Oceania,Australia and New Zealand,2174003,-27.46794,153.02809,2582007,89.05395
@@ -150,35 +137,6 @@ IN,India,Surat,Jalalpore,2020,Asia,Southern Asia,1269439,20.94896,72.89829,17325
 IN,India,Thoothukkudi,Thoothukudi,2020,Asia,Southern Asia,8629640,8.76735,78.13425,410760,9.94481
 IN,India,Tumkur,Tumkūr,2020,Asia,Southern Asia,1254089,13.34136,77.1022,307359,12.3969
 IN,India,Vijayawada,Vijayawada,2020,Asia,Southern Asia,1253184,16.50745,80.6466,874587,70.60771
-IR,Iran (Islamic Republic of),Abadan,Abadan,2020,Asia,Southern Asia,145459,30.3392,48.3043,370180,14.03409
-IR,Iran (Islamic Republic of),Ahvaz,Ahvaz,2020,Asia,Southern Asia,144448,31.31901,48.6842,841145,11.69851
-IR,Iran (Islamic Republic of),Amol,Āmol,2020,Asia,Southern Asia,143534,36.46961,52.35072,199382,3.53249
-IR,Iran (Islamic Republic of),Arak,Arāk,2020,Asia,Southern Asia,143127,34.09493,49.69809,503647,66.19557
-IR,Iran (Islamic Republic of),Ardabil,Ardabīl,2020,Asia,Southern Asia,143083,38.2498,48.2933,410753,54.0941
-IR,Iran (Islamic Republic of),Babol,Bābol,2020,Asia,Southern Asia,142363,36.55102,52.6786,202796,42.44032
-IR,Iran (Islamic Republic of),Bandar E Abas,Bandar Abbas,2020,Asia,Southern Asia,141681,27.1865,56.2808,352173,36.33693
-IR,Iran (Islamic Republic of),Bojnurd,Bojnūrd,2020,Asia,Southern Asia,140380,37.47473,57.32903,192041,55.70277
-IR,Iran (Islamic Republic of),Dehdasht,Dehdasht,2020,Asia,Southern Asia,136987,30.79337,50.56508,69726,62.18807
-IR,Iran (Islamic Republic of),Esfahan,Isfahan,2020,Asia,Southern Asia,418863,32.65246,51.67462,1547164,43.19462
-IR,Iran (Islamic Republic of),Gorgan,Gorgān,2020,Asia,Southern Asia,132892,36.8427,54.44391,244937,12.77372
-IR,Iran (Islamic Republic of),Karaj,Karaj,2020,Asia,Southern Asia,128747,35.83266,50.99155,1448075,14.09944
-IR,Iran (Islamic Republic of),Kashan,Kāshān,2020,Asia,Southern Asia,6861211,33.99728,51.44158,0,22.50826
-IR,Iran (Islamic Republic of),Kashmar,Kāshmar,2020,Asia,Southern Asia,128447,35.23831,58.46558,96151,19.48757
-IR,Iran (Islamic Republic of),Kerman,Kerman,2020,Asia,Southern Asia,128234,30.28321,57.07879,577514,18.05284
-IR,Iran (Islamic Republic of),Mashhad,Mashhad,2020,Asia,Southern Asia,124665,36.29807,59.60567,2307177,55.17288
-IR,Iran (Islamic Republic of),Nishabur,Neyshābūr,2020,Asia,Southern Asia,122285,36.21329,58.79575,220929,32.16869
-IR,Iran (Islamic Republic of),Piranshahr,Piranshahr,2020,Asia,Southern Asia,121110,36.701,45.1413,61973,38.09396
-IR,Iran (Islamic Republic of),Qazvin,Qazvin,2020,Asia,Southern Asia,119505,36.26877,50.0041,333635,69.3208
-IR,Iran (Islamic Republic of),Qom,Qom,2020,Asia,Southern Asia,119208,34.6401,50.8764,900000,22.61231
-IR,Iran (Islamic Republic of),Salmas,Salmās,2020,Asia,Southern Asia,117656,38.1973,44.7653,81606,81.58118
-IR,Iran (Islamic Republic of),Sanandaj,Sanandaj,2020,Asia,Southern Asia,117574,35.31495,46.99883,349176,53.1133
-IR,Iran (Islamic Republic of),Sari,Sari,2020,Asia,Southern Asia,116996,36.56332,53.06009,255396,38.89761
-IR,Iran (Islamic Republic of),Shadegan,Shādegān,2020,Asia,Southern Asia,116102,30.64924,48.66497,37220,39.96839
-IR,Iran (Islamic Republic of),Shahin Shahr,Shāhīn Shahr,2020,Asia,Southern Asia,417472,32.85788,51.5529,0,15.36
-IR,Iran (Islamic Republic of),Shiraz,Shiraz,2020,Asia,Southern Asia,115019,29.61031,52.53113,1249942,45.44857
-IR,Iran (Islamic Republic of),Tabriz,Tabriz,2020,Asia,Southern Asia,113646,38.08,46.2919,1424641,59.00695
-IR,Iran (Islamic Republic of),Tehran,Tehran,2020,Asia,Southern Asia,112931,35.69439,51.42151,7153309,71.70666
-IR,Iran (Islamic Republic of),Varamin,Varāmīn,2020,Asia,Southern Asia,112214,35.3242,51.6457,179603,20.86507
 JP,Japan,Akita,Akita,2020,Asia,Eastern Asia,2113126,39.71667,140.11667,305625,83.90617
 JP,Japan,Aomori,Aomori,2020,Asia,Eastern Asia,2130658,40.81667,140.73333,298394,92.61416
 JP,Japan,Asahikawa,Asahikawa,2020,Asia,Eastern Asia,2130629,43.77063,142.36489,333530,96.83519
