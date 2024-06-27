@@ -211,8 +211,9 @@ tr_combined_percapita
 # version
 tr_combined_percapita |>
   filter(iso3 %in% c(
-    "CHN", "HKG", "MAC", "PRK", "JPN", "MNG", "KOR", "BRN", "KHM", "IDN", "LAO", "MYS", "MMR", "PHL", "SGP", "THA", "TLS", "VNM", "AFG", "BGD", "BTN", "IND", "IRN", "MDV", "NPL", "PAK", "LKA", "AUS", "CXR", "CCK", "NZL", "NFK"
-  )) ->
+    "CHN", "HKG", "MAC", "PRK", "JPN", "MNG", "KOR", "BRN", "KHM", "IDN", "LAO",
+    "MYS", "MMR", "PHL", "SGP", "THA", "TLS", "VNM", "BGD", "BTN", "IND", "MDV",
+    "NPL", "PAK", "LKA", "AUS", "CXR", "CCK", "NZL", "NFK")) ->
 ap_figures
 
 # get the region-wide figures (make sure we recalculate)
